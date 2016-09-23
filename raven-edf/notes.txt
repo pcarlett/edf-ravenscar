@@ -1,0 +1,14 @@
+1) E' necessario rimuovere tutti i riferimenti a Priority per comprendere
+	come possa il sistema girare interamente a deadline
+XXX 2) Interrupt_Wrapper: e' necessario rimuovere il meccanismo Change_Deadline
+	in favore di un piu' intelligente meccanismo di Activate/Deactivate
+3) Nella procedura Initialize in s-bbthre.adb e' necessatio inizializzare il
+	valore di System.BB.Time.Clock in modo tale che il valore rimanga costante
+	e fissato durante l'esecuzione del metodo
+5)
+
+Attenzione: e' necessario rivedere i metodi:
+XXX --> Change_Absolute_Deadline
+--> Wakeup_Expired_Alarms chiama Change_Absolute_Deadline
+--> evidentemente il lock sulla prima posizione della coda genera dei problemi
+	 di posizionamento del first task

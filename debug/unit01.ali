@@ -1,0 +1,86 @@
+V "GNAT Lib v2012"
+M P W=b
+A -O0
+A -g
+A -gnatA
+P DB LC TF
+R nnnnnnnnnnnnnnnnnnnnnnnvnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnvnnnnnnvnnnnnnnnnnnnnn
+
+U unit01%b		unit01.adb		8b09d7e6 NE OO SU
+W ada%s			ada.ads			ada.ali
+W ada.real_time%s	a-reatim.adb		a-reatim.ali
+W cyclic_tasks%s	cyclic_tasks.adb	cyclic_tasks.ali
+W system%s		system.ads		system.ali
+W system.bb%s		s-bb.ads		s-bb.ali
+W system.bb.deadlines%s	s-bbdead.ads		s-bbdead.ali
+W system.bb.time%s	s-bbtime.adb		s-bbtime.ali
+W system.img_lld%s	s-imglld.adb		s-imglld.ali
+W system.io%s		s-io.adb		s-io.ali
+W system.task_primitives%s  s-taspri.ads	s-taspri.ali
+W system.task_primitives.operations%s  s-taprop.adb  s-taprop.ali
+
+D ada.ads		20120522194022 3ffc8e18
+D a-except.ads		20120522194022 5974a9a3
+D a-reatim.ads		20160827155552 451ebfee
+D a-unccon.ads		20120522194025 f9eb8f06
+D cyclic_tasks.ads	20160918103117 63419d35
+D system.ads		20120522194023 9f5cb267
+D s-bb.ads		20160827082654 883768d6
+D s-bbbosu.ads		20160827082654 3c803d90
+D s-bbcppr.ads		20160827082654 1650d9c3
+D s-bcprmu.ads		20120522194025 b5ec9aa9
+D s-bbdead.ads		20160916153656 3e7b7009
+D s-bbinte.ads		20160827082654 1694471a
+D s-bbpara.ads		20160827082654 7e14d41c
+D s-bbthre.ads		20160919151401 8104e374
+D s-bbthqu.ads		20160827160900 a31873ec
+D s-bbtime.ads		20160916153527 1c48673f
+D s-imglld.ads		20120522194024 f3220969
+D s-io.ads		20120522194024 9e42f74f
+D s-multip.ads		20120522194023 f33e0e35
+D s-osinte.ads		20160919151412 081c9432
+D s-parame.ads		20120522194025 50a777dd
+D s-stalib.ads		20120522194024 1842e978
+D s-stoele.ads		20120522194023 facd7d98
+D s-stoele.adb		20120522194023 afc5dc80
+D s-tasinf.ads		20120522194025 e120e23a
+D s-taspri.ads		20120522194025 3d95fc44
+D s-taprop.ads		20160919152051 906cb52b
+D s-taskin.ads		20160919150753 016f9164
+D s-tasres.ads		20120522194025 0c8ef6fb
+D s-tarest.ads		20160916162014 b1f3282a
+D unchconv.ads		20120522194025 ca2f9e18
+D unit01.adb		20160918103057 814ba06f
+X 1 ada.ads
+16K9*Ada 19e8 32|7r6 7r25
+X 3 a-reatim.ads
+42K13*Real_Time 146e18 32|7w10 7r29
+X 5 cyclic_tasks.ads
+6K9*Cyclic_Tasks 22e17 32|1w6 23r4
+19U13*Init 32|23s17
+X 6 system.ads
+44K9*System 158e11 32|2r6 5r6 6r6 9r6 14r4 15r9 16r9 18r4 19r4 20r27 21r10
+. 22r4
+X 7 s-bb.ads
+43K16*BB 97e14 32|5r13 9r13 16r16 20r34 21r17
+X 11 s-bbdead.ads
+43K19*Deadlines 82e24 32|5w16
+X 16 s-bbtime.ads
+51K19*Time 210e19 32|9w16 16r19 20r37 21r20
+93I9*Time_Span<long_long_integer>
+132V13*To_Duration{duration} 32|20s42
+167V13*Milliseconds{93I9} 32|16s24 21s25
+X 18 s-io.ads
+37K16*IO 64e14 32|2w13 18r11 19r11 22r11
+45U14*Put_Line 32|18s14 19s14 22s14
+X 26 s-taspri.ads
+40K16*Task_Primitives 87e27 32|6r13 14r11 15r16
+X 27 s-taprop.ads
+47K32*Operations 147e38 32|6w29 14r27 15r32
+79V13*Self{28|62P9} 32|15s43
+92U14*Set_Relative_Deadline 32|14s38
+X 28 s-taskin.ads
+62P9*Task_Id(60R9)
+X 32 unit01.adb
+11U11*Unit01 11b11 24l5 24t11
+

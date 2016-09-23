@@ -1,0 +1,29 @@
+project Ravenscar is
+
+   for Source_Dirs use (".", "raven-edf");
+   for Main use ("unit01.adb", "unit02.adb", "unit03.adb");
+
+   package Pretty_Printer is
+   end Pretty_Printer;
+
+   package Ide is
+      for Gnat use "/usr/gnat-rvs/bin/leon-elf-gnat";
+      for Gnatlist use "/usr/gnat-rvs/bin/leon-elf-gnatls";
+      for Debugger_Command use "/usr/gnat-rvs/bin/leon-elf-gdb";
+      for Compiler_Command ("ada") use "/usr/gnat-rvs/bin/leon-elf-gnatmake";
+   end Ide;
+
+   package Builder is
+      for Default_Switches ("ada") use ("-g", "-gnatg", "-O0");
+   end Builder;
+
+   package Linker is
+      for Default_Switches ("ada") use ("-g");
+   end Linker;
+
+   package Make is
+      for Makefile use "Makefile";
+   end Make;
+
+end Ravenscar;
+

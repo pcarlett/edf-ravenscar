@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<Locations >
+  <Project >
+    <vfs_file >/home/paolo/workspace/ravenscar/ravenscar.gpr</vfs_file>
+    <file_marker current="true" column=" 1" line=" 1">
+      <vfs_file >/home/paolo/workspace/ravenscar/ravenscar.gpr</vfs_file>
+    </file_marker>
+  </Project>
+  <Project >
+    <file_marker current="true" column=" 1" line=" 1" >
+      <vfs_file>/home/paolo/workspace/ravenscar/ravenscar.gpr</vfs_file>
+    </file_marker>
+  </Project>
+</Locations>
