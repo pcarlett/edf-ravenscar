@@ -1,8 +1,41 @@
 <?xml version="1.0"?>
 <Locations >
   <Project >
+    <file_marker column=" 1" line=" 249" >
+      <vfs_file>/home/paolo/workspace/ravenscar/raven-edf/s-bbcppr.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 44" line=" 103" >
+      <vfs_file>/home/paolo/workspace/ravenscar/raven-edf/s-bbpara.ads</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 1" >
+      <vfs_file>/home/paolo/workspace/ravenscar/raven-edf/s-bbcppr.ads</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 1" >
+      <vfs_file>/home/paolo/workspace/ravenscar/raven-edf/s-taskin.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 365" >
+      <vfs_file>/home/paolo/workspace/ravenscar/raven-edf/s-taskin.ads</vfs_file>
+    </file_marker>
     <file_marker current="true" column=" 1" line=" 1" >
       <vfs_file>/home/paolo/workspace/ravenscar/ravenscar.gpr</vfs_file>
+    </file_marker>
+  </Project>
+  <Project >
+    <file_marker column=" 1" line=" 1">
+      <vfs_file >/home/paolo/workspace/ravenscar/ravenscar</vfs_file>
+    </file_marker>
+    <file_marker current="true" column=" 1" line=" 1">
+      <vfs_file >/home/paolo/workspace/ravenscar/ravenscar.gpr</vfs_file>
+    </file_marker>
+  </Project>
+  <Project >
+    <file_marker current="true" column=" 1" line=" 1">
+      <vfs_file >/home/paolo/workspace/ravenscar/ravenscar</vfs_file>
+    </file_marker>
+  </Project>
+  <Project >
+    <file_marker current="true" column=" 1" line=" 1">
+      <vfs_file >/home/paolo/workspace/ravenscar/ravenscar.gpr</vfs_file>
     </file_marker>
   </Project>
 </Locations>

@@ -52,10 +52,10 @@ package body System.BB.CPU_Primitives is
    -- Local data --
    ----------------
 
-   SP       : constant Context_Id :=  6;
-   PC       : constant Context_Id :=  7;
-   PSR      : constant Context_Id :=  8;
-   WIM      : constant Context_Id := 17;
+   SP       : constant Context_Id :=  6; --  Stack Pointer
+   PC       : constant Context_Id :=  7; --  Program Counter
+   PSR      : constant Context_Id :=  8; --  Processor State Register
+   WIM      : constant Context_Id := 17; --  Window Invalid Mask
    WIN      : constant Context_Id := 18;
    O0       : constant Context_Id :=  0;
    INT      : constant Context_Id := 52;
@@ -70,7 +70,7 @@ package body System.BB.CPU_Primitives is
    --  For LEON we allocate two slots for the cache control register at the
    --  end of the buffer.
 
-   FP : constant SSE.Storage_Offset := 56;
+   FP : constant SSE.Storage_Offset := Context_Buffer_Capacity;
    --  The frame pointer needs also to be initialized; however, it is not kept
    --  in the thread descriptor but in the stack, and this value represents the
    --  offset from the stack pointer (expressed in bytes).
@@ -283,10 +283,8 @@ package body System.BB.CPU_Primitives is
       declare
          FP_In_Stack : System.Address;
          for FP_In_Stack'Address use (Buffer (SP) + FP);
-
       begin
          --  Mark the deepest stack frame by setting the frame pointer to zero
-
          FP_In_Stack := SSE.To_Address (0);
       end;
 

@@ -44,6 +44,7 @@ with System.BB.CPU_Primitives.Multiprocessors;
 with System.IO;
 with System.BB.Debug; use System.BB.Debug;
 --  with Ada.Real_Time;   use Ada.Real_Time;
+with System.Address_Image;
 -------------------------------------------------------------
 -------------------------------------------------------------
 
@@ -82,15 +83,23 @@ package body System.BB.Threads.Queues is
          while Aux_Pointer /= Null_Thread_Id
          loop
             System.IO.Put_Line ("   " & Integer'Image (i) & ") Thread => "
-             & "R_Dead: " & Duration'Image (System.BB.Time.To_Duration
-                  (Aux_Pointer.Active_Relative_Deadline)) & " => A_Dead" &
-                     Duration'Image (System.BB.Time.To_Duration
-                        (Aux_Pointer.Active_Absolute_Deadline
-                              - System.BB.Time.Time_First)));
+               & "R_Dead: " & Duration'Image (System.BB.Time.To_Duration
+               (Aux_Pointer.Active_Relative_Deadline)) & " => A_Dead" &
+               Duration'Image (System.BB.Time.To_Duration
+               (Aux_Pointer.Active_Absolute_Deadline
+                - System.BB.Time.Time_First)));
             Aux_Pointer := Aux_Pointer.Next;
             i := i + 1;
          end loop;
          System.IO.Put_Line ("   R------- END READY QUEUE -----------------|");
+--      Aux_Pointer := Running_Thread_Table (CPU_Id);
+--      System.IO.Put_Line ("");
+--      System.IO.Put_Line ("   --> Running Thread => "
+--       & "R_Dead: " & Duration'Image (System.BB.Time.To_Duration
+--            (Aux_Pointer.Active_Relative_Deadline)) & " => A_Dead" &
+--               Duration'Image (System.BB.Time.To_Duration
+--                  (Aux_Pointer.Active_Absolute_Deadline
+--                        - System.BB.Time.Time_First)));
       end if;
    end U_Print_Ready;
 

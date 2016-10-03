@@ -291,6 +291,12 @@ package body System.Tasking.Restricted.Stages is
          C := Next_C;
       end loop;
 
+      if Debug_Rest then
+         System.IO.Put_Line
+           ("Activate Restricted Task Process... Storage Size: " &
+              System.Parameters.Size_Type'Image (Storage_Size (C)));
+      end if;
+
       Self_ID.Common.State := Runnable;
 
       --  Restore the original priority
@@ -368,7 +374,7 @@ package body System.Tasking.Restricted.Stages is
    is
       pragma Unreferenced (Task_Image, Elaborated);
 
-      --  Base_Priority : constant System.Any_Priority := Any_Priority (0);
+      Base_Priority : constant System.Any_Priority := Any_Priority (0);
 
       Base_Relative_Deadline : System.BB.Deadlines.Relative_Deadline;
       --  for relative deadline assignment
@@ -441,7 +447,7 @@ package body System.Tasking.Restricted.Stages is
       Initialize_ATCB  --  called in in s-taskin.adb
         (State, Discriminants,
 
-         --  Base_Priority,
+         Base_Priority,
          Base_Relative_Deadline,
          --  have to be restored after debugging process
 

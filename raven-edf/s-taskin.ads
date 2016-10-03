@@ -295,7 +295,7 @@ package System.Tasking is
       Base_CPU : System.Multiprocessors.CPU_Range;
       --  Protection: Only written during initialization, accessed by anyone
 
-      --  Base_Priority : System.Any_Priority;
+      Base_Priority : System.Any_Priority;
       --  Base priority
       --
       --  Protection: Only written by Self, accessed by anyone
@@ -427,7 +427,7 @@ package System.Tasking is
    procedure Initialize_ATCB
      (Task_Entry_Point       : Task_Procedure_Access;
       Task_Arg               : System.Address;
-      --  Base_Priority          : System.Any_Priority;
+      Base_Priority          : System.Any_Priority;
       Base_Relative_Deadline : System.BB.Deadlines.Relative_Deadline;
       --  have to be restored after debugging process
       Base_CPU               : System.Multiprocessors.CPU_Range;

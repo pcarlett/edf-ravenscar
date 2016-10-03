@@ -102,7 +102,7 @@ package body System.Tasking is
    procedure Initialize_ATCB
      (Task_Entry_Point       : Task_Procedure_Access;
       Task_Arg               : System.Address;
-      --  Base_Priority          : System.Any_Priority;
+      Base_Priority          : System.Any_Priority;
       Base_Relative_Deadline : System.BB.Deadlines.Relative_Deadline;
       --  have to be restored after debugging process
       Base_CPU               : System.Multiprocessors.CPU_Range;
@@ -135,7 +135,7 @@ package body System.Tasking is
          System.IO.Put_Line ("Tasking Init ATCB Process... Prio.");
       end if;
 
-      --  T.Common.Base_Priority := Base_Priority;
+      T.Common.Base_Priority := Base_Priority;
 
       if Debug_Tasks then
          System.IO.Put_Line ("Tasking Init ATCB Process... Rel_Dead.");
@@ -166,6 +166,11 @@ package body System.Tasking is
           (Parameters.Adjust_Storage_Size (Stack_Size));
 
       if Debug_Tasks then
+         System.IO.Put_Line ("Tasking Init ATCB Process... Storage Size: " &
+                      System.Parameters.Size_Type'Image (Storage_Size (T)));
+      end if;
+
+      if Debug_Tasks then
          System.IO.Put_Line ("Tasking Init ATCB Process... Ended.");
       end if;
 
@@ -185,7 +190,7 @@ package body System.Tasking is
    --  Used to prevent multiple calls to Initialize
 
    procedure Initialize is
-      --  Base_Priority : constant Any_Priority := System.Any_Priority (0);
+      Base_Priority : constant Any_Priority := System.Any_Priority (0);
 
       Base_Relative_Deadline : Relative_Deadline;
       --  have to be restored after debugging process
@@ -264,7 +269,7 @@ package body System.Tasking is
       Initialize_ATCB
         (null, Null_Address,
 
-         --  mBase_Priority,
+         Base_Priority,
          Base_Relative_Deadline,
          --  have to be restored after debugging process
          --  for relative deadline attribute
@@ -318,7 +323,7 @@ package body System.Tasking is
    ----------------------
 
    procedure Initialize_Slave (CPU_Id : CPU) is
-      --  Base_Priority : constant Any_Priority := System.Any_Priority (0);
+      Base_Priority : constant Any_Priority := System.Any_Priority (0);
 
       Base_Relative_Deadline : constant Relative_Deadline :=
                   System.BB.Deadlines.Relative_Deadline (0);
@@ -340,7 +345,7 @@ package body System.Tasking is
       Initialize_ATCB
         (null, Null_Address,
 
-         --  Base_Priority,
+         Base_Priority,
          Base_Relative_Deadline,
          --  have to be restored after debugging process
          --  for relative deadline

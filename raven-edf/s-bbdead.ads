@@ -45,7 +45,9 @@ package System.BB.Deadlines is
 
    --  Relative Deadline declaration
    --  Any relative deadline can be defined between the shortest deadline
-   --  available and the highest defined as time_span'last
+   --  available and the highest defined as time_span'last. Relative_Deadline
+   --  represents the length of time intervals for task deadlines, and it is
+   --  defined as a 64-bit signed integer as is Time_Span.
    subtype Relative_Deadline  is System.BB.Time.Time_Span;
 
    --  Default relative deadline value

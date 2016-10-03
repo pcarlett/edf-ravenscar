@@ -5,6 +5,8 @@ with System;
 with System.Task_Primitives.Operations;
 with System.BB.Time;
 
+with System.Address_Image;
+
 with System_Time;
 
 package body Cyclic_Tasks is
@@ -54,11 +56,11 @@ package body Cyclic_Tasks is
       end loop;
 
       if T_Num = 1 then
-         System.IO.Put_Line("|--- 1 ---|---------|---------|  --> Task n. 1");
+         System.IO.Put_Line ("|--- 1 ---|---------|---------|  --> Task n. 1");
       elsif T_Num = 2 then
-         System.IO.Put_Line("|---------|--- 2 ---|---------|  --> Task n. 2");
+         System.IO.Put_Line ("|---------|--- 2 ---|---------|  --> Task n. 2");
       elsif T_Num = 3 then
-         System.IO.Put_Line("|---------|---------|--- 3 ---|  --> Task n. 3");
+         System.IO.Put_Line ("|---------|---------|--- 3 ---|  --> Task n. 3");
       end if;
 
       -- wait one whole period before executing
@@ -84,16 +86,16 @@ package body Cyclic_Tasks is
   begin
      -- delay until Next_Period;
      loop
-        -- System.IO.Put_Line("|---------|---------|---------|  --> Init Task");
+        -- System.IO.Put_Line ("|---------|---------|---------|  --> Init Task");
         null;
      end loop;
   end Init;
 
   ----------------------------------------
   -- TESTED SEQUENCE OF TASK SCHEDULING --
-  -- C1 : Cyclic(0, 10000000, 10000000, 1, 1000000, 1000000);--
-  C2 : Cyclic(0, 6000000, 6000000, 2, 2, 3);--
-  C3 : Cyclic(0, 9000000, 9000000, 3, 1, 3);--
+  C1 : Cyclic(0, 10000000, 10000000, 1, 1000000, 1000000);--
+  -- C2 : Cyclic(0, 6000000, 6000000, 2, 2, 3);--
+  -- C3 : Cyclic(0, 9000000, 9000000, 3, 1, 3);--
   ----------------------------------------
 
 end Cyclic_Tasks;

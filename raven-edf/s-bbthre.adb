@@ -49,6 +49,7 @@ with Ada.Unchecked_Conversion;
 --  Used in debugging process
 with System.IO;
 with System.BB.Debug; use System.BB.Debug;
+with System.Address_Image;
 -----------------
 
 package body System.BB.Threads is
@@ -187,10 +188,13 @@ package body System.BB.Threads is
 
    procedure Initialize
      (Environment_Thread : Thread_Id;
-      --  Removed from Ravenscar EDF version
+      --  Removed from Ravenscar EDF version:
+      --  the initialization value is forced by the runtime
       --  Main_Priority      : System.Any_Priority;
       Main_Rel_Deadline  : Relative_Deadline)
    is
+      Main_Priority : constant System.Any_Priority := System.Any_Priority (0);
+
       Main_CPU : constant System.Multiprocessors.CPU := Current_CPU;
       --  Now : System.BB.Time.Time := System.BB.Time.Clock;
    begin
@@ -243,9 +247,8 @@ package body System.BB.Threads is
       --  System.IO.Put_Line
       --          ("Threads Initialization Process... Init Priority.");
 
-      --  Removed from Ravenscar EDF version
-      --  Environment_Thread.Base_Priority   := Main_Priority;
-      --  Environment_Thread.Active_Priority := Main_Priority;
+      Environment_Thread.Base_Priority   := Main_Priority;
+      Environment_Thread.Active_Priority := Main_Priority;
 
       --  The active relative deadline is initially equal to the base
       --  relative deadline
@@ -647,6 +650,10 @@ package body System.BB.Threads is
       Stack_Address : System.Address;
       Stack_Size    : System.Parameters.Size_Type)
    is
+      --  It enables to calculate the offset respect to the new parameter
+      --  Relative_Deadline introduced
+      --  Stack_Rel_Dead_Offset : constant Storage_Elements.Storage_Offset :=
+      --           Storage_Elements.Storage_Offset (64);
    begin
 
       if Debug_Thre then
@@ -709,7 +716,12 @@ package body System.BB.Threads is
 
       Id.Top_Of_Stack :=
         ((Stack_Address + Storage_Elements.Storage_Offset (Stack_Size))
-          / Standard'Maximum_Alignment) * Standard'Maximum_Alignment;
+         / Standard'Maximum_Alignment) * Standard'Maximum_Alignment;
+
+      if Debug_Thre then
+         System.IO.Put_Line ("Threads Creation Process... Stack Size: " &
+                               System.Parameters.Size_Type'Image (Stack_Size));
+      end if;
 
       Id.Bottom_Of_Stack := Stack_Address;
 
@@ -731,7 +743,10 @@ package body System.BB.Threads is
                      & "Initialize Context.");
       end if;
 
-      Initialize_Context (Id.Context'Access, Code, Arg, Id.Top_Of_Stack);
+      Initialize_Context (Id.Context'Access,
+                          Code,
+                          Arg,
+                          Id.Top_Of_Stack);
 
       --  Initialize alarm status
 
