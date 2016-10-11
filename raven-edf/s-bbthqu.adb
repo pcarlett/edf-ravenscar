@@ -73,15 +73,29 @@ package body System.BB.Threads.Queues is
 
    --  Procedure used for debugging process: it prints every Thread in the
    --  ready queue with its attributes
-   procedure U_Print_Ready (Thread : Thread_Id) is
+   procedure Print_Queues (Thread : Thread_Id) is
       CPU_Id      : constant CPU := Get_CPU (Thread);
-      Aux_Pointer : Thread_Id := First_Thread_Table (CPU_Id);
+      Aux_Pointer : Thread_Id;
       i           : Integer := 1;
    begin
-      if Debug_Ready then
+      if Debug_Queue then
+         Aux_Pointer := Running_Thread_Table (CPU_Id);
+         System.IO.Put_Line ("");
+         System.IO.Put ("                                                  ");
+         System.IO.Put_Line ("   --> Running Thread => "
+          & "R_Dead: " & Duration'Image (System.BB.Time.To_Duration
+               (Aux_Pointer.Active_Relative_Deadline)) & " => A_Dead" &
+                  Duration'Image (System.BB.Time.To_Duration
+                     (Aux_Pointer.Active_Absolute_Deadline
+                           - System.BB.Time.Time_First)));
+         System.IO.Put_Line ("");
+         System.IO.Put ("                                                  ");
          System.IO.Put_Line ("   R--------- READY QUEUE -------------------|");
+         Aux_Pointer := First_Thread_Table (CPU_Id);
          while Aux_Pointer /= Null_Thread_Id
          loop
+            System.IO.Put
+               ("                                                  ");
             System.IO.Put_Line ("   " & Integer'Image (i) & ") Thread => "
                & "R_Dead: " & Duration'Image (System.BB.Time.To_Duration
                (Aux_Pointer.Active_Relative_Deadline)) & " => A_Dead" &
@@ -91,43 +105,30 @@ package body System.BB.Threads.Queues is
             Aux_Pointer := Aux_Pointer.Next;
             i := i + 1;
          end loop;
+         System.IO.Put ("                                                  ");
          System.IO.Put_Line ("   R------- END READY QUEUE -----------------|");
---      Aux_Pointer := Running_Thread_Table (CPU_Id);
---      System.IO.Put_Line ("");
---      System.IO.Put_Line ("   --> Running Thread => "
---       & "R_Dead: " & Duration'Image (System.BB.Time.To_Duration
---            (Aux_Pointer.Active_Relative_Deadline)) & " => A_Dead" &
---               Duration'Image (System.BB.Time.To_Duration
---                  (Aux_Pointer.Active_Absolute_Deadline
---                        - System.BB.Time.Time_First)));
-      end if;
-   end U_Print_Ready;
-
-   --  Procedure used for debugging process: it prints every Thread in the
-   --  alarm queue with its attributes
-   procedure U_Print_Delayed (Thread : Thread_Id) is
-      CPU_Id      : constant CPU := Get_CPU (Thread);
-      Aux_Pointer : Thread_Id := Alarms_Table (CPU_Id);
-      i           : Integer := 1;
-   begin
-      if Debug_Alarm then
+         i := 1;
+         System.IO.Put_Line ("");
+         System.IO.Put ("                                                  ");
          System.IO.Put_Line ("   A--------- ALARM QUEUE --------------|");
+         Aux_Pointer := Alarms_Table (CPU_Id);
          while Aux_Pointer /= Null_Thread_Id
          loop
+            System.IO.Put
+              ("                                                  ");
             System.IO.Put_Line ("   " & Integer'Image (i) & ") Thread => "
              & "R_Dead: " & Duration'Image (System.BB.Time.To_Duration
                   (Aux_Pointer.Active_Relative_Deadline))
-               --  & " => A_Dead" & Duration'Image (System.BB.Time.To_Duration
-               --         (Aux_Pointer.Active_Absolute_Deadline
-               --               - System.BB.Time.Time_First))
                 & " --> Alarm: " & Duration'Image (System.BB.Time.To_Duration
                         (Aux_Pointer.Alarm_Time - System.BB.Time.Time_First)));
             Aux_Pointer := Aux_Pointer.Next_Alarm;
             i := i + 1;
          end loop;
+         System.IO.Put ("                                                  ");
          System.IO.Put_Line ("   A------- END ALARM QUEUE ------------|");
+         System.IO.Put_Line ("");
       end if;
-   end U_Print_Delayed;
+   end Print_Queues;
 
    ---------------------
    -- Change_Priority --
@@ -155,9 +156,8 @@ package body System.BB.Threads.Queues is
       --  We can only change the priority of the thread that is
       --  currently executing.
 
-      pragma Assert (Thread = Running_Thread_Table (CPU_Id));
-
-      pragma Assert (Thread = First_Thread_Table (CPU_Id));
+      pragma Assert (Thread = Running_Thread_Table (CPU_Id)
+                     and then Thread = First_Thread_Table (CPU_Id));
 
       --  When raising priority to Int_Priority there is no need to modify
       --  the ready queue order: the thread changing its priority is the
@@ -173,56 +173,6 @@ package body System.BB.Threads.Queues is
          System.IO.Put_Line (" <<< Prio: " & Integer'Image (Priority)
                & " & Thr. Prio " & Integer'Image (Thread.Active_Priority));
       end if;
-
-      --  if Priority < Thread.Active_Priority then
-      --     --  If we are here it is because the currently executing
-      --     --  thread is lowering its priority. In an EDF scheduling the only
-      --     --  occurrence of this event is the exit from the
-      --     --  Interrupt_Wrapper. We have to restore previous thread priority
-      --     --  and then restart interrupted task.
-
-      --     if Debug_Thqu then
-      --        System.IO.Put_Line ("Ready Queue Change Prio Process... Change"
-      --             & " Abs_Dead.");
-      --     end if;
-
-      --     Thread.Active_Absolute_Deadline :=
-      --                       (Thread.Active_Relative_Deadline + Now);
-
-      --     if Thread.Next /= Null_Thread_Id
-      --        and then Thread.Active_Absolute_Deadline >
-      --              Thread.Next.Active_Absolute_Deadline
-      --     then
-      --        --  Set new absolute deadline referred to the releasing time:
-      --        --  in this case we are referring to the moment when
-      --        --  Interrupt_Wrapper release the CPU Interrupts
-      --        if Debug_Thqu then
-      --           System.IO.Put_Line ("Ready Queue Change Prio Process... "
-      --                 & "Enqueuing.");
-      --        end if;
-
-      --        First_Thread_Table (CPU_Id) := Thread.Next;
-
-      --        Aux_Pointer := First_Thread_Table (CPU_Id);
-
-      --        while Aux_Pointer.Next /= Null_Thread_Id
-      --           and then Thread.Active_Absolute_Deadline >
-      --                         Aux_Pointer.Next.Active_Absolute_Deadline
-      --        loop
-      --           Aux_Pointer := Aux_Pointer.Next;
-      --        end loop;
-
-      --        --  Insert the thread just after the Aux_Pointer
-
-      --        Thread.Next := Aux_Pointer.Next;
-      --        Aux_Pointer.Next := Thread;
-      --     end if;
-
-      --     if Debug_Thqu then
-      --        System.IO.Put_Line
-      --              ("Ready Queue Change Prio Process... Requeued.");
-      --     end if;
-      --  end if;
 
       --  Change the active priority. The base priority does not change.
       --  The only case is changing priority levels because of
@@ -248,7 +198,7 @@ package body System.BB.Threads.Queues is
          System.IO.Put_Line ("Ready Queue Change Prio Process... Ended.");
       end if;
 
-      U_Print_Ready (First_Thread_Table (CPU_Id));
+      Print_Queues (First_Thread_Table (CPU_Id));
 
    end Change_Priority;
 
@@ -343,7 +293,6 @@ package body System.BB.Threads.Queues is
          --  a higher priority (so that we insert the thread just after it).
 
          while Aux_Pointer.Next /= Null_Thread_Id
-            --  and then Priority < Aux_Pointer.Next.Active_Priority
             and then Thread.Active_Absolute_Deadline >
                           Aux_Pointer.Next.Active_Absolute_Deadline
          loop
@@ -360,7 +309,7 @@ package body System.BB.Threads.Queues is
          System.IO.Put_Line ("Ready Queue Change R_Dead Process... Ended.");
       end if;
 
-      U_Print_Ready (First_Thread_Table (CPU_Id));
+      Print_Queues (First_Thread_Table (CPU_Id));
 
    end Change_Relative_Deadline;
 
@@ -514,14 +463,16 @@ package body System.BB.Threads.Queues is
          System.IO.Put_Line ("Ready Queue Extraction Process... Extraction.");
       end if;
 
-      First_Thread_Table (CPU_Id) := Thread.Next;
-      Thread.Next := Null_Thread_Id;
+      if not Busy_For_Interrupts then
+         First_Thread_Table (CPU_Id) := Thread.Next;
+         Thread.Next := Null_Thread_Id;
+      end if;
 
       if Debug_Thqu then
          System.IO.Put_Line ("Ready Queue Extraction Process... Ended.");
       end if;
 
-      U_Print_Ready (First_Thread_Table (CPU_Id));
+      Print_Queues (First_Thread_Table (CPU_Id));
 
    end Extract;
 
@@ -557,7 +508,7 @@ package body System.BB.Threads.Queues is
          System.IO.Put_Line ("Alarm Queue Extraction Process... Ended.");
       end if;
 
-      U_Print_Delayed (Alarms_Table (CPU_Id));
+      Print_Queues (Alarms_Table (CPU_Id));
 
       return Result;
    end Extract_First_Alarm;
@@ -653,15 +604,21 @@ package body System.BB.Threads.Queues is
             System.IO.Put_Line ("Ready Queue Insertion Process... Middle.");
          end if;
 
-         --  if Busy_For_Interrupts then
-         --     System.IO.Put_Line ("Ready Queue Insertion Process... Busy" &
-         --     " True");
-         --     Aux_Pointer := First_Thread_Table (CPU_Id).Next;
-         --  else
-         --     System.IO.Put_Line ("Ready Queue Insertion Process... Busy" &
-         --     " False");
+--          if Busy_For_Interrupts then
+--             if Debug_Thqu then
+--                System.IO.Put_Line ("Ready Queue Insertion Process... Busy" &
+--                                      " True");
+--             end if;
+--             Aux_Pointer := First_Thread_Table (CPU_Id).Next;
+--          else
+--             if Debug_Thqu then
+--                System.IO.Put_Line ("Ready Queue Insertion Process... Busy" &
+--                                      " False");
+--                end if;
+--                Aux_Pointer := First_Thread_Table (CPU_Id);
+--          end if;
+
          Aux_Pointer := First_Thread_Table (CPU_Id);
-         --  end if;
 
          while Aux_Pointer /= Thread
            and then Aux_Pointer.Next /= Null_Thread_Id
@@ -688,7 +645,7 @@ package body System.BB.Threads.Queues is
          System.IO.Put_Line ("Ready Queue Insertion Process... Ended.");
       end if;
 
-      U_Print_Ready (First_Thread_Table (CPU_Id));
+      Print_Queues (First_Thread_Table (CPU_Id));
 
    end Insert;
 
@@ -768,7 +725,7 @@ package body System.BB.Threads.Queues is
          System.IO.Put_Line ("Alarm Queue Insertion Process... Ended.");
       end if;
 
-      U_Print_Delayed (Alarms_Table (CPU_Id));
+      Print_Queues (Alarms_Table (CPU_Id));
 
    end Insert_Alarm;
 
@@ -893,7 +850,7 @@ package body System.BB.Threads.Queues is
          System.IO.Put_Line ("Yield Thread Process... Ended.");
       end if;
 
-      U_Print_Ready (First_Thread_Table (CPU_Id));
+      Print_Queues (First_Thread_Table (CPU_Id));
 
    end Yield;
 

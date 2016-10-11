@@ -360,6 +360,7 @@ package System.Tasking is
       --  and only unlocked when it goes from 1 to 0.
       --
       --  Protection: Only accessed by Self
+
    end record;
    pragma Suppress_Initialization (Common_ATCB);
 

@@ -190,7 +190,7 @@ package body System.Soft_Links is
 
       --  Set_Relative_Deadline (Self_Id, Relative_Deadline'First);
 
-      Set_Relative_Deadline (Self_Id, Relative_Deadline (1));
+      Set_Relative_Deadline (Self_Id, Relative_Deadline (0));
 
       TH := System.Tasking.Fall_Back_Handler;
 

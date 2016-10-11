@@ -39,9 +39,9 @@ pragma Restrictions (No_Elaboration_Code);
 package System.BB.Debug is
    pragma Preelaborate;
 
-   General : constant Boolean := True;
-   Queues  : constant Boolean := True;
-   Delays  : constant Boolean := True;
+   General : constant Boolean := False;
+   Queues  : constant Boolean := False;
+   Delays  : constant Boolean := False;
    Bench   : constant Boolean := True;
 
    Debug_Inte  : Boolean := General;
@@ -54,6 +54,8 @@ package System.BB.Debug is
    Debug_Event : Boolean := General;
    Debug_Soft  : Boolean := General;
    Debug_POSE  : Boolean := General;
+
+   Debug_Queue : Boolean := True;
 
    Debug_Thqu  : Boolean := General;
    Debug_Timer : Boolean := General;
@@ -68,7 +70,7 @@ package System.BB.Debug is
 
    Debug_Ready : Boolean := Queues;
    Debug_Alarm : Boolean := Queues;
-   Debug_Clock : Boolean := Queues;
+   Debug_Clock : Boolean := True;
 
    Print_Miss  : Boolean := Bench;
    Print_Preem : Boolean := Bench;

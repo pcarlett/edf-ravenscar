@@ -53,11 +53,7 @@ package System.BB.Threads.Queues is
 
    --  Procedure used for debugging process: it prints every Thread in the
    --  ready queue with its attributes
-   procedure U_Print_Ready (Thread : Thread_Id);
-
-   --  Procedure used for debugging process: it prints every Thread in the
-   --  alarm queue with its attributes
-   procedure U_Print_Delayed (Thread : Thread_Id);
+   procedure Print_Queues (Thread : Thread_Id);
 
    ----------------
    -- Ready list --

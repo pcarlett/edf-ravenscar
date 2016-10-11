@@ -323,10 +323,10 @@ package body System.BB.Time is
 
       if Print_Miss then
          if Now > Self.Active_Absolute_Deadline then
-            System.IO.Put_Line ("Deadline_Miss; Task n.; " &
-               System.Address'Image (Self.ATCB) & " Time:; " &
+            System.IO.Put_Line ("Deadline_Miss; Task n." &
+               System.Address'Image (Self.ATCB) & "; Time:" &
                Duration'Image (To_Duration
-               (Now - System.BB.Time.Time_First)) & "; Absolute_Deadline:;" &
+               (Now - System.BB.Time.Time_First)) & "; Absolute_Deadline:" &
                Duration'Image (To_Duration
                  (Self.Active_Absolute_Deadline - System.BB.Time.Time_First)));
          end if;
@@ -371,10 +371,15 @@ package body System.BB.Time is
 
       else
          --  If alarm time is not in the future, the thread must yield the CPU
+         --  but its absolute deadline needs to be updated
 
          if Debug_Delay then
             System.IO.Put_Line ("Delay Until Process... Yielding.");
          end if;
+
+         Threads.Queues.Change_Absolute_Deadline
+           (Thread       => Self,
+            Abs_Deadline => Self.Active_Relative_Deadline + Now);
 
          Threads.Queues.Yield (Self);
       end if;
@@ -580,7 +585,6 @@ package body System.BB.Time is
 
          if Debug_Time then
             System.IO.Put_Line ("1) Time + Time_Span Process... Added.");
-            System.IO.Put_Line ("1) Time + Time_Span Process... Ended.");
          end if;
 
          if Debug_Add then
@@ -599,7 +603,6 @@ package body System.BB.Time is
 
          if Debug_Time then
             System.IO.Put_Line ("1) Time + Time_Span Process... Subtracted.");
-            System.IO.Put_Line ("1) Time + Time_Span Process... Ended.");
          end if;
 
          if Debug_Add then
@@ -655,7 +658,6 @@ package body System.BB.Time is
 
          if Debug_Time then
             System.IO.Put_Line ("2) Time_Span + Time Process... Added.");
-            System.IO.Put_Line ("2) Time_Span + Time Process... Ended.");
          end if;
 
          if Debug_Add then
@@ -673,7 +675,6 @@ package body System.BB.Time is
 
          if Debug_Time then
             System.IO.Put_Line ("2) Time_Span + Time Process... Subtracted.");
-            System.IO.Put_Line ("2) Time_Span + Time Process... Ended.");
          end if;
 
          if Debug_Add then

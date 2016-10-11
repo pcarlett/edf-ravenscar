@@ -123,6 +123,11 @@ package body System.BB.Protection is
          --  so interrupt handling is performed normally. Note that the task
          --  is inserted in the queue but its state is not Runnable.
 
+         if Debug_Prot then
+            System.IO.Put_Line ("Leaving Prot. Kernel Process... "
+                     & "No Ready Task.");
+         end if;
+
          Threads.Queues.Insert (Threads.Queues.Running_Thread);
 
          --  Update Execution Time
@@ -177,14 +182,14 @@ package body System.BB.Protection is
 
          if Debug_Prot then
             System.IO.Put_Line ("Leaving Prot. Kernel Process... "
-                        & "Check Context Switch ...");
+                        & "Check Context Switch Needed.");
          end if;
 
          CPU_Primitives.Context_Switch;
 
          if Debug_Prot then
             System.IO.Put_Line ("Leaving Prot. Kernel Process... "
-                        & "Check Context Switch ... Done");
+                        & "Context Switch Done");
          end if;
 
       end if;

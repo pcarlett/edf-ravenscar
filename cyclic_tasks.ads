@@ -9,9 +9,7 @@ package Cyclic_Tasks is
           (Pri : System.Priority;
            Dead : Positive;
            Cycle_Time : Positive;
-           T_Num : Integer;
-           Gauss : Integer;
-           Times : Integer) is
+           T_Num : Integer) is
       -- pragma Priority(1);
       -- pragma Relative_Deadline (Ada.Real_Time.Milliseconds(Dead));
    end Cyclic;
