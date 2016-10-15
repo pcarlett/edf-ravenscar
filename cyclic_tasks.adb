@@ -1,4 +1,4 @@
-with System.IO;
+with System.IO; use System.IO;
 with Ada.Real_Time; use Ada.Real_Time;
 with System;
 
@@ -43,8 +43,8 @@ package body Cyclic_Tasks is
     -- Initialization code
     -- Setting artificial deadline: it forces system to read deadlines and use
     -- it as main ordering
-    System.IO.Put ("                   ");
-    System.IO.Put_Line ("|-|-|-|-|-|-|-|-> Setting R_Dead "
+    Put ("                   ");
+    Put_Line ("|-|-|-|-|-|-|-|-> Setting R_Dead "
           & Duration'Image (System.BB.Time.To_Duration (System.BB.Time.Milliseconds (Dead)))
                         & " for Task " & Integer'Image(T_Num) & " --|");
 
@@ -54,14 +54,17 @@ package body Cyclic_Tasks is
 
     loop
        delay until Next_Period;
-       if T_Num = 1 then
-          System.IO.Put_Line("                   Gauss(2026600) takes"
+         if T_Num = 1 then
+          -- delay until Ada.Real_Time.Time (Ada.Real_Time.Clock + Ada.Real_Time.Milliseconds (5000));
+          Put_Line("                   Gauss(2026600) takes"
                 & Duration'Image(Time_It(Gauss_Access, 2026600))
                 & " seconds on Task n. " & Integer'Image(T_Num));
-       else
-          System.IO.Put_Line("                   Gauss(6079800) takes"
-                & Duration'Image(Time_It(Gauss_Access, 6079800))
+         else
+	  Put_Line("BEGIN CALC FOR T2");
+          Put_Line("                   Gauss(202660000) takes"
+                & Duration'Image(Time_It(Gauss_Access, 202660000))
                 & " seconds on Task n. " & Integer'Image(T_Num));
+	  Put_Line("END CALC FOR T2");
        end if;
 
       -- wait one whole period before executing
@@ -75,12 +78,12 @@ package body Cyclic_Tasks is
   begin
      System.Task_Primitives.Operations.Set_Relative_Deadline
         (System.Task_Primitives.Operations.Self,
-         System.BB.Time.Milliseconds (90000));
+         System.BB.Time.Milliseconds (900000));
 
      System.IO.Put ("                   ");
      System.IO.Put_Line ("|-|-|-|-|-|-|-|->  UNIT01 BEGIN  -->  R_Dead "
         & Duration'Image (System.BB.Time.To_Duration
-        (System.BB.Time.Milliseconds (90000))) & " ---|");
+        (System.BB.Time.Milliseconds (900000))) & " ---|");
      loop
         -- System.IO.Put ("                   ");
         -- System.IO.Put_Line ("|------------------|  --> Init Task");
@@ -90,8 +93,8 @@ package body Cyclic_Tasks is
 
   ----------------------------------------
   -- TESTED SEQUENCE OF TASK SCHEDULING --
-  C1 : Cyclic(0, 4000, 1000, 1); --
-  C2 : Cyclic(0, 14000, 2000, 2); --
+  C1 : Cyclic(0, 4000, 5000, 1); --
+  C2 : Cyclic(0, 200000, 200000, 2); --
   -- C3 : Cyclic(0, 8000, 3000, 3); --
   ----------------------------------------
 

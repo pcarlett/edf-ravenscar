@@ -55,8 +55,6 @@ package System.BB.Debug is
    Debug_Soft  : Boolean := General;
    Debug_POSE  : Boolean := General;
 
-   Debug_Queue : Boolean := True;
-
    Debug_Thqu  : Boolean := General;
    Debug_Timer : Boolean := General;
    Debug_Abs   : Boolean := General;
@@ -68,9 +66,8 @@ package System.BB.Debug is
    Debug_Add   : Boolean := Delays;
    Debug_Delay : Boolean := Delays;
 
-   Debug_Ready : Boolean := Queues;
-   Debug_Alarm : Boolean := Queues;
-   Debug_Clock : Boolean := True;
+   Debug_Queue : Boolean := Queues;
+   Debug_Clock : Boolean := Queues;
 
    Print_Miss  : Boolean := Bench;
    Print_Preem : Boolean := Bench;

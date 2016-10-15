@@ -1,0 +1,601 @@
+Continuing.
+[New Thread 0x40031e58]
+[Switching to Thread 0x40031e58]
+
+Breakpoint 1, system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+/home/paolo/workspace/ravenscar/raven-edf/s-bbcppr.adb:155:7496:beg:0x40004154
+=> 0x40004154 <system__bb__cpu_primitives__context_switch+4>:	03 10 00 83	sethi  %hi(0x40020c00), %g1
+   0x40004158 <system__bb__cpu_primitives__context_switch+8>:	82 10 63 2a	or  %g1, 0x32a, %g1	! 0x40020f2a <system__bb__debug__debug_prot>
+   0x4000415c <system__bb__cpu_primitives__context_switch+12>:	c2 08 40 00	ldub  [ %g1 ], %g1
+   0x40004160 <system__bb__cpu_primitives__context_switch+16>:	82 08 60 ff	and  %g1, 0xff, %g1
+   0x40004164 <system__bb__cpu_primitives__context_switch+20>:	80 a0 60 00	cmp  %g1, 0
+   0x40004168 <system__bb__cpu_primitives__context_switch+24>:	02 80 00 0c	be  0x40004198 <system__bb__cpu_primitives__context_switch+72>
+   0x4000416c <system__bb__cpu_primitives__context_switch+28>:	01 00 00 00	nop 
+   ID       TID P-ID Pri State                  Name
+*   1  40031e38        0 Runnable               environment_task
+  Id   Target Id         Frame 
+* 2    Thread 0x40031e58 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+  1    Thread 0xffffffff (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+#0  system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+#1  0x40011b1c in system.bb.protection.leave_kernel () at raven-edf/s-bbprot.adb:188
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+Continuing.
+
+Breakpoint 1, 0x4001b118 in context_switch ()
+=> 0x4001b118 <context_switch+0>:	e0 3b a0 00	std  %l0, [ %sp ]
+   ID       TID P-ID Pri State                  Name
+*   1  40031e38        0 Runnable               environment_task
+  Id   Target Id         Frame 
+* 2    Thread 0x40031e58 (Ravenscar task) 0x4001b118 in context_switch ()
+  1    Thread 0xffffffff (Ravenscar task) 0x4001b118 in context_switch ()
+#0  0x4001b118 in context_switch ()
+#1  0x400041a0 in system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+#2  0x40011b1c in system.bb.protection.leave_kernel () at raven-edf/s-bbprot.adb:188
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+Continuing.
+[New Thread 0x40039ca0]
+[Switching to Thread 0x40039ca0]
+
+Breakpoint 1, system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+/home/paolo/workspace/ravenscar/raven-edf/s-bbcppr.adb:155:7496:beg:0x40004154
+=> 0x40004154 <system__bb__cpu_primitives__context_switch+4>:	03 10 00 83	sethi  %hi(0x40020c00), %g1
+   0x40004158 <system__bb__cpu_primitives__context_switch+8>:	82 10 63 2a	or  %g1, 0x32a, %g1	! 0x40020f2a <system__bb__debug__debug_prot>
+   0x4000415c <system__bb__cpu_primitives__context_switch+12>:	c2 08 40 00	ldub  [ %g1 ], %g1
+   0x40004160 <system__bb__cpu_primitives__context_switch+16>:	82 08 60 ff	and  %g1, 0xff, %g1
+   0x40004164 <system__bb__cpu_primitives__context_switch+20>:	80 a0 60 00	cmp  %g1, 0
+   0x40004168 <system__bb__cpu_primitives__context_switch+24>:	02 80 00 0c	be  0x40004198 <system__bb__cpu_primitives__context_switch+72>
+   0x4000416c <system__bb__cpu_primitives__context_switch+28>:	01 00 00 00	nop 
+   ID       TID P-ID Pri State                  Name
+    1  40031e38        0 Runnable               environment_task
+*   2  40039c80        0 Runnable               c2
+  Id   Target Id         Frame 
+* 3    Thread 0x40039ca0 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+  2    Thread 0x40031e58 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+#0  system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+#1  0x40011b1c in system.bb.protection.leave_kernel () at raven-edf/s-bbprot.adb:188
+Continuing.
+
+Breakpoint 1, 0x4001b118 in context_switch ()
+=> 0x4001b118 <context_switch+0>:	e0 3b a0 00	std  %l0, [ %sp ]
+   ID       TID P-ID Pri State                  Name
+    1  40031e38        0 Runnable               environment_task
+*   2  40039c80        0 Runnable               c2
+  Id   Target Id         Frame 
+* 3    Thread 0x40039ca0 (Ravenscar task) 0x4001b118 in context_switch ()
+  2    Thread 0x40031e58 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) 0x4001b118 in context_switch ()
+#0  0x4001b118 in context_switch ()
+#1  0x400041a0 in system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+#2  0x40011b1c in system.bb.protection.leave_kernel () at raven-edf/s-bbprot.adb:188
+Continuing.
+[New Thread 0x40034a10]
+[Switching to Thread 0x40034a10]
+
+Breakpoint 1, system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+/home/paolo/workspace/ravenscar/raven-edf/s-bbcppr.adb:155:7496:beg:0x40004154
+=> 0x40004154 <system__bb__cpu_primitives__context_switch+4>:	03 10 00 83	sethi  %hi(0x40020c00), %g1
+   0x40004158 <system__bb__cpu_primitives__context_switch+8>:	82 10 63 2a	or  %g1, 0x32a, %g1	! 0x40020f2a <system__bb__debug__debug_prot>
+   0x4000415c <system__bb__cpu_primitives__context_switch+12>:	c2 08 40 00	ldub  [ %g1 ], %g1
+   0x40004160 <system__bb__cpu_primitives__context_switch+16>:	82 08 60 ff	and  %g1, 0xff, %g1
+   0x40004164 <system__bb__cpu_primitives__context_switch+20>:	80 a0 60 00	cmp  %g1, 0
+   0x40004168 <system__bb__cpu_primitives__context_switch+24>:	02 80 00 0c	be  0x40004198 <system__bb__cpu_primitives__context_switch+72>
+   0x4000416c <system__bb__cpu_primitives__context_switch+28>:	01 00 00 00	nop 
+   ID       TID P-ID Pri State                  Name
+    1  40031e38        0 Runnable               environment_task
+    2  40039c80        0 Runnable               c2
+*   3  400349f0        0 Runnable               c1
+  Id   Target Id         Frame 
+* 4    Thread 0x40034a10 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+  3    Thread 0x40039ca0 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  2    Thread 0x40031e58 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+#0  system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+#1  0x40011b1c in system.bb.protection.leave_kernel () at raven-edf/s-bbprot.adb:188
+Continuing.
+
+Breakpoint 1, 0x4001b118 in context_switch ()
+=> 0x4001b118 <context_switch+0>:	e0 3b a0 00	std  %l0, [ %sp ]
+   ID       TID P-ID Pri State                  Name
+    1  40031e38        0 Runnable               environment_task
+    2  40039c80        0 Runnable               c2
+*   3  400349f0        0 Runnable               c1
+  Id   Target Id         Frame 
+* 4    Thread 0x40034a10 (Ravenscar task) 0x4001b118 in context_switch ()
+  3    Thread 0x40039ca0 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  2    Thread 0x40031e58 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) 0x4001b118 in context_switch ()
+#0  0x4001b118 in context_switch ()
+#1  0x400041a0 in system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+#2  0x40011b1c in system.bb.protection.leave_kernel () at raven-edf/s-bbprot.adb:188
+Continuing.
+[Switching to Thread 0x40031e58]
+
+Breakpoint 1, system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+/home/paolo/workspace/ravenscar/raven-edf/s-bbcppr.adb:155:7496:beg:0x40004154
+=> 0x40004154 <system__bb__cpu_primitives__context_switch+4>:	03 10 00 83	sethi  %hi(0x40020c00), %g1
+   0x40004158 <system__bb__cpu_primitives__context_switch+8>:	82 10 63 2a	or  %g1, 0x32a, %g1	! 0x40020f2a <system__bb__debug__debug_prot>
+   0x4000415c <system__bb__cpu_primitives__context_switch+12>:	c2 08 40 00	ldub  [ %g1 ], %g1
+   0x40004160 <system__bb__cpu_primitives__context_switch+16>:	82 08 60 ff	and  %g1, 0xff, %g1
+   0x40004164 <system__bb__cpu_primitives__context_switch+20>:	80 a0 60 00	cmp  %g1, 0
+   0x40004168 <system__bb__cpu_primitives__context_switch+24>:	02 80 00 0c	be  0x40004198 <system__bb__cpu_primitives__context_switch+72>
+   0x4000416c <system__bb__cpu_primitives__context_switch+28>:	01 00 00 00	nop 
+   ID       TID P-ID Pri State                  Name
+*   1  40031e38        0 Runnable               environment_task
+    2  40039c80        0 Runnable               c2
+    3  400349f0        0 Runnable               c1
+  Id   Target Id         Frame 
+  4    Thread 0x40034a10 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  3    Thread 0x40039ca0 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 2    Thread 0x40031e58 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+  1    Thread 0xffffffff (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+#0  system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+#1  0x40011b1c in system.bb.protection.leave_kernel () at raven-edf/s-bbprot.adb:188
+Continuing.
+
+Breakpoint 1, 0x4001b118 in context_switch ()
+=> 0x4001b118 <context_switch+0>:	e0 3b a0 00	std  %l0, [ %sp ]
+   ID       TID P-ID Pri State                  Name
+*   1  40031e38        0 Runnable               environment_task
+    2  40039c80        0 Runnable               c2
+    3  400349f0        0 Runnable               c1
+  Id   Target Id         Frame 
+  4    Thread 0x40034a10 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  3    Thread 0x40039ca0 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 2    Thread 0x40031e58 (Ravenscar task) 0x4001b118 in context_switch ()
+  1    Thread 0xffffffff (Ravenscar task) 0x4001b118 in context_switch ()
+#0  0x4001b118 in context_switch ()
+#1  0x400041a0 in system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+#2  0x40011b1c in system.bb.protection.leave_kernel () at raven-edf/s-bbprot.adb:188
+Continuing.
+[Switching to Thread 0x40039ca0]
+
+Breakpoint 1, system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+/home/paolo/workspace/ravenscar/raven-edf/s-bbcppr.adb:155:7496:beg:0x40004154
+=> 0x40004154 <system__bb__cpu_primitives__context_switch+4>:	03 10 00 83	sethi  %hi(0x40020c00), %g1
+   0x40004158 <system__bb__cpu_primitives__context_switch+8>:	82 10 63 2a	or  %g1, 0x32a, %g1	! 0x40020f2a <system__bb__debug__debug_prot>
+   0x4000415c <system__bb__cpu_primitives__context_switch+12>:	c2 08 40 00	ldub  [ %g1 ], %g1
+   0x40004160 <system__bb__cpu_primitives__context_switch+16>:	82 08 60 ff	and  %g1, 0xff, %g1
+   0x40004164 <system__bb__cpu_primitives__context_switch+20>:	80 a0 60 00	cmp  %g1, 0
+   0x40004168 <system__bb__cpu_primitives__context_switch+24>:	02 80 00 0c	be  0x40004198 <system__bb__cpu_primitives__context_switch+72>
+   0x4000416c <system__bb__cpu_primitives__context_switch+28>:	01 00 00 00	nop 
+   ID       TID P-ID Pri State                  Name
+    1  40031e38        0 Runnable               environment_task
+*   2  40039c80        0 Runnable               c2
+    3  400349f0        0 Runnable               c1
+  Id   Target Id         Frame 
+  4    Thread 0x40034a10 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 3    Thread 0x40039ca0 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+  2    Thread 0x40031e58 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+#0  system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+#1  0x40011b1c in system.bb.protection.leave_kernel () at raven-edf/s-bbprot.adb:188
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+Continuing.
+
+Breakpoint 1, 0x4001b118 in context_switch ()
+=> 0x4001b118 <context_switch+0>:	e0 3b a0 00	std  %l0, [ %sp ]
+   ID       TID P-ID Pri State                  Name
+    1  40031e38        0 Runnable               environment_task
+*   2  40039c80        0 Runnable               c2
+    3  400349f0        0 Runnable               c1
+  Id   Target Id         Frame 
+  4    Thread 0x40034a10 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 3    Thread 0x40039ca0 (Ravenscar task) 0x4001b118 in context_switch ()
+  2    Thread 0x40031e58 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) 0x4001b118 in context_switch ()
+#0  0x4001b118 in context_switch ()
+#1  0x400041a0 in system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+#2  0x40011b1c in system.bb.protection.leave_kernel () at raven-edf/s-bbprot.adb:188
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+Continuing.
+[Switching to Thread 0x40034a10]
+
+Breakpoint 1, system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+/home/paolo/workspace/ravenscar/raven-edf/s-bbcppr.adb:155:7496:beg:0x40004154
+=> 0x40004154 <system__bb__cpu_primitives__context_switch+4>:	03 10 00 83	sethi  %hi(0x40020c00), %g1
+   0x40004158 <system__bb__cpu_primitives__context_switch+8>:	82 10 63 2a	or  %g1, 0x32a, %g1	! 0x40020f2a <system__bb__debug__debug_prot>
+   0x4000415c <system__bb__cpu_primitives__context_switch+12>:	c2 08 40 00	ldub  [ %g1 ], %g1
+   0x40004160 <system__bb__cpu_primitives__context_switch+16>:	82 08 60 ff	and  %g1, 0xff, %g1
+   0x40004164 <system__bb__cpu_primitives__context_switch+20>:	80 a0 60 00	cmp  %g1, 0
+   0x40004168 <system__bb__cpu_primitives__context_switch+24>:	02 80 00 0c	be  0x40004198 <system__bb__cpu_primitives__context_switch+72>
+   0x4000416c <system__bb__cpu_primitives__context_switch+28>:	01 00 00 00	nop 
+   ID       TID P-ID Pri State                  Name
+    1  40031e38        0 Runnable               environment_task
+    2  40039c80        0 Runnable               c2
+*   3  400349f0        0 Delay Sleep            c1
+  Id   Target Id         Frame 
+* 4    Thread 0x40034a10 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+  3    Thread 0x40039ca0 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  2    Thread 0x40031e58 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+#0  system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+#1  0x40011b1c in system.bb.protection.leave_kernel () at raven-edf/s-bbprot.adb:188
+Continuing.
+
+Breakpoint 1, 0x4001b118 in context_switch ()
+=> 0x4001b118 <context_switch+0>:	e0 3b a0 00	std  %l0, [ %sp ]
+   ID       TID P-ID Pri State                  Name
+    1  40031e38        0 Runnable               environment_task
+    2  40039c80        0 Runnable               c2
+*   3  400349f0        0 Delay Sleep            c1
+  Id   Target Id         Frame 
+* 4    Thread 0x40034a10 (Ravenscar task) 0x4001b118 in context_switch ()
+  3    Thread 0x40039ca0 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  2    Thread 0x40031e58 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) 0x4001b118 in context_switch ()
+#0  0x4001b118 in context_switch ()
+#1  0x400041a0 in system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+#2  0x40011b1c in system.bb.protection.leave_kernel () at raven-edf/s-bbprot.adb:188
+Continuing.
+[Switching to Thread 0x40039ca0]
+
+Breakpoint 1, system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+/home/paolo/workspace/ravenscar/raven-edf/s-bbcppr.adb:155:7496:beg:0x40004154
+=> 0x40004154 <system__bb__cpu_primitives__context_switch+4>:	03 10 00 83	sethi  %hi(0x40020c00), %g1
+   0x40004158 <system__bb__cpu_primitives__context_switch+8>:	82 10 63 2a	or  %g1, 0x32a, %g1	! 0x40020f2a <system__bb__debug__debug_prot>
+   0x4000415c <system__bb__cpu_primitives__context_switch+12>:	c2 08 40 00	ldub  [ %g1 ], %g1
+   0x40004160 <system__bb__cpu_primitives__context_switch+16>:	82 08 60 ff	and  %g1, 0xff, %g1
+   0x40004164 <system__bb__cpu_primitives__context_switch+20>:	80 a0 60 00	cmp  %g1, 0
+   0x40004168 <system__bb__cpu_primitives__context_switch+24>:	02 80 00 0c	be  0x40004198 <system__bb__cpu_primitives__context_switch+72>
+   0x4000416c <system__bb__cpu_primitives__context_switch+28>:	01 00 00 00	nop 
+   ID       TID P-ID Pri State                  Name
+    1  40031e38        0 Runnable               environment_task
+*   2  40039c80        0 Delay Sleep            c2
+    3  400349f0        0 Delay Sleep            c1
+  Id   Target Id         Frame 
+  4    Thread 0x40034a10 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 3    Thread 0x40039ca0 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+  2    Thread 0x40031e58 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+#0  system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+#1  0x40011b1c in system.bb.protection.leave_kernel () at raven-edf/s-bbprot.adb:188
+#2  0x40034a18 in cyclic_tasks.c1 ()
+#3  0x40034a1c in cyclic_tasks.c1 ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+Continuing.
+
+Breakpoint 1, 0x4001b118 in context_switch ()
+=> 0x4001b118 <context_switch+0>:	e0 3b a0 00	std  %l0, [ %sp ]
+   ID       TID P-ID Pri State                  Name
+    1  40031e38        0 Runnable               environment_task
+*   2  40039c80        0 Delay Sleep            c2
+    3  400349f0        0 Delay Sleep            c1
+  Id   Target Id         Frame 
+  4    Thread 0x40034a10 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 3    Thread 0x40039ca0 (Ravenscar task) 0x4001b118 in context_switch ()
+  2    Thread 0x40031e58 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) 0x4001b118 in context_switch ()
+#0  0x4001b118 in context_switch ()
+#1  0x400041a0 in system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+#2  0x40011b1c in system.bb.protection.leave_kernel () at raven-edf/s-bbprot.adb:188
+#3  0x40034a18 in cyclic_tasks.c1 ()
+#4  0x40034a1c in cyclic_tasks.c1 ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+Continuing.
+[Switching to Thread 0x40031e58]
+
+Breakpoint 1, system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+/home/paolo/workspace/ravenscar/raven-edf/s-bbcppr.adb:155:7496:beg:0x40004154
+=> 0x40004154 <system__bb__cpu_primitives__context_switch+4>:	03 10 00 83	sethi  %hi(0x40020c00), %g1
+   0x40004158 <system__bb__cpu_primitives__context_switch+8>:	82 10 63 2a	or  %g1, 0x32a, %g1	! 0x40020f2a <system__bb__debug__debug_prot>
+   0x4000415c <system__bb__cpu_primitives__context_switch+12>:	c2 08 40 00	ldub  [ %g1 ], %g1
+   0x40004160 <system__bb__cpu_primitives__context_switch+16>:	82 08 60 ff	and  %g1, 0xff, %g1
+   0x40004164 <system__bb__cpu_primitives__context_switch+20>:	80 a0 60 00	cmp  %g1, 0
+   0x40004168 <system__bb__cpu_primitives__context_switch+24>:	02 80 00 0c	be  0x40004198 <system__bb__cpu_primitives__context_switch+72>
+   0x4000416c <system__bb__cpu_primitives__context_switch+28>:	01 00 00 00	nop 
+   ID       TID P-ID Pri State                  Name
+*   1  40031e38        0 Runnable               environment_task
+    2  40039c80        0 Delay Sleep            c2
+    3  400349f0        0 Delay Sleep            c1
+  Id   Target Id         Frame 
+  4    Thread 0x40034a10 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  3    Thread 0x40039ca0 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 2    Thread 0x40031e58 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+  1    Thread 0xffffffff (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+#0  system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+#1  0x40011b1c in system.bb.protection.leave_kernel () at raven-edf/s-bbprot.adb:188
+Continuing.
+
+Breakpoint 1, 0x4001b118 in context_switch ()
+=> 0x4001b118 <context_switch+0>:	e0 3b a0 00	std  %l0, [ %sp ]
+   ID       TID P-ID Pri State                  Name
+*   1  40031e38        0 Runnable               environment_task
+    2  40039c80        0 Delay Sleep            c2
+    3  400349f0        0 Delay Sleep            c1
+  Id   Target Id         Frame 
+  4    Thread 0x40034a10 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  3    Thread 0x40039ca0 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 2    Thread 0x40031e58 (Ravenscar task) 0x4001b118 in context_switch ()
+  1    Thread 0xffffffff (Ravenscar task) 0x4001b118 in context_switch ()
+#0  0x4001b118 in context_switch ()
+#1  0x400041a0 in system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+#2  0x40011b1c in system.bb.protection.leave_kernel () at raven-edf/s-bbprot.adb:188
+Continuing.
+[Switching to Thread 0x40034a10]
+
+Breakpoint 1, system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+/home/paolo/workspace/ravenscar/raven-edf/s-bbcppr.adb:155:7496:beg:0x40004154
+=> 0x40004154 <system__bb__cpu_primitives__context_switch+4>:	03 10 00 83	sethi  %hi(0x40020c00), %g1
+   0x40004158 <system__bb__cpu_primitives__context_switch+8>:	82 10 63 2a	or  %g1, 0x32a, %g1	! 0x40020f2a <system__bb__debug__debug_prot>
+   0x4000415c <system__bb__cpu_primitives__context_switch+12>:	c2 08 40 00	ldub  [ %g1 ], %g1
+   0x40004160 <system__bb__cpu_primitives__context_switch+16>:	82 08 60 ff	and  %g1, 0xff, %g1
+   0x40004164 <system__bb__cpu_primitives__context_switch+20>:	80 a0 60 00	cmp  %g1, 0
+   0x40004168 <system__bb__cpu_primitives__context_switch+24>:	02 80 00 0c	be  0x40004198 <system__bb__cpu_primitives__context_switch+72>
+   0x4000416c <system__bb__cpu_primitives__context_switch+28>:	01 00 00 00	nop 
+   ID       TID P-ID Pri State                  Name
+    1  40031e38        0 Runnable               environment_task
+    2  40039c80        0 Delay Sleep            c2
+*   3  400349f0        0 Delay Sleep            c1
+  Id   Target Id         Frame 
+* 4    Thread 0x40034a10 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+  3    Thread 0x40039ca0 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  2    Thread 0x40031e58 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+#0  system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+#1  0x40011b1c in system.bb.protection.leave_kernel () at raven-edf/s-bbprot.adb:188
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+Continuing.
+
+Breakpoint 1, 0x4001b118 in context_switch ()
+=> 0x4001b118 <context_switch+0>:	e0 3b a0 00	std  %l0, [ %sp ]
+   ID       TID P-ID Pri State                  Name
+    1  40031e38        0 Runnable               environment_task
+    2  40039c80        0 Delay Sleep            c2
+*   3  400349f0        0 Delay Sleep            c1
+  Id   Target Id         Frame 
+* 4    Thread 0x40034a10 (Ravenscar task) 0x4001b118 in context_switch ()
+  3    Thread 0x40039ca0 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  2    Thread 0x40031e58 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) 0x4001b118 in context_switch ()
+#0  0x4001b118 in context_switch ()
+#1  0x400041a0 in system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+#2  0x40011b1c in system.bb.protection.leave_kernel () at raven-edf/s-bbprot.adb:188
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+Continuing.
+[Switching to Thread 0x40039ca0]
+
+Breakpoint 1, system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+/home/paolo/workspace/ravenscar/raven-edf/s-bbcppr.adb:155:7496:beg:0x40004154
+=> 0x40004154 <system__bb__cpu_primitives__context_switch+4>:	03 10 00 83	sethi  %hi(0x40020c00), %g1
+   0x40004158 <system__bb__cpu_primitives__context_switch+8>:	82 10 63 2a	or  %g1, 0x32a, %g1	! 0x40020f2a <system__bb__debug__debug_prot>
+   0x4000415c <system__bb__cpu_primitives__context_switch+12>:	c2 08 40 00	ldub  [ %g1 ], %g1
+   0x40004160 <system__bb__cpu_primitives__context_switch+16>:	82 08 60 ff	and  %g1, 0xff, %g1
+   0x40004164 <system__bb__cpu_primitives__context_switch+20>:	80 a0 60 00	cmp  %g1, 0
+   0x40004168 <system__bb__cpu_primitives__context_switch+24>:	02 80 00 0c	be  0x40004198 <system__bb__cpu_primitives__context_switch+72>
+   0x4000416c <system__bb__cpu_primitives__context_switch+28>:	01 00 00 00	nop 
+   ID       TID P-ID Pri State                  Name
+    1  40031e38        0 Runnable               environment_task
+*   2  40039c80        0 Runnable               c2
+    3  400349f0        0 Delay Sleep            c1
+  Id   Target Id         Frame 
+  4    Thread 0x40034a10 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 3    Thread 0x40039ca0 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+  2    Thread 0x40031e58 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+#0  system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+#1  0x40011b1c in system.bb.protection.leave_kernel () at raven-edf/s-bbprot.adb:188
+Continuing.
+
+Breakpoint 1, 0x4001b118 in context_switch ()
+=> 0x4001b118 <context_switch+0>:	e0 3b a0 00	std  %l0, [ %sp ]
+   ID       TID P-ID Pri State                  Name
+    1  40031e38        0 Runnable               environment_task
+*   2  40039c80        0 Runnable               c2
+    3  400349f0        0 Delay Sleep            c1
+  Id   Target Id         Frame 
+  4    Thread 0x40034a10 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 3    Thread 0x40039ca0 (Ravenscar task) 0x4001b118 in context_switch ()
+  2    Thread 0x40031e58 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) 0x4001b118 in context_switch ()
+#0  0x4001b118 in context_switch ()
+#1  0x400041a0 in system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+#2  0x40011b1c in system.bb.protection.leave_kernel () at raven-edf/s-bbprot.adb:188
+Continuing.
+[Switching to Thread 0x40034a10]
+
+Breakpoint 1, system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+/home/paolo/workspace/ravenscar/raven-edf/s-bbcppr.adb:155:7496:beg:0x40004154
+=> 0x40004154 <system__bb__cpu_primitives__context_switch+4>:	03 10 00 83	sethi  %hi(0x40020c00), %g1
+   0x40004158 <system__bb__cpu_primitives__context_switch+8>:	82 10 63 2a	or  %g1, 0x32a, %g1	! 0x40020f2a <system__bb__debug__debug_prot>
+   0x4000415c <system__bb__cpu_primitives__context_switch+12>:	c2 08 40 00	ldub  [ %g1 ], %g1
+   0x40004160 <system__bb__cpu_primitives__context_switch+16>:	82 08 60 ff	and  %g1, 0xff, %g1
+   0x40004164 <system__bb__cpu_primitives__context_switch+20>:	80 a0 60 00	cmp  %g1, 0
+   0x40004168 <system__bb__cpu_primitives__context_switch+24>:	02 80 00 0c	be  0x40004198 <system__bb__cpu_primitives__context_switch+72>
+   0x4000416c <system__bb__cpu_primitives__context_switch+28>:	01 00 00 00	nop 
+   ID       TID P-ID Pri State                  Name
+    1  40031e38        0 Runnable               environment_task
+    2  40039c80        0 Runnable               c2
+*   3  400349f0        0 Delay Sleep            c1
+  Id   Target Id         Frame 
+* 4    Thread 0x40034a10 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+  3    Thread 0x40039ca0 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  2    Thread 0x40031e58 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+#0  system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+#1  0x40011b1c in system.bb.protection.leave_kernel () at raven-edf/s-bbprot.adb:188
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+/home/paolo/workspace/ravenscar/raven-edf/s-bbcppr.adb:159:7597:beg:0x40004198
+=> 0x40004198 <system__bb__cpu_primitives__context_switch+72>:	40 00 5b e0	call  0x4001b118 <context_switch>
+   0x4000419c <system__bb__cpu_primitives__context_switch+76>:	01 00 00 00	nop 
+   ID       TID P-ID Pri State                  Name
+    1  40031e38        0 Runnable               environment_task
+    2  40039c80        0 Runnable               c2
+*   3  400349f0        0 Delay Sleep            c1
+  Id   Target Id         Frame 
+* 4    Thread 0x40034a10 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  3    Thread 0x40039ca0 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  2    Thread 0x40031e58 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+#0  system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+#1  0x40011b1c in system.bb.protection.leave_kernel () at raven-edf/s-bbprot.adb:188
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+/home/paolo/workspace/ravenscar/raven-edf/s-bbcppr.adb:159:7597:middle:0x4000419c
+   0x40004198 <system__bb__cpu_primitives__context_switch+72>:	40 00 5b e0	call  0x4001b118 <context_switch>
+=> 0x4000419c <system__bb__cpu_primitives__context_switch+76>:	01 00 00 00	nop 
+
+Breakpoint 1, 0x4001b118 in context_switch ()
+=> 0x4001b118 <context_switch+0>:	e0 3b a0 00	std  %l0, [ %sp ]
+0x4001b11c in context_switch ()
+=> 0x4001b11c <context_switch+4>:	e4 3b a0 08	std  %l2, [ %sp + 8 ]
+0x4001b120 in context_switch ()
+=> 0x4001b120 <context_switch+8>:	e8 3b a0 10	std  %l4, [ %sp + 0x10 ]
+0x4001b124 in context_switch ()
+=> 0x4001b124 <context_switch+12>:	ec 3b a0 18	std  %l6, [ %sp + 0x18 ]
+0x4001b128 in context_switch ()
+=> 0x4001b128 <context_switch+16>:	f0 3b a0 20	std  %i0, [ %sp + 0x20 ]
+0x4001b12c in context_switch ()
+=> 0x4001b12c <context_switch+20>:	f4 3b a0 28	std  %i2, [ %sp + 0x28 ]
+0x4001b130 in context_switch ()
+=> 0x4001b130 <context_switch+24>:	f8 3b a0 30	std  %i4, [ %sp + 0x30 ]
+0x4001b134 in context_switch ()
+=> 0x4001b134 <context_switch+28>:	fc 3b a0 38	std  %fp, [ %sp + 0x38 ]
+0x4001b138 in context_switch ()
+=> 0x4001b138 <context_switch+32>:	a2 10 00 00	mov  %g0, %l1
+0x4001b13c in context_switch ()
+=> 0x4001b13c <context_switch+36>:	21 10 00 84	sethi  %hi(0x40021000), %l0
+0x4001b140 in context_switch ()
+=> 0x4001b140 <context_switch+40>:	a0 14 20 40	or  %l0, 0x40, %l0	! 0x40021040 <__gnat_running_thread_table>
+0x4001b144 in context_switch ()
+=> 0x4001b144 <context_switch+44>:	a3 2c 60 02	sll  %l1, 2, %l1
+0x4001b148 in context_switch ()
+=> 0x4001b148 <context_switch+48>:	e2 04 00 11	ld  [ %l0 + %l1 ], %l1
+0x4001b14c in context_switch ()
+=> 0x4001b14c <context_switch+52>:	21 20 00 00	sethi  %hi(0x80000000), %l0
+0x4001b150 in context_switch ()
+=> 0x4001b150 <context_switch+56>:	e0 04 20 14	ld  [ %l0 + 0x14 ], %l0	! 0x80000014
+0x4001b154 in context_switch ()
+=> 0x4001b154 <context_switch+60>:	e0 24 60 d8	st  %l0, [ %l1 + 0xd8 ]
+0x4001b158 in context_switch ()
+=> 0x4001b158 <context_switch+64>:	c2 24 60 24	st  %g1, [ %l1 + 0x24 ]
+0x4001b15c in context_switch ()
+=> 0x4001b15c <context_switch+68>:	c4 3c 60 28	std  %g2, [ %l1 + 0x28 ]
+0x4001b160 in context_switch ()
+=> 0x4001b160 <context_switch+72>:	c8 3c 60 30	std  %g4, [ %l1 + 0x30 ]
+0x4001b164 in context_switch ()
+=> 0x4001b164 <context_switch+76>:	cc 3c 60 38	std  %g6, [ %l1 + 0x38 ]
+0x4001b168 in context_switch ()
+=> 0x4001b168 <context_switch+80>:	d0 3c 60 00	std  %o0, [ %l1 ]
+0x4001b16c in context_switch ()
+=> 0x4001b16c <context_switch+84>:	d4 3c 60 08	std  %o2, [ %l1 + 8 ]
+0x4001b170 in context_switch ()
+=> 0x4001b170 <context_switch+88>:	d8 3c 60 10	std  %o4, [ %l1 + 0x10 ]
+0x4001b174 in context_switch ()
+=> 0x4001b174 <context_switch+92>:	dc 3c 60 18	std  %sp, [ %l1 + 0x18 ]
+0x4001b178 in context_switch ()
+=> 0x4001b178 <context_switch+96>:	8d 48 00 00	rd  %psr, %g6
+0x4001b17c in context_switch ()
+=> 0x4001b17c <context_switch+100>:	cc 24 60 20	st  %g6, [ %l1 + 0x20 ]
+0x4001b180 in context_switch ()
+=> 0x4001b180 <context_switch+104>:	85 40 00 00	rd  %y, %g2
+0x4001b184 in context_switch ()
+=> 0x4001b184 <context_switch+108>:	c4 24 60 40	st  %g2, [ %l1 + 0x40 ]
+0x4001b188 in context_switch ()
+=> 0x4001b188 <context_switch+112>:	85 50 00 00	rd  %wim, %g2
+0x4001b18c in context_switch ()
+=> 0x4001b18c <context_switch+116>:	c4 24 60 44	st  %g2, [ %l1 + 0x44 ]
+0x4001b190 in context_switch ()
+=> 0x4001b190 <context_switch+120>:	86 10 20 01	mov  1, %g3
+0x4001b194 in context_switch ()
+=> 0x4001b194 <context_switch+124>:	87 28 c0 06	sll  %g3, %g6, %g3
+0x4001b198 in context_switch ()
+=> 0x4001b198 <context_switch+128>:	82 10 00 11	mov  %l1, %g1
+0x4001b19c in context_switch ()
+=> 0x4001b19c <context_switch+132>:	88 10 3f ff	mov  -1, %g4
+0x4001b1a0 in context_switch ()
+=> 0x4001b1a0 <context_switch+136>:	8b 28 e0 01	sll  %g3, 1, %g5
+0x4001b1a4 in context_switch ()
+=> 0x4001b1a4 <context_switch+140>:	87 30 e0 07	srl  %g3, 7, %g3
+0x4001b1a8 in context_switch ()
+=> 0x4001b1a8 <context_switch+144>:	86 10 c0 05	or  %g3, %g5, %g3
+0x4001b1ac in context_switch ()
+=> 0x4001b1ac <context_switch+148>:	80 88 c0 02	btst  %g3, %g2
+0x4001b1b0 in context_switch ()
+=> 0x4001b1b0 <context_switch+152>:	12 80 00 0c	bne  0x4001b1e0 <context_switch+200>
+0x4001b1b4 in context_switch ()
+=> 0x4001b1b4 <context_switch+156>:	88 01 20 01	inc  %g4
+0x4001b1b8 in context_switch ()
+=> 0x4001b1b8 <context_switch+160>:	81 e8 00 00	restore 
+0x4001b1bc in context_switch ()
+=> 0x4001b1bc <context_switch+164>:	e0 3b a0 00	std  %l0, [ %sp ]
+0x4001b1c0 in context_switch ()
+=> 0x4001b1c0 <context_switch+168>:	e4 3b a0 08	std  %l2, [ %sp + 8 ]
+0x4001b1c4 in context_switch ()
+=> 0x4001b1c4 <context_switch+172>:	e8 3b a0 10	std  %l4, [ %sp + 0x10 ]
+0x4001b1c8 in context_switch ()
+=> 0x4001b1c8 <context_switch+176>:	ec 3b a0 18	std  %l6, [ %sp + 0x18 ]
+0x4001b1cc in context_switch ()
+=> 0x4001b1cc <context_switch+180>:	f0 3b a0 20	std  %i0, [ %sp + 0x20 ]
+0x4001b1d0 in context_switch ()
+=> 0x4001b1d0 <context_switch+184>:	f4 3b a0 28	std  %i2, [ %sp + 0x28 ]
+0x4001b1d4 in context_switch ()
+=> 0x4001b1d4 <context_switch+188>:	f8 3b a0 30	std  %i4, [ %sp + 0x30 ]
+0x4001b1d8 in context_switch ()
+=> 0x4001b1d8 <context_switch+192>:	10 bf ff f2	b  0x4001b1a0 <context_switch+136>
+0x4001b1dc in context_switch ()
+=> 0x4001b1dc <context_switch+196>:	fc 3b a0 38	std  %fp, [ %sp + 0x38 ]
+0x4001b1a0 in context_switch ()
+=> 0x4001b1a0 <context_switch+136>:	8b 28 e0 01	sll  %g3, 1, %g5
+0x4001b1a4 in context_switch ()
+=> 0x4001b1a4 <context_switch+140>:	87 30 e0 07	srl  %g3, 7, %g3
+0x4001b1a8 in context_switch ()
+=> 0x4001b1a8 <context_switch+144>:	86 10 c0 05	or  %g3, %g5, %g3
+0x4001b1ac in context_switch ()
+=> 0x4001b1ac <context_switch+148>:	80 88 c0 02	btst  %g3, %g2
+0x4001b1b0 in context_switch ()
+=> 0x4001b1b0 <context_switch+152>:	12 80 00 0c	bne  0x4001b1e0 <context_switch+200>
+0x4001b1b4 in context_switch ()
+=> 0x4001b1b4 <context_switch+156>:	88 01 20 01	inc  %g4
+0x4001b1b8 in context_switch ()
+=> 0x4001b1b8 <context_switch+160>:	81 e8 00 00	restore 
+0x4001b1bc in context_switch ()
+=> 0x4001b1bc <context_switch+164>:	e0 3b a0 00	std  %l0, [ %sp ]
+0x4001b1c0 in context_switch ()
+=> 0x4001b1c0 <context_switch+168>:	e4 3b a0 08	std  %l2, [ %sp + 8 ]
+0x4001b1c4 in context_switch ()
+=> 0x4001b1c4 <context_switch+172>:	e8 3b a0 10	std  %l4, [ %sp + 0x10 ]
+0x4001b1c8 in context_switch ()
+=> 0x4001b1c8 <context_switch+176>:	ec 3b a0 18	std  %l6, [ %sp + 0x18 ]
+0x4001b1cc in context_switch ()
+=> 0x4001b1cc <context_switch+180>:	f0 3b a0 20	std  %i0, [ %sp + 0x20 ]
+0x4001b1d0 in context_switch ()
+=> 0x4001b1d0 <context_switch+184>:	f4 3b a0 28	std  %i2, [ %sp + 0x28 ]
+0x4001b1d4 in context_switch ()
+=> 0x4001b1d4 <context_switch+188>:	f8 3b a0 30	std  %i4, [ %sp + 0x30 ]
+0x4001b1d8 in context_switch ()
+=> 0x4001b1d8 <context_switch+192>:	10 bf ff f2	b  0x4001b1a0 <context_switch+136>
+0x4001b1dc in context_switch ()
+=> 0x4001b1dc <context_switch+196>:	fc 3b a0 38	std  %fp, [ %sp + 0x38 ]
+0x4001b1a0 in context_switch ()
+=> 0x4001b1a0 <context_switch+136>:	8b 28 e0 01	sll  %g3, 1, %g5
+0x4001b1a4 in context_switch ()
+=> 0x4001b1a4 <context_switch+140>:	87 30 e0 07	srl  %g3, 7, %g3
+0x4001b1a8 in context_switch ()
+=> 0x4001b1a8 <context_switch+144>:	86 10 c0 05	or  %g3, %g5, %g3
+0x4001b1ac in context_switch ()
+=> 0x4001b1ac <context_switch+148>:	80 88 c0 02	btst  %g3, %g2
+0x4001b1b0 in context_switch ()
+=> 0x4001b1b0 <context_switch+152>:	12 80 00 0c	bne  0x4001b1e0 <context_switch+200>
+0x4001b1b4 in context_switch ()
+=> 0x4001b1b4 <context_switch+156>:	88 01 20 01	inc  %g4
+0x4001b1e0 in context_switch ()
+=> 0x4001b1e0 <context_switch+200>:	c8 20 60 48	st  %g4, [ %g1 + 0x48 ]
+0x4001b1e4 in context_switch ()
+=> 0x4001b1e4 <context_switch+204>:	86 10 00 00	mov  %g0, %g3
+0x4001b1e8 in context_switch ()
+=> 0x4001b1e8 <context_switch+208>:	87 28 e0 02	sll  %g3, 2, %g3
+0x4001b1ec in context_switch ()
+=> 0x4001b1ec <context_switch+212>:	03 10 00 84	sethi  %hi(0x40021000), %g1
+0x4001b1f0 in context_switch ()
+=> 0x4001b1f0 <context_switch+216>:	82 10 60 44	or  %g1, 0x44, %g1	! 0x40021044 <first_thread_table>
+0x4001b1f4 in context_switch ()
+=> 0x4001b1f4 <context_switch+220>:	c2 00 40 03	ld  [ %g1 + %g3 ], %g1
+0x4001b1f8 in context_switch ()
+=> 0x4001b1f8 <context_switch+224>:	09 10 00 84	sethi  %hi(0x40021000), %g4
+0x4001b1fc in context_switch ()
+=> 0x4001b1fc <context_switch+228>:	88 11 20 40	or  %g4, 0x40, %g4	! 0x40021040 <__gnat_running_thread_table>
+0x4001b200 in context_switch ()
+=> 0x4001b200 <context_switch+232>:	c2 21 00 03	st  %g1, [ %g4 + %g3 ]
+/caen.a/gnatmail/gpl-2012/build-caen/leon-elf-linux/gdb-7.4/src/gdb/infrun.c:3862: internal-error: handle_inferior_event: Assertion `ptid_equal (inferior_ptid, singlestep_ptid)' failed.
+A problem internal to GDB has been detected,
+further debugging may prove unreliable.

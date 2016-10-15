@@ -100,7 +100,7 @@ package System.BB.Parameters is
    Base_CCR_Context_Index  : constant := 53;
    CCR_Context_Index       : constant := 54;
 
-   Context_Buffer_Capacity : constant := 56;
+   Context_Buffer_Capacity : constant := 60;
 
    ------------
    -- Stacks --
