@@ -1,0 +1,2651 @@
+info registers
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x2	2
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0xa	10
+o1             0xc	12
+o2             0x40037ec8	1073970888
+o3             0x1	1
+o4             0xfffffffd	-3
+o5             0x40037eb0	1073970864
+sp             0x40029738	0x40029738
+o7             0x40005f94	1073766292
+l0             0x40037e88	1073970824
+l1             0x40003184	1073754500
+l2             0x40003188	1073754504
+l3             0x91	145
+l4             0x40001000	1073745920
+l5             0x0	0
+l6             0x2	2
+l7             0x40031e88	1073946248
+i0             0xa	10
+i1             0xc	12
+i2             0x40038008	1073971208
+i3             0x1	1
+i4             0x9	9
+i5             0x1	1
+fp             0x40037f40	0x40037f40
+i7             0x40005e80	1073766016
+y              0x0	0
+psr            0x400fe6	[ #1 #2 ET PS S #8 #9 #10 #11 #22 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b24c	0x4001b24c <context_switch+284>
+npc            0x4001b250	0x4001b250 <context_switch+288>
+fsr            0x0	[ ]
+csr            0x0	0
+0x4001b250 in context_switch ()
+   ID       TID P-ID Pri State                  Name
+    1  40031e68        0 Runnable               environment_task
+*   2  40039cb0        0 Runnable               c2
+    3  40034a20        0 Delay Sleep            c1
+  Id   Target Id         Frame
+  4    Thread 0x40034a40 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 3    Thread 0x40039cd0 (Ravenscar task) 0x4001b250 in context_switch ()
+  2    Thread 0x40031e88 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) 0x4001b250 in context_switch ()
+#0  0x4001b250 in context_switch ()
+#1  0x40005f9c in system.io.put (c=77 'M') at /usr/gnat-rvs/lib/gcc/leon-elf/4.5.4/rts-ravenscar/adainclude/s-io.adb:73
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x2	2
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0xa	10
+o1             0xc	12
+o2             0x40037ec8	1073970888
+o3             0x1	1
+o4             0xfffffffd	-3
+o5             0x40037eb0	1073970864
+sp             0x40029738	0x40029738
+o7             0x40005f94	1073766292
+l0             0x40029668	1073911400
+l1             0x4001ec8c	1073867916
+l2             0x40003188	1073754504
+l3             0x91	145
+l4             0x40001000	1073745920
+l5             0x0	0
+l6             0x2	2
+l7             0x40031e88	1073946248
+i0             0xa	10
+i1             0xc	12
+i2             0x40038008	1073971208
+i3             0x1	1
+i4             0x9	9
+i5             0x1	1
+fp             0x40037f40	0x40037f40
+i7             0x40005e80	1073766016
+y              0x0	0
+psr            0x400fe6	[ #1 #2 ET PS S #8 #9 #10 #11 #22 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b250	0x4001b250 <context_switch+288>
+npc            0x4001b254	0x4001b254 <context_switch+292>
+fsr            0x0	[ ]
+csr            0x0	0
+No symbol table info available.
+No symbol table info available.
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x2	2
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0xa	10
+o1             0xc	12
+o2             0x40037ec8	1073970888
+o3             0x1	1
+o4             0xfffffffd	-3
+o5             0x40037eb0	1073970864
+sp             0x40029738	0x40029738
+o7             0x40005f94	1073766292
+l0             0x40029668	1073911400
+l1             0x4001ec8c	1073867916
+l2             0x40003188	1073754504
+l3             0x91	145
+l4             0x40001000	1073745920
+l5             0x0	0
+l6             0x2	2
+l7             0x40031e88	1073946248
+i0             0xa	10
+i1             0xc	12
+i2             0x40038008	1073971208
+i3             0x1	1
+i4             0x9	9
+i5             0x1	1
+fp             0x40037f40	0x40037f40
+i7             0x40005e80	1073766016
+y              0x0	0
+psr            0x400fe6	[ #1 #2 ET PS S #8 #9 #10 #11 #22 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b250	0x4001b250 <context_switch+288>
+npc            0x4001b254	0x4001b254 <context_switch+292>
+fsr            0x0	[ ]
+csr            0x0	0
+0x4001b254 in context_switch ()
+   ID       TID P-ID Pri State                  Name
+    1  40031e68        0 Runnable               environment_task
+*   2  40039cb0        0 Runnable               c2
+    3  40034a20        0 Delay Sleep            c1
+  Id   Target Id         Frame
+  4    Thread 0x40034a40 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 3    Thread 0x40039cd0 (Ravenscar task) 0x4001b254 in context_switch ()
+  2    Thread 0x40031e88 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) 0x4001b254 in context_switch ()
+#0  0x4001b254 in context_switch ()
+#1  0x40005f9c in system.io.put (c=77 'M') at /usr/gnat-rvs/lib/gcc/leon-elf/4.5.4/rts-ravenscar/adainclude/s-io.adb:73
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x2	2
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0xa	10
+o1             0xc	12
+o2             0x40037ec8	1073970888
+o3             0x1	1
+o4             0xfffffffd	-3
+o5             0x40037eb0	1073970864
+sp             0x40029738	0x40029738
+o7             0x40005f94	1073766292
+l0             0x40029668	1073911400
+l1             0x4001ec8c	1073867916
+l2             0x40029518	1073911064
+l3             0x40029748	1073911624
+l4             0x40001000	1073745920
+l5             0x0	0
+l6             0x2	2
+l7             0x40031e88	1073946248
+i0             0xa	10
+i1             0xc	12
+i2             0x40038008	1073971208
+i3             0x1	1
+i4             0x9	9
+i5             0x1	1
+fp             0x40037f40	0x40037f40
+i7             0x40005e80	1073766016
+y              0x0	0
+psr            0x400fe6	[ #1 #2 ET PS S #8 #9 #10 #11 #22 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b254	0x4001b254 <context_switch+292>
+npc            0x4001b258	0x4001b258 <context_switch+296>
+fsr            0x0	[ ]
+csr            0x0	0
+No symbol table info available.
+No symbol table info available.
+set disassemble-next-line
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x2	2
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0xa	10
+o1             0xc	12
+o2             0x40037ec8	1073970888
+o3             0x1	1
+o4             0xfffffffd	-3
+o5             0x40037eb0	1073970864
+sp             0x40029738	0x40029738
+o7             0x40005f94	1073766292
+l0             0x40029668	1073911400
+l1             0x4001ec8c	1073867916
+l2             0x40029518	1073911064
+l3             0x40029748	1073911624
+l4             0x40001000	1073745920
+l5             0x0	0
+l6             0x2	2
+l7             0x40031e88	1073946248
+i0             0xa	10
+i1             0xc	12
+i2             0x40038008	1073971208
+i3             0x1	1
+i4             0x9	9
+i5             0x1	1
+fp             0x40037f40	0x40037f40
+i7             0x40005e80	1073766016
+y              0x0	0
+psr            0x400fe6	[ #1 #2 ET PS S #8 #9 #10 #11 #22 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b254	0x4001b254 <context_switch+292>
+npc            0x4001b258	0x4001b258 <context_switch+296>
+fsr            0x0	[ ]
+csr            0x0	0
+0x4001b258 in context_switch ()
+=> 0x4001b258 <context_switch+296>:	ec 1b a0 18	ldd  [ %sp + 0x18 ], %l6
+   ID       TID P-ID Pri State                  Name
+    1  40031e68        0 Runnable               environment_task
+*   2  40039cb0        0 Runnable               c2
+    3  40034a20        0 Delay Sleep            c1
+  Id   Target Id         Frame
+  4    Thread 0x40034a40 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 3    Thread 0x40039cd0 (Ravenscar task) 0x4001b258 in context_switch ()
+  2    Thread 0x40031e88 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) 0x4001b258 in context_switch ()
+#0  0x4001b258 in context_switch ()
+#1  0x40005f9c in system.io.put (c=77 'M') at /usr/gnat-rvs/lib/gcc/leon-elf/4.5.4/rts-ravenscar/adainclude/s-io.adb:73
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x2	2
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0xa	10
+o1             0xc	12
+o2             0x40037ec8	1073970888
+o3             0x1	1
+o4             0xfffffffd	-3
+o5             0x40037eb0	1073970864
+sp             0x40029738	0x40029738
+o7             0x40005f94	1073766292
+l0             0x40029668	1073911400
+l1             0x4001ec8c	1073867916
+l2             0x40029518	1073911064
+l3             0x40029748	1073911624
+l4             0x1	1
+l5             0x3f	63
+l6             0x2	2
+l7             0x40031e88	1073946248
+i0             0xa	10
+i1             0xc	12
+i2             0x40038008	1073971208
+i3             0x1	1
+i4             0x9	9
+i5             0x1	1
+fp             0x40037f40	0x40037f40
+i7             0x40005e80	1073766016
+y              0x0	0
+psr            0x400fe6	[ #1 #2 ET PS S #8 #9 #10 #11 #22 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b258	0x4001b258 <context_switch+296>
+npc            0x4001b25c	0x4001b25c <context_switch+300>
+fsr            0x0	[ ]
+csr            0x0	0
+No symbol table info available.
+No symbol table info available.
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x2	2
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0xa	10
+o1             0xc	12
+o2             0x40037ec8	1073970888
+o3             0x1	1
+o4             0xfffffffd	-3
+o5             0x40037eb0	1073970864
+sp             0x40029738	0x40029738
+o7             0x40005f94	1073766292
+l0             0x40029668	1073911400
+l1             0x4001ec8c	1073867916
+l2             0x40029518	1073911064
+l3             0x40029748	1073911624
+l4             0x1	1
+l5             0x3f	63
+l6             0x2	2
+l7             0x40031e88	1073946248
+i0             0xa	10
+i1             0xc	12
+i2             0x40038008	1073971208
+i3             0x1	1
+i4             0x9	9
+i5             0x1	1
+fp             0x40037f40	0x40037f40
+i7             0x40005e80	1073766016
+y              0x0	0
+psr            0x400fe6	[ #1 #2 ET PS S #8 #9 #10 #11 #22 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b258	0x4001b258 <context_switch+296>
+npc            0x4001b25c	0x4001b25c <context_switch+300>
+fsr            0x0	[ ]
+csr            0x0	0
+0x4001b25c in context_switch ()
+=> 0x4001b25c <context_switch+300>:	f0 1b a0 20	ldd  [ %sp + 0x20 ], %i0
+   ID       TID P-ID Pri State                  Name
+    1  40031e68        0 Runnable               environment_task
+*   2  40039cb0        0 Runnable               c2
+    3  40034a20        0 Delay Sleep            c1
+  Id   Target Id         Frame
+  4    Thread 0x40034a40 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 3    Thread 0x40039cd0 (Ravenscar task) 0x4001b25c in context_switch ()
+  2    Thread 0x40031e88 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) 0x4001b25c in context_switch ()
+#0  0x4001b25c in context_switch ()
+#1  0x40005f9c in system.io.put (c=77 'M') at /usr/gnat-rvs/lib/gcc/leon-elf/4.5.4/rts-ravenscar/adainclude/s-io.adb:73
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x2	2
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0xa	10
+o1             0xc	12
+o2             0x40037ec8	1073970888
+o3             0x1	1
+o4             0xfffffffd	-3
+o5             0x40037eb0	1073970864
+sp             0x40029738	0x40029738
+o7             0x40005f94	1073766292
+l0             0x40029668	1073911400
+l1             0x4001ec8c	1073867916
+l2             0x40029518	1073911064
+l3             0x40029748	1073911624
+l4             0x1	1
+l5             0x3f	63
+l6             0x4001eb88	1073867656
+l7             0x4001ec84	1073867908
+i0             0xa	10
+i1             0xc	12
+i2             0x40038008	1073971208
+i3             0x1	1
+i4             0x9	9
+i5             0x1	1
+fp             0x40037f40	0x40037f40
+i7             0x40005e80	1073766016
+y              0x0	0
+psr            0x400fe6	[ #1 #2 ET PS S #8 #9 #10 #11 #22 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b25c	0x4001b25c <context_switch+300>
+npc            0x4001b260	0x4001b260 <context_switch+304>
+fsr            0x0	[ ]
+csr            0x0	0
+No symbol table info available.
+No symbol table info available.
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x2	2
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0xa	10
+o1             0xc	12
+o2             0x40037ec8	1073970888
+o3             0x1	1
+o4             0xfffffffd	-3
+o5             0x40037eb0	1073970864
+sp             0x40029738	0x40029738
+o7             0x40005f94	1073766292
+l0             0x40029668	1073911400
+l1             0x4001ec8c	1073867916
+l2             0x40029518	1073911064
+l3             0x40029748	1073911624
+l4             0x1	1
+l5             0x3f	63
+l6             0x4001eb88	1073867656
+l7             0x4001ec84	1073867908
+i0             0xa	10
+i1             0xc	12
+i2             0x40038008	1073971208
+i3             0x1	1
+i4             0x9	9
+i5             0x1	1
+fp             0x40037f40	0x40037f40
+i7             0x40005e80	1073766016
+y              0x0	0
+psr            0x400fe6	[ #1 #2 ET PS S #8 #9 #10 #11 #22 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b25c	0x4001b25c <context_switch+300>
+npc            0x4001b260	0x4001b260 <context_switch+304>
+fsr            0x0	[ ]
+csr            0x0	0
+0x4001b260 in context_switch ()
+=> 0x4001b260 <context_switch+304>:	f4 1b a0 28	ldd  [ %sp + 0x28 ], %i2
+   ID       TID P-ID Pri State                  Name
+    1  40031e68        0 Runnable               environment_task
+*   2  40039cb0        0 Runnable               c2
+    3  40034a20        0 Delay Sleep            c1
+  Id   Target Id         Frame
+  4    Thread 0x40034a40 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 3    Thread 0x40039cd0 (Ravenscar task) 0x4001b260 in context_switch ()
+  2    Thread 0x40031e88 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) 0x4001b260 in context_switch ()
+#0  0x4001b260 in context_switch ()
+#1  0x40005f9c in system.io.put (c=77 'M') at /usr/gnat-rvs/lib/gcc/leon-elf/4.5.4/rts-ravenscar/adainclude/s-io.adb:73
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x2	2
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0xa	10
+o1             0xc	12
+o2             0x40037ec8	1073970888
+o3             0x1	1
+o4             0xfffffffd	-3
+o5             0x40037eb0	1073970864
+sp             0x40029738	0x40029738
+o7             0x40005f94	1073766292
+l0             0x40029668	1073911400
+l1             0x4001ec8c	1073867916
+l2             0x40029518	1073911064
+l3             0x40029748	1073911624
+l4             0x1	1
+l5             0x3f	63
+l6             0x4001eb88	1073867656
+l7             0x4001ec84	1073867908
+i0             0x4001ebf0	1073867760
+i1             0x4001eccc	1073867980
+i2             0x40038008	1073971208
+i3             0x1	1
+i4             0x9	9
+i5             0x1	1
+fp             0x40037f40	0x40037f40
+i7             0x40005e80	1073766016
+y              0x0	0
+psr            0x400fe6	[ #1 #2 ET PS S #8 #9 #10 #11 #22 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b260	0x4001b260 <context_switch+304>
+npc            0x4001b264	0x4001b264 <context_switch+308>
+fsr            0x0	[ ]
+csr            0x0	0
+No symbol table info available.
+No symbol table info available.
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x2	2
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0xa	10
+o1             0xc	12
+o2             0x40037ec8	1073970888
+o3             0x1	1
+o4             0xfffffffd	-3
+o5             0x40037eb0	1073970864
+sp             0x40029738	0x40029738
+o7             0x40005f94	1073766292
+l0             0x40029668	1073911400
+l1             0x4001ec8c	1073867916
+l2             0x40029518	1073911064
+l3             0x40029748	1073911624
+l4             0x1	1
+l5             0x3f	63
+l6             0x4001eb88	1073867656
+l7             0x4001ec84	1073867908
+i0             0x4001ebf0	1073867760
+i1             0x4001eccc	1073867980
+i2             0x40038008	1073971208
+i3             0x1	1
+i4             0x9	9
+i5             0x1	1
+fp             0x40037f40	0x40037f40
+i7             0x40005e80	1073766016
+y              0x0	0
+psr            0x400fe6	[ #1 #2 ET PS S #8 #9 #10 #11 #22 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b260	0x4001b260 <context_switch+304>
+npc            0x4001b264	0x4001b264 <context_switch+308>
+fsr            0x0	[ ]
+csr            0x0	0
+0x4001b264 in context_switch ()
+=> 0x4001b264 <context_switch+308>:	f8 1b a0 30	ldd  [ %sp + 0x30 ], %i4
+   ID       TID P-ID Pri State                  Name
+    1  40031e68        0 Runnable               environment_task
+*   2  40039cb0        0 Runnable               c2
+    3  40034a20        0 Delay Sleep            c1
+  Id   Target Id         Frame
+  4    Thread 0x40034a40 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 3    Thread 0x40039cd0 (Ravenscar task) 0x4001b264 in context_switch ()
+  2    Thread 0x40031e88 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) 0x4001b264 in context_switch ()
+#0  0x4001b264 in context_switch ()
+#1  0x40005f9c in system.io.put (c=77 'M') at /usr/gnat-rvs/lib/gcc/leon-elf/4.5.4/rts-ravenscar/adainclude/s-io.adb:73
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x2	2
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0xa	10
+o1             0xc	12
+o2             0x40037ec8	1073970888
+o3             0x1	1
+o4             0xfffffffd	-3
+o5             0x40037eb0	1073970864
+sp             0x40029738	0x40029738
+o7             0x40005f94	1073766292
+l0             0x40029668	1073911400
+l1             0x4001ec8c	1073867916
+l2             0x40029518	1073911064
+l3             0x40029748	1073911624
+l4             0x1	1
+l5             0x3f	63
+l6             0x4001eb88	1073867656
+l7             0x4001ec84	1073867908
+i0             0x4001ebf0	1073867760
+i1             0x4001eccc	1073867980
+i2             0x4001eb88	1073867656
+i3             0x4001ec7c	1073867900
+i4             0x9	9
+i5             0x1	1
+fp             0x40037f40	0x40037f40
+i7             0x40005e80	1073766016
+y              0x0	0
+psr            0x400fe6	[ #1 #2 ET PS S #8 #9 #10 #11 #22 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b264	0x4001b264 <context_switch+308>
+npc            0x4001b268	0x4001b268 <context_switch+312>
+fsr            0x0	[ ]
+csr            0x0	0
+No symbol table info available.
+No symbol table info available.
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x2	2
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0xa	10
+o1             0xc	12
+o2             0x40037ec8	1073970888
+o3             0x1	1
+o4             0xfffffffd	-3
+o5             0x40037eb0	1073970864
+sp             0x40029738	0x40029738
+o7             0x40005f94	1073766292
+l0             0x40029668	1073911400
+l1             0x4001ec8c	1073867916
+l2             0x40029518	1073911064
+l3             0x40029748	1073911624
+l4             0x1	1
+l5             0x3f	63
+l6             0x4001eb88	1073867656
+l7             0x4001ec84	1073867908
+i0             0x4001ebf0	1073867760
+i1             0x4001eccc	1073867980
+i2             0x4001eb88	1073867656
+i3             0x4001ec7c	1073867900
+i4             0x9	9
+i5             0x1	1
+fp             0x40037f40	0x40037f40
+i7             0x40005e80	1073766016
+y              0x0	0
+psr            0x400fe6	[ #1 #2 ET PS S #8 #9 #10 #11 #22 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b264	0x4001b264 <context_switch+308>
+npc            0x4001b268	0x4001b268 <context_switch+312>
+fsr            0x0	[ ]
+csr            0x0	0
+0x4001b268 in context_switch ()
+=> 0x4001b268 <context_switch+312>:	fc 1b a0 38	ldd  [ %sp + 0x38 ], %fp
+   ID       TID P-ID Pri State                  Name
+    1  40031e68        0 Runnable               environment_task
+*   2  40039cb0        0 Runnable               c2
+    3  40034a20        0 Delay Sleep            c1
+  Id   Target Id         Frame
+  4    Thread 0x40034a40 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 3    Thread 0x40039cd0 (Ravenscar task) 0x4001b268 in context_switch ()
+  2    Thread 0x40031e88 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) 0x4001b268 in context_switch ()
+#0  0x4001b268 in context_switch ()
+#1  0x40005f9c in system.io.put (c=77 'M') at /usr/gnat-rvs/lib/gcc/leon-elf/4.5.4/rts-ravenscar/adainclude/s-io.adb:73
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x2	2
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0xa	10
+o1             0xc	12
+o2             0x40037ec8	1073970888
+o3             0x1	1
+o4             0xfffffffd	-3
+o5             0x40037eb0	1073970864
+sp             0x40029738	0x40029738
+o7             0x40005f94	1073766292
+l0             0x40029668	1073911400
+l1             0x4001ec8c	1073867916
+l2             0x40029518	1073911064
+l3             0x40029748	1073911624
+l4             0x1	1
+l5             0x3f	63
+l6             0x4001eb88	1073867656
+l7             0x4001ec84	1073867908
+i0             0x4001ebf0	1073867760
+i1             0x4001eccc	1073867980
+i2             0x4001eb88	1073867656
+i3             0x4001ec7c	1073867900
+i4             0x4001eb88	1073867656
+i5             0x4001ec84	1073867908
+fp             0x40037f40	0x40037f40
+i7             0x40005e80	1073766016
+y              0x0	0
+psr            0x400fe6	[ #1 #2 ET PS S #8 #9 #10 #11 #22 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b268	0x4001b268 <context_switch+312>
+npc            0x4001b26c	0x4001b26c <context_switch+316>
+fsr            0x0	[ ]
+csr            0x0	0
+No symbol table info available.
+No symbol table info available.
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x2	2
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0xa	10
+o1             0xc	12
+o2             0x40037ec8	1073970888
+o3             0x1	1
+o4             0xfffffffd	-3
+o5             0x40037eb0	1073970864
+sp             0x40029738	0x40029738
+o7             0x40005f94	1073766292
+l0             0x40029668	1073911400
+l1             0x4001ec8c	1073867916
+l2             0x40029518	1073911064
+l3             0x40029748	1073911624
+l4             0x1	1
+l5             0x3f	63
+l6             0x4001eb88	1073867656
+l7             0x4001ec84	1073867908
+i0             0x4001ebf0	1073867760
+i1             0x4001eccc	1073867980
+i2             0x4001eb88	1073867656
+i3             0x4001ec7c	1073867900
+i4             0x4001eb88	1073867656
+i5             0x4001ec84	1073867908
+fp             0x40037f40	0x40037f40
+i7             0x40005e80	1073766016
+y              0x0	0
+psr            0x400fe6	[ #1 #2 ET PS S #8 #9 #10 #11 #22 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b268	0x4001b268 <context_switch+312>
+npc            0x4001b26c	0x4001b26c <context_switch+316>
+fsr            0x0	[ ]
+csr            0x0	0
+0x4001b26c in context_switch ()
+=> 0x4001b26c <context_switch+316>:	80 a0 a0 00	cmp  %g2, 0
+   ID       TID P-ID Pri State                  Name
+    1  40031e68        0 Runnable               environment_task
+*   2  40039cb0        0 Runnable               c2
+    3  40034a20        0 Delay Sleep            c1
+  Id   Target Id         Frame
+  4    Thread 0x40034a40 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 3    Thread 0x40039cd0 (Ravenscar task) 0x4001b26c in context_switch ()
+  2    Thread 0x40031e88 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) 0x4001b26c in context_switch ()
+#0  0x4001b26c in context_switch ()
+#1  0x40005f9c in system.io.put (c=77 'M') at /usr/gnat-rvs/lib/gcc/leon-elf/4.5.4/rts-ravenscar/adainclude/s-io.adb:73
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x2	2
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0xa	10
+o1             0xc	12
+o2             0x40037ec8	1073970888
+o3             0x1	1
+o4             0xfffffffd	-3
+o5             0x40037eb0	1073970864
+sp             0x40029738	0x40029738
+o7             0x40005f94	1073766292
+l0             0x40029668	1073911400
+l1             0x4001ec8c	1073867916
+l2             0x40029518	1073911064
+l3             0x40029748	1073911624
+l4             0x1	1
+l5             0x3f	63
+l6             0x4001eb88	1073867656
+l7             0x4001ec84	1073867908
+i0             0x4001ebf0	1073867760
+i1             0x4001eccc	1073867980
+i2             0x4001eb88	1073867656
+i3             0x4001ec7c	1073867900
+i4             0x4001eb88	1073867656
+i5             0x4001ec84	1073867908
+fp             0x4001ec20	0x4001ec20
+i7             0x4001ecf8	1073868024
+y              0x0	0
+psr            0x400fe6	[ #1 #2 ET PS S #8 #9 #10 #11 #22 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b26c	0x4001b26c <context_switch+316>
+npc            0x4001b270	0x4001b270 <context_switch+320>
+fsr            0x0	[ ]
+csr            0x0	0
+No symbol table info available.
+No symbol table info available.
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x2	2
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0xa	10
+o1             0xc	12
+o2             0x40037ec8	1073970888
+o3             0x1	1
+o4             0xfffffffd	-3
+o5             0x40037eb0	1073970864
+sp             0x40029738	0x40029738
+o7             0x40005f94	1073766292
+l0             0x40029668	1073911400
+l1             0x4001ec8c	1073867916
+l2             0x40029518	1073911064
+l3             0x40029748	1073911624
+l4             0x1	1
+l5             0x3f	63
+l6             0x4001eb88	1073867656
+l7             0x4001ec84	1073867908
+i0             0x4001ebf0	1073867760
+i1             0x4001eccc	1073867980
+i2             0x4001eb88	1073867656
+i3             0x4001ec7c	1073867900
+i4             0x4001eb88	1073867656
+i5             0x4001ec84	1073867908
+fp             0x4001ec20	0x4001ec20
+i7             0x4001ecf8	1073868024
+y              0x0	0
+psr            0x400fe6	[ #1 #2 ET PS S #8 #9 #10 #11 #22 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b26c	0x4001b26c <context_switch+316>
+npc            0x4001b270	0x4001b270 <context_switch+320>
+fsr            0x0	[ ]
+csr            0x0	0
+0x4001b270 in context_switch ()
+=> 0x4001b270 <context_switch+320>:	02 80 00 04	be  0x4001b280 <context_switch+336>
+   ID       TID P-ID Pri State                  Name
+    1  40031e68        0 Runnable               environment_task
+*   2  40039cb0        0 Runnable               c2
+    3  40034a20        0 Delay Sleep            c1
+  Id   Target Id         Frame
+  4    Thread 0x40034a40 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 3    Thread 0x40039cd0 (Ravenscar task) 0x4001b270 in context_switch ()
+  2    Thread 0x40031e88 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) 0x4001b270 in context_switch ()
+#0  0x4001b270 in context_switch ()
+#1  0x40005f9c in system.io.put (c=77 'M') at /usr/gnat-rvs/lib/gcc/leon-elf/4.5.4/rts-ravenscar/adainclude/s-io.adb:73
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x2	2
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0xa	10
+o1             0xc	12
+o2             0x40037ec8	1073970888
+o3             0x1	1
+o4             0xfffffffd	-3
+o5             0x40037eb0	1073970864
+sp             0x40029738	0x40029738
+o7             0x40005f94	1073766292
+l0             0x40029668	1073911400
+l1             0x4001ec8c	1073867916
+l2             0x40029518	1073911064
+l3             0x40029748	1073911624
+l4             0x1	1
+l5             0x3f	63
+l6             0x4001eb88	1073867656
+l7             0x4001ec84	1073867908
+i0             0x4001ebf0	1073867760
+i1             0x4001eccc	1073867980
+i2             0x4001eb88	1073867656
+i3             0x4001ec7c	1073867900
+i4             0x4001eb88	1073867656
+i5             0x4001ec84	1073867908
+fp             0x4001ec20	0x4001ec20
+i7             0x4001ecf8	1073868024
+y              0x0	0
+psr            0xfe6	[ #1 #2 ET PS S #8 #9 #10 #11 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b270	0x4001b270 <context_switch+320>
+npc            0x4001b274	0x4001b274 <context_switch+324>
+fsr            0x0	[ ]
+csr            0x0	0
+No symbol table info available.
+No symbol table info available.
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x2	2
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0xa	10
+o1             0xc	12
+o2             0x40037ec8	1073970888
+o3             0x1	1
+o4             0xfffffffd	-3
+o5             0x40037eb0	1073970864
+sp             0x40029738	0x40029738
+o7             0x40005f94	1073766292
+l0             0x40029668	1073911400
+l1             0x4001ec8c	1073867916
+l2             0x40029518	1073911064
+l3             0x40029748	1073911624
+l4             0x1	1
+l5             0x3f	63
+l6             0x4001eb88	1073867656
+l7             0x4001ec84	1073867908
+i0             0x4001ebf0	1073867760
+i1             0x4001eccc	1073867980
+i2             0x4001eb88	1073867656
+i3             0x4001ec7c	1073867900
+i4             0x4001eb88	1073867656
+i5             0x4001ec84	1073867908
+fp             0x4001ec20	0x4001ec20
+i7             0x4001ecf8	1073868024
+y              0x0	0
+psr            0xfe6	[ #1 #2 ET PS S #8 #9 #10 #11 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b270	0x4001b270 <context_switch+320>
+npc            0x4001b274	0x4001b274 <context_switch+324>
+fsr            0x0	[ ]
+csr            0x0	0
+0x4001b274 in context_switch ()
+=> 0x4001b274 <context_switch+324>:	84 00 bf ff	add  %g2, -1, %g2
+   ID       TID P-ID Pri State                  Name
+    1  40031e68        0 Runnable               environment_task
+*   2  40039cb0        0 Runnable               c2
+    3  40034a20        0 Delay Sleep            c1
+  Id   Target Id         Frame
+  4    Thread 0x40034a40 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 3    Thread 0x40039cd0 (Ravenscar task) 0x4001b274 in context_switch ()
+  2    Thread 0x40031e88 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) 0x4001b274 in context_switch ()
+#0  0x4001b274 in context_switch ()
+#1  0x40005f9c in system.io.put (c=77 'M') at /usr/gnat-rvs/lib/gcc/leon-elf/4.5.4/rts-ravenscar/adainclude/s-io.adb:73
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x2	2
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0xa	10
+o1             0xc	12
+o2             0x40037ec8	1073970888
+o3             0x1	1
+o4             0xfffffffd	-3
+o5             0x40037eb0	1073970864
+sp             0x40029738	0x40029738
+o7             0x40005f94	1073766292
+l0             0x40029668	1073911400
+l1             0x4001ec8c	1073867916
+l2             0x40029518	1073911064
+l3             0x40029748	1073911624
+l4             0x1	1
+l5             0x3f	63
+l6             0x4001eb88	1073867656
+l7             0x4001ec84	1073867908
+i0             0x4001ebf0	1073867760
+i1             0x4001eccc	1073867980
+i2             0x4001eb88	1073867656
+i3             0x4001ec7c	1073867900
+i4             0x4001eb88	1073867656
+i5             0x4001ec84	1073867908
+fp             0x4001ec20	0x4001ec20
+i7             0x4001ecf8	1073868024
+y              0x0	0
+psr            0xfe6	[ #1 #2 ET PS S #8 #9 #10 #11 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b274	0x4001b274 <context_switch+324>
+npc            0x4001b278	0x4001b278 <context_switch+328>
+fsr            0x0	[ ]
+csr            0x0	0
+No symbol table info available.
+No symbol table info available.
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x2	2
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0xa	10
+o1             0xc	12
+o2             0x40037ec8	1073970888
+o3             0x1	1
+o4             0xfffffffd	-3
+o5             0x40037eb0	1073970864
+sp             0x40029738	0x40029738
+o7             0x40005f94	1073766292
+l0             0x40029668	1073911400
+l1             0x4001ec8c	1073867916
+l2             0x40029518	1073911064
+l3             0x40029748	1073911624
+l4             0x1	1
+l5             0x3f	63
+l6             0x4001eb88	1073867656
+l7             0x4001ec84	1073867908
+i0             0x4001ebf0	1073867760
+i1             0x4001eccc	1073867980
+i2             0x4001eb88	1073867656
+i3             0x4001ec7c	1073867900
+i4             0x4001eb88	1073867656
+i5             0x4001ec84	1073867908
+fp             0x4001ec20	0x4001ec20
+i7             0x4001ecf8	1073868024
+y              0x0	0
+psr            0xfe6	[ #1 #2 ET PS S #8 #9 #10 #11 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b274	0x4001b274 <context_switch+324>
+npc            0x4001b278	0x4001b278 <context_switch+328>
+fsr            0x0	[ ]
+csr            0x0	0
+0x4001b278 in context_switch ()
+=> 0x4001b278 <context_switch+328>:	10 bf ff f5	b  0x4001b24c <context_switch+284>
+   ID       TID P-ID Pri State                  Name
+    1  40031e68        0 Runnable               environment_task
+*   2  40039cb0        0 Runnable               c2
+    3  40034a20        0 Delay Sleep            c1
+  Id   Target Id         Frame
+  4    Thread 0x40034a40 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 3    Thread 0x40039cd0 (Ravenscar task) 0x4001b278 in context_switch ()
+  2    Thread 0x40031e88 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) 0x4001b278 in context_switch ()
+#0  0x4001b278 in context_switch ()
+#1  0x40005f9c in system.io.put (c=77 'M') at /usr/gnat-rvs/lib/gcc/leon-elf/4.5.4/rts-ravenscar/adainclude/s-io.adb:73
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x1	1
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0xa	10
+o1             0xc	12
+o2             0x40037ec8	1073970888
+o3             0x1	1
+o4             0xfffffffd	-3
+o5             0x40037eb0	1073970864
+sp             0x40029738	0x40029738
+o7             0x40005f94	1073766292
+l0             0x40029668	1073911400
+l1             0x4001ec8c	1073867916
+l2             0x40029518	1073911064
+l3             0x40029748	1073911624
+l4             0x1	1
+l5             0x3f	63
+l6             0x4001eb88	1073867656
+l7             0x4001ec84	1073867908
+i0             0x4001ebf0	1073867760
+i1             0x4001eccc	1073867980
+i2             0x4001eb88	1073867656
+i3             0x4001ec7c	1073867900
+i4             0x4001eb88	1073867656
+i5             0x4001ec84	1073867908
+fp             0x4001ec20	0x4001ec20
+i7             0x4001ecf8	1073868024
+y              0x0	0
+psr            0xfe6	[ #1 #2 ET PS S #8 #9 #10 #11 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b278	0x4001b278 <context_switch+328>
+npc            0x4001b27c	0x4001b27c <context_switch+332>
+fsr            0x0	[ ]
+csr            0x0	0
+No symbol table info available.
+No symbol table info available.
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x1	1
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0xa	10
+o1             0xc	12
+o2             0x40037ec8	1073970888
+o3             0x1	1
+o4             0xfffffffd	-3
+o5             0x40037eb0	1073970864
+sp             0x40029738	0x40029738
+o7             0x40005f94	1073766292
+l0             0x40029668	1073911400
+l1             0x4001ec8c	1073867916
+l2             0x40029518	1073911064
+l3             0x40029748	1073911624
+l4             0x1	1
+l5             0x3f	63
+l6             0x4001eb88	1073867656
+l7             0x4001ec84	1073867908
+i0             0x4001ebf0	1073867760
+i1             0x4001eccc	1073867980
+i2             0x4001eb88	1073867656
+i3             0x4001ec7c	1073867900
+i4             0x4001eb88	1073867656
+i5             0x4001ec84	1073867908
+fp             0x4001ec20	0x4001ec20
+i7             0x4001ecf8	1073868024
+y              0x0	0
+psr            0xfe6	[ #1 #2 ET PS S #8 #9 #10 #11 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b278	0x4001b278 <context_switch+328>
+npc            0x4001b27c	0x4001b27c <context_switch+332>
+fsr            0x0	[ ]
+csr            0x0	0
+0x4001b27c in context_switch ()
+=> 0x4001b27c <context_switch+332>:	81 e8 00 00	restore
+   ID       TID P-ID Pri State                  Name
+    1  40031e68        0 Runnable               environment_task
+*   2  40039cb0        0 Runnable               c2
+    3  40034a20        0 Delay Sleep            c1
+  Id   Target Id         Frame
+  4    Thread 0x40034a40 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 3    Thread 0x40039cd0 (Ravenscar task) 0x4001b27c in context_switch ()
+  2    Thread 0x40031e88 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) 0x4001b27c in context_switch ()
+#0  0x4001b27c in context_switch ()
+#1  0x40005f9c in system.io.put (c=77 'M') at /usr/gnat-rvs/lib/gcc/leon-elf/4.5.4/rts-ravenscar/adainclude/s-io.adb:73
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x1	1
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0xa	10
+o1             0xc	12
+o2             0x40037ec8	1073970888
+o3             0x1	1
+o4             0xfffffffd	-3
+o5             0x40037eb0	1073970864
+sp             0x40029738	0x40029738
+o7             0x40005f94	1073766292
+l0             0x40029668	1073911400
+l1             0x4001ec8c	1073867916
+l2             0x40029518	1073911064
+l3             0x40029748	1073911624
+l4             0x1	1
+l5             0x3f	63
+l6             0x4001eb88	1073867656
+l7             0x4001ec84	1073867908
+i0             0x4001ebf0	1073867760
+i1             0x4001eccc	1073867980
+i2             0x4001eb88	1073867656
+i3             0x4001ec7c	1073867900
+i4             0x4001eb88	1073867656
+i5             0x4001ec84	1073867908
+fp             0x4001ec20	0x4001ec20
+i7             0x4001ecf8	1073868024
+y              0x0	0
+psr            0xfe6	[ #1 #2 ET PS S #8 #9 #10 #11 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b27c	0x4001b27c <context_switch+332>
+npc            0x4001b24c	0x4001b24c <context_switch+284>
+fsr            0x0	[ ]
+csr            0x0	0
+No symbol table info available.
+No symbol table info available.
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x1	1
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0xa	10
+o1             0xc	12
+o2             0x40037ec8	1073970888
+o3             0x1	1
+o4             0xfffffffd	-3
+o5             0x40037eb0	1073970864
+sp             0x40029738	0x40029738
+o7             0x40005f94	1073766292
+l0             0x40029668	1073911400
+l1             0x4001ec8c	1073867916
+l2             0x40029518	1073911064
+l3             0x40029748	1073911624
+l4             0x1	1
+l5             0x3f	63
+l6             0x4001eb88	1073867656
+l7             0x4001ec84	1073867908
+i0             0x4001ebf0	1073867760
+i1             0x4001eccc	1073867980
+i2             0x4001eb88	1073867656
+i3             0x4001ec7c	1073867900
+i4             0x4001eb88	1073867656
+i5             0x4001ec84	1073867908
+fp             0x4001ec20	0x4001ec20
+i7             0x4001ecf8	1073868024
+y              0x0	0
+psr            0xfe6	[ #1 #2 ET PS S #8 #9 #10 #11 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b27c	0x4001b27c <context_switch+332>
+npc            0x4001b24c	0x4001b24c <context_switch+284>
+fsr            0x0	[ ]
+csr            0x0	0
+
+Breakpoint 1, 0x4001b24c in context_switch ()
+=> 0x4001b24c <context_switch+284>:	e0 1b a0 00	ldd  [ %sp ], %l0
+   ID       TID P-ID Pri State                  Name
+    1  40031e68        0 Runnable               environment_task
+*   2  40039cb0        0 Runnable               c2
+    3  40034a20        0 Delay Sleep            c1
+  Id   Target Id         Frame
+  4    Thread 0x40034a40 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 3    Thread 0x40039cd0 (Ravenscar task) 0x4001b24c in context_switch ()
+  2    Thread 0x40031e88 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) 0x4001b24c in context_switch ()
+#0  0x4001b24c in context_switch ()
+#1  0x4001ed04 in ?? ()
+#2  0x4001ed04 in ?? ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x1	1
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0x4001ebf0	1073867760
+o1             0x4001eccc	1073867980
+o2             0x4001eb88	1073867656
+o3             0x4001ec7c	1073867900
+o4             0x4001eb88	1073867656
+o5             0x4001ec84	1073867908
+sp             0x4001ec20	0x4001ec20
+o7             0x4001ecf8	1073868024
+l0             0x1	1
+l1             0x40002fdc	1073754076
+l2             0x40002fe0	1073754080
+l3             0x19	25
+l4             0x40001000	1073745920
+l5             0x0	0
+l6             0x4	4
+l7             0x10	16
+i0             0x1	1
+i1             0xd8487170	-666341008
+i2             0x40038008	1073971208
+i3             0x1	1
+i4             0x0	0
+i5             0x1a8174	1737076
+fp             0x40037fa0	0x40037fa0
+i7             0x4000ff2c	1073807148
+y              0x0	0
+psr            0xfe7	[ #0 #1 #2 ET PS S #8 #9 #10 #11 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b24c	0x4001b24c <context_switch+284>
+npc            0x4001b250	0x4001b250 <context_switch+288>
+fsr            0x0	[ ]
+csr            0x0	0
+No symbol table info available.
+No symbol table info available.
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x1	1
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0x4001ebf0	1073867760
+o1             0x4001eccc	1073867980
+o2             0x4001eb88	1073867656
+o3             0x4001ec7c	1073867900
+o4             0x4001eb88	1073867656
+o5             0x4001ec84	1073867908
+sp             0x4001ec20	0x4001ec20
+o7             0x4001ecf8	1073868024
+l0             0x1	1
+l1             0x40002fdc	1073754076
+l2             0x40002fe0	1073754080
+l3             0x19	25
+l4             0x40001000	1073745920
+l5             0x0	0
+l6             0x4	4
+l7             0x10	16
+i0             0x1	1
+i1             0xd8487170	-666341008
+i2             0x40038008	1073971208
+i3             0x1	1
+i4             0x0	0
+i5             0x1a8174	1737076
+fp             0x40037fa0	0x40037fa0
+i7             0x4000ff2c	1073807148
+y              0x0	0
+psr            0xfe7	[ #0 #1 #2 ET PS S #8 #9 #10 #11 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b24c	0x4001b24c <context_switch+284>
+npc            0x4001b250	0x4001b250 <context_switch+288>
+fsr            0x0	[ ]
+csr            0x0	0
+0x4001b250 in context_switch ()
+=> 0x4001b250 <context_switch+288>:	e4 1b a0 08	ldd  [ %sp + 8 ], %l2
+   ID       TID P-ID Pri State                  Name
+    1  40031e68        0 Runnable               environment_task
+*   2  40039cb0        0 Runnable               c2
+    3  40034a20        0 Delay Sleep            c1
+  Id   Target Id         Frame
+  4    Thread 0x40034a40 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 3    Thread 0x40039cd0 (Ravenscar task) 0x4001b250 in context_switch ()
+  2    Thread 0x40031e88 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) 0x4001b250 in context_switch ()
+#0  0x4001b250 in context_switch ()
+#1  0x4001ed04 in ?? ()
+#2  0x4001ed04 in ?? ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x1	1
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0x4001ebf0	1073867760
+o1             0x4001eccc	1073867980
+o2             0x4001eb88	1073867656
+o3             0x4001ec7c	1073867900
+o4             0x4001eb88	1073867656
+o5             0x4001ec84	1073867908
+sp             0x4001ec20	0x4001ec20
+o7             0x4001ecf8	1073868024
+l0             0x20202041	538976321
+l1             0x2d2d2d2d	757935405
+l2             0x40002fe0	1073754080
+l3             0x19	25
+l4             0x40001000	1073745920
+l5             0x0	0
+l6             0x4	4
+l7             0x10	16
+i0             0x1	1
+i1             0xd8487170	-666341008
+i2             0x40038008	1073971208
+i3             0x1	1
+i4             0x0	0
+i5             0x1a8174	1737076
+fp             0x40037fa0	0x40037fa0
+i7             0x4000ff2c	1073807148
+y              0x0	0
+psr            0xfe7	[ #0 #1 #2 ET PS S #8 #9 #10 #11 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b250	0x4001b250 <context_switch+288>
+npc            0x4001b254	0x4001b254 <context_switch+292>
+fsr            0x0	[ ]
+csr            0x0	0
+No symbol table info available.
+No symbol table info available.
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x1	1
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0x4001ebf0	1073867760
+o1             0x4001eccc	1073867980
+o2             0x4001eb88	1073867656
+o3             0x4001ec7c	1073867900
+o4             0x4001eb88	1073867656
+o5             0x4001ec84	1073867908
+sp             0x4001ec20	0x4001ec20
+o7             0x4001ecf8	1073868024
+l0             0x20202041	538976321
+l1             0x2d2d2d2d	757935405
+l2             0x40002fe0	1073754080
+l3             0x19	25
+l4             0x40001000	1073745920
+l5             0x0	0
+l6             0x4	4
+l7             0x10	16
+i0             0x1	1
+i1             0xd8487170	-666341008
+i2             0x40038008	1073971208
+i3             0x1	1
+i4             0x0	0
+i5             0x1a8174	1737076
+fp             0x40037fa0	0x40037fa0
+i7             0x4000ff2c	1073807148
+y              0x0	0
+psr            0xfe7	[ #0 #1 #2 ET PS S #8 #9 #10 #11 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b250	0x4001b250 <context_switch+288>
+npc            0x4001b254	0x4001b254 <context_switch+292>
+fsr            0x0	[ ]
+csr            0x0	0
+0x4001b254 in context_switch ()
+=> 0x4001b254 <context_switch+292>:	e8 1b a0 10	ldd  [ %sp + 0x10 ], %l4
+   ID       TID P-ID Pri State                  Name
+    1  40031e68        0 Runnable               environment_task
+*   2  40039cb0        0 Runnable               c2
+    3  40034a20        0 Delay Sleep            c1
+  Id   Target Id         Frame
+  4    Thread 0x40034a40 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 3    Thread 0x40039cd0 (Ravenscar task) 0x4001b254 in context_switch ()
+  2    Thread 0x40031e88 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) 0x4001b254 in context_switch ()
+#0  0x4001b254 in context_switch ()
+#1  0x4001ed04 in ?? ()
+#2  0x4001ed04 in ?? ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x1	1
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0x4001ebf0	1073867760
+o1             0x4001eccc	1073867980
+o2             0x4001eb88	1073867656
+o3             0x4001ec7c	1073867900
+o4             0x4001eb88	1073867656
+o5             0x4001ec84	1073867908
+sp             0x4001ec20	0x4001ec20
+o7             0x4001ecf8	1073868024
+l0             0x20202041	538976321
+l1             0x2d2d2d2d	757935405
+l2             0x2d2d2d2d	757935405
+l3             0x2d20414c	757088588
+l4             0x40001000	1073745920
+l5             0x0	0
+l6             0x4	4
+l7             0x10	16
+i0             0x1	1
+i1             0xd8487170	-666341008
+i2             0x40038008	1073971208
+i3             0x1	1
+i4             0x0	0
+i5             0x1a8174	1737076
+fp             0x40037fa0	0x40037fa0
+i7             0x4000ff2c	1073807148
+y              0x0	0
+psr            0xfe7	[ #0 #1 #2 ET PS S #8 #9 #10 #11 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b254	0x4001b254 <context_switch+292>
+npc            0x4001b258	0x4001b258 <context_switch+296>
+fsr            0x0	[ ]
+csr            0x0	0
+No symbol table info available.
+No symbol table info available.
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x1	1
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0x4001ebf0	1073867760
+o1             0x4001eccc	1073867980
+o2             0x4001eb88	1073867656
+o3             0x4001ec7c	1073867900
+o4             0x4001eb88	1073867656
+o5             0x4001ec84	1073867908
+sp             0x4001ec20	0x4001ec20
+o7             0x4001ecf8	1073868024
+l0             0x20202041	538976321
+l1             0x2d2d2d2d	757935405
+l2             0x2d2d2d2d	757935405
+l3             0x2d20414c	757088588
+l4             0x40001000	1073745920
+l5             0x0	0
+l6             0x4	4
+l7             0x10	16
+i0             0x1	1
+i1             0xd8487170	-666341008
+i2             0x40038008	1073971208
+i3             0x1	1
+i4             0x0	0
+i5             0x1a8174	1737076
+fp             0x40037fa0	0x40037fa0
+i7             0x4000ff2c	1073807148
+y              0x0	0
+psr            0xfe7	[ #0 #1 #2 ET PS S #8 #9 #10 #11 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b254	0x4001b254 <context_switch+292>
+npc            0x4001b258	0x4001b258 <context_switch+296>
+fsr            0x0	[ ]
+csr            0x0	0
+0x4001b258 in context_switch ()
+=> 0x4001b258 <context_switch+296>:	ec 1b a0 18	ldd  [ %sp + 0x18 ], %l6
+   ID       TID P-ID Pri State                  Name
+    1  40031e68        0 Runnable               environment_task
+*   2  40039cb0        0 Runnable               c2
+    3  40034a20        0 Delay Sleep            c1
+  Id   Target Id         Frame
+  4    Thread 0x40034a40 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 3    Thread 0x40039cd0 (Ravenscar task) 0x4001b258 in context_switch ()
+  2    Thread 0x40031e88 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) 0x4001b258 in context_switch ()
+#0  0x4001b258 in context_switch ()
+#1  0x4001ed04 in ?? ()
+#2  0x4001ed04 in ?? ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x1	1
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0x4001ebf0	1073867760
+o1             0x4001eccc	1073867980
+o2             0x4001eb88	1073867656
+o3             0x4001ec7c	1073867900
+o4             0x4001eb88	1073867656
+o5             0x4001ec84	1073867908
+sp             0x4001ec20	0x4001ec20
+o7             0x4001ecf8	1073868024
+l0             0x20202041	538976321
+l1             0x2d2d2d2d	757935405
+l2             0x2d2d2d2d	757935405
+l3             0x2d20414c	757088588
+l4             0x41524d20	1095912736
+l5             0x51554555	1364542805
+l6             0x4	4
+l7             0x10	16
+i0             0x1	1
+i1             0xd8487170	-666341008
+i2             0x40038008	1073971208
+i3             0x1	1
+i4             0x0	0
+i5             0x1a8174	1737076
+fp             0x40037fa0	0x40037fa0
+i7             0x4000ff2c	1073807148
+y              0x0	0
+psr            0xfe7	[ #0 #1 #2 ET PS S #8 #9 #10 #11 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b258	0x4001b258 <context_switch+296>
+npc            0x4001b25c	0x4001b25c <context_switch+300>
+fsr            0x0	[ ]
+csr            0x0	0
+No symbol table info available.
+No symbol table info available.
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x1	1
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0x4001ebf0	1073867760
+o1             0x4001eccc	1073867980
+o2             0x4001eb88	1073867656
+o3             0x4001ec7c	1073867900
+o4             0x4001eb88	1073867656
+o5             0x4001ec84	1073867908
+sp             0x4001ec20	0x4001ec20
+o7             0x4001ecf8	1073868024
+l0             0x20202041	538976321
+l1             0x2d2d2d2d	757935405
+l2             0x2d2d2d2d	757935405
+l3             0x2d20414c	757088588
+l4             0x41524d20	1095912736
+l5             0x51554555	1364542805
+l6             0x4	4
+l7             0x10	16
+i0             0x1	1
+i1             0xd8487170	-666341008
+i2             0x40038008	1073971208
+i3             0x1	1
+i4             0x0	0
+i5             0x1a8174	1737076
+fp             0x40037fa0	0x40037fa0
+i7             0x4000ff2c	1073807148
+y              0x0	0
+psr            0xfe7	[ #0 #1 #2 ET PS S #8 #9 #10 #11 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b258	0x4001b258 <context_switch+296>
+npc            0x4001b25c	0x4001b25c <context_switch+300>
+fsr            0x0	[ ]
+csr            0x0	0
+0x4001b25c in context_switch ()
+=> 0x4001b25c <context_switch+300>:	f0 1b a0 20	ldd  [ %sp + 0x20 ], %i0
+   ID       TID P-ID Pri State                  Name
+    1  40031e68        0 Runnable               environment_task
+*   2  40039cb0        0 Runnable               c2
+    3  40034a20        0 Delay Sleep            c1
+  Id   Target Id         Frame
+  4    Thread 0x40034a40 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 3    Thread 0x40039cd0 (Ravenscar task) 0x4001b25c in context_switch ()
+  2    Thread 0x40031e88 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) 0x4001b25c in context_switch ()
+#0  0x4001b25c in context_switch ()
+#1  0x4001ed04 in ?? ()
+#2  0x4001ed04 in ?? ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x1	1
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0x4001ebf0	1073867760
+o1             0x4001eccc	1073867980
+o2             0x4001eb88	1073867656
+o3             0x4001ec7c	1073867900
+o4             0x4001eb88	1073867656
+o5             0x4001ec84	1073867908
+sp             0x4001ec20	0x4001ec20
+o7             0x4001ecf8	1073868024
+l0             0x20202041	538976321
+l1             0x2d2d2d2d	757935405
+l2             0x2d2d2d2d	757935405
+l3             0x2d20414c	757088588
+l4             0x41524d20	1095912736
+l5             0x51554555	1364542805
+l6             0x45202d2d	1159736621
+l7             0x2d2d2d2d	757935405
+i0             0x1	1
+i1             0xd8487170	-666341008
+i2             0x40038008	1073971208
+i3             0x1	1
+i4             0x0	0
+i5             0x1a8174	1737076
+fp             0x40037fa0	0x40037fa0
+i7             0x4000ff2c	1073807148
+y              0x0	0
+psr            0xfe7	[ #0 #1 #2 ET PS S #8 #9 #10 #11 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b25c	0x4001b25c <context_switch+300>
+npc            0x4001b260	0x4001b260 <context_switch+304>
+fsr            0x0	[ ]
+csr            0x0	0
+No symbol table info available.
+No symbol table info available.
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x1	1
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0x4001ebf0	1073867760
+o1             0x4001eccc	1073867980
+o2             0x4001eb88	1073867656
+o3             0x4001ec7c	1073867900
+o4             0x4001eb88	1073867656
+o5             0x4001ec84	1073867908
+sp             0x4001ec20	0x4001ec20
+o7             0x4001ecf8	1073868024
+l0             0x20202041	538976321
+l1             0x2d2d2d2d	757935405
+l2             0x2d2d2d2d	757935405
+l3             0x2d20414c	757088588
+l4             0x41524d20	1095912736
+l5             0x51554555	1364542805
+l6             0x45202d2d	1159736621
+l7             0x2d2d2d2d	757935405
+i0             0x1	1
+i1             0xd8487170	-666341008
+i2             0x40038008	1073971208
+i3             0x1	1
+i4             0x0	0
+i5             0x1a8174	1737076
+fp             0x40037fa0	0x40037fa0
+i7             0x4000ff2c	1073807148
+y              0x0	0
+psr            0xfe7	[ #0 #1 #2 ET PS S #8 #9 #10 #11 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b25c	0x4001b25c <context_switch+300>
+npc            0x4001b260	0x4001b260 <context_switch+304>
+fsr            0x0	[ ]
+csr            0x0	0
+0x4001b260 in context_switch ()
+=> 0x4001b260 <context_switch+304>:	f4 1b a0 28	ldd  [ %sp + 0x28 ], %i2
+   ID       TID P-ID Pri State                  Name
+    1  40031e68        0 Runnable               environment_task
+*   2  40039cb0        0 Runnable               c2
+    3  40034a20        0 Delay Sleep            c1
+  Id   Target Id         Frame
+  4    Thread 0x40034a40 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 3    Thread 0x40039cd0 (Ravenscar task) 0x4001b260 in context_switch ()
+  2    Thread 0x40031e88 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) 0x4001b260 in context_switch ()
+#0  0x4001b260 in context_switch ()
+#1  0x4001ed04 in ?? ()
+#2  0x4001ed04 in ?? ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x1	1
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0x4001ebf0	1073867760
+o1             0x4001eccc	1073867980
+o2             0x4001eb88	1073867656
+o3             0x4001ec7c	1073867900
+o4             0x4001eb88	1073867656
+o5             0x4001ec84	1073867908
+sp             0x4001ec20	0x4001ec20
+o7             0x4001ecf8	1073868024
+l0             0x20202041	538976321
+l1             0x2d2d2d2d	757935405
+l2             0x2d2d2d2d	757935405
+l3             0x2d20414c	757088588
+l4             0x41524d20	1095912736
+l5             0x51554555	1364542805
+l6             0x45202d2d	1159736621
+l7             0x2d2d2d2d	757935405
+i0             0x2d2d2d2d	757935405
+i1             0x2d2d2d2d	757935405
+i2             0x40038008	1073971208
+i3             0x1	1
+i4             0x0	0
+i5             0x1a8174	1737076
+fp             0x40037fa0	0x40037fa0
+i7             0x4000ff2c	1073807148
+y              0x0	0
+psr            0xfe7	[ #0 #1 #2 ET PS S #8 #9 #10 #11 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b260	0x4001b260 <context_switch+304>
+npc            0x4001b264	0x4001b264 <context_switch+308>
+fsr            0x0	[ ]
+csr            0x0	0
+No symbol table info available.
+No symbol table info available.
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x1	1
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0x4001ebf0	1073867760
+o1             0x4001eccc	1073867980
+o2             0x4001eb88	1073867656
+o3             0x4001ec7c	1073867900
+o4             0x4001eb88	1073867656
+o5             0x4001ec84	1073867908
+sp             0x4001ec20	0x4001ec20
+o7             0x4001ecf8	1073868024
+l0             0x20202041	538976321
+l1             0x2d2d2d2d	757935405
+l2             0x2d2d2d2d	757935405
+l3             0x2d20414c	757088588
+l4             0x41524d20	1095912736
+l5             0x51554555	1364542805
+l6             0x45202d2d	1159736621
+l7             0x2d2d2d2d	757935405
+i0             0x2d2d2d2d	757935405
+i1             0x2d2d2d2d	757935405
+i2             0x40038008	1073971208
+i3             0x1	1
+i4             0x0	0
+i5             0x1a8174	1737076
+fp             0x40037fa0	0x40037fa0
+i7             0x4000ff2c	1073807148
+y              0x0	0
+psr            0xfe7	[ #0 #1 #2 ET PS S #8 #9 #10 #11 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b260	0x4001b260 <context_switch+304>
+npc            0x4001b264	0x4001b264 <context_switch+308>
+fsr            0x0	[ ]
+csr            0x0	0
+0x4001b264 in context_switch ()
+=> 0x4001b264 <context_switch+308>:	f8 1b a0 30	ldd  [ %sp + 0x30 ], %i4
+   ID       TID P-ID Pri State                  Name
+    1  40031e68        0 Runnable               environment_task
+*   2  40039cb0        0 Runnable               c2
+    3  40034a20        0 Delay Sleep            c1
+  Id   Target Id         Frame
+  4    Thread 0x40034a40 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 3    Thread 0x40039cd0 (Ravenscar task) 0x4001b264 in context_switch ()
+  2    Thread 0x40031e88 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) 0x4001b264 in context_switch ()
+#0  0x4001b264 in context_switch ()
+#1  0x4001ed04 in ?? ()
+#2  0x4001ed04 in ?? ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x1	1
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0x4001ebf0	1073867760
+o1             0x4001eccc	1073867980
+o2             0x4001eb88	1073867656
+o3             0x4001ec7c	1073867900
+o4             0x4001eb88	1073867656
+o5             0x4001ec84	1073867908
+sp             0x4001ec20	0x4001ec20
+o7             0x4001ecf8	1073868024
+l0             0x20202041	538976321
+l1             0x2d2d2d2d	757935405
+l2             0x2d2d2d2d	757935405
+l3             0x2d20414c	757088588
+l4             0x41524d20	1095912736
+l5             0x51554555	1364542805
+l6             0x45202d2d	1159736621
+l7             0x2d2d2d2d	757935405
+i0             0x2d2d2d2d	757935405
+i1             0x2d2d2d2d	757935405
+i2             0x7c000000	2080374784
+i3             0x0	0
+i4             0x0	0
+i5             0x1a8174	1737076
+fp             0x40037fa0	0x40037fa0
+i7             0x4000ff2c	1073807148
+y              0x0	0
+psr            0xfe7	[ #0 #1 #2 ET PS S #8 #9 #10 #11 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b264	0x4001b264 <context_switch+308>
+npc            0x4001b268	0x4001b268 <context_switch+312>
+fsr            0x0	[ ]
+csr            0x0	0
+No symbol table info available.
+No symbol table info available.
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x1	1
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0x4001ebf0	1073867760
+o1             0x4001eccc	1073867980
+o2             0x4001eb88	1073867656
+o3             0x4001ec7c	1073867900
+o4             0x4001eb88	1073867656
+o5             0x4001ec84	1073867908
+sp             0x4001ec20	0x4001ec20
+o7             0x4001ecf8	1073868024
+l0             0x20202041	538976321
+l1             0x2d2d2d2d	757935405
+l2             0x2d2d2d2d	757935405
+l3             0x2d20414c	757088588
+l4             0x41524d20	1095912736
+l5             0x51554555	1364542805
+l6             0x45202d2d	1159736621
+l7             0x2d2d2d2d	757935405
+i0             0x2d2d2d2d	757935405
+i1             0x2d2d2d2d	757935405
+i2             0x7c000000	2080374784
+i3             0x0	0
+i4             0x0	0
+i5             0x1a8174	1737076
+fp             0x40037fa0	0x40037fa0
+i7             0x4000ff2c	1073807148
+y              0x0	0
+psr            0xfe7	[ #0 #1 #2 ET PS S #8 #9 #10 #11 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b264	0x4001b264 <context_switch+308>
+npc            0x4001b268	0x4001b268 <context_switch+312>
+fsr            0x0	[ ]
+csr            0x0	0
+0x4001b268 in context_switch ()
+=> 0x4001b268 <context_switch+312>:	fc 1b a0 38	ldd  [ %sp + 0x38 ], %fp
+   ID       TID P-ID Pri State                  Name
+    1  40031e68        0 Runnable               environment_task
+*   2  40039cb0        0 Runnable               c2
+    3  40034a20        0 Delay Sleep            c1
+  Id   Target Id         Frame
+  4    Thread 0x40034a40 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 3    Thread 0x40039cd0 (Ravenscar task) 0x4001b268 in context_switch ()
+  2    Thread 0x40031e88 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) 0x4001b268 in context_switch ()
+#0  0x4001b268 in context_switch ()
+#1  0x4001ed04 in ?? ()
+#2  0x4001ed04 in ?? ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x1	1
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0x4001ebf0	1073867760
+o1             0x4001eccc	1073867980
+o2             0x4001eb88	1073867656
+o3             0x4001ec7c	1073867900
+o4             0x4001eb88	1073867656
+o5             0x4001ec84	1073867908
+sp             0x4001ec20	0x4001ec20
+o7             0x4001ecf8	1073868024
+l0             0x20202041	538976321
+l1             0x2d2d2d2d	757935405
+l2             0x2d2d2d2d	757935405
+l3             0x2d20414c	757088588
+l4             0x41524d20	1095912736
+l5             0x51554555	1364542805
+l6             0x45202d2d	1159736621
+l7             0x2d2d2d2d	757935405
+i0             0x2d2d2d2d	757935405
+i1             0x2d2d2d2d	757935405
+i2             0x7c000000	2080374784
+i3             0x0	0
+i4             0x20202041	538976321
+i5             0x2d2d2d2d	757935405
+fp             0x40037fa0	0x40037fa0
+i7             0x4000ff2c	1073807148
+y              0x0	0
+psr            0xfe7	[ #0 #1 #2 ET PS S #8 #9 #10 #11 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b268	0x4001b268 <context_switch+312>
+npc            0x4001b26c	0x4001b26c <context_switch+316>
+fsr            0x0	[ ]
+csr            0x0	0
+No symbol table info available.
+No symbol table info available.
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x1	1
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0x4001ebf0	1073867760
+o1             0x4001eccc	1073867980
+o2             0x4001eb88	1073867656
+o3             0x4001ec7c	1073867900
+o4             0x4001eb88	1073867656
+o5             0x4001ec84	1073867908
+sp             0x4001ec20	0x4001ec20
+o7             0x4001ecf8	1073868024
+l0             0x20202041	538976321
+l1             0x2d2d2d2d	757935405
+l2             0x2d2d2d2d	757935405
+l3             0x2d20414c	757088588
+l4             0x41524d20	1095912736
+l5             0x51554555	1364542805
+l6             0x45202d2d	1159736621
+l7             0x2d2d2d2d	757935405
+i0             0x2d2d2d2d	757935405
+i1             0x2d2d2d2d	757935405
+i2             0x7c000000	2080374784
+i3             0x0	0
+i4             0x20202041	538976321
+i5             0x2d2d2d2d	757935405
+fp             0x40037fa0	0x40037fa0
+i7             0x4000ff2c	1073807148
+y              0x0	0
+psr            0xfe7	[ #0 #1 #2 ET PS S #8 #9 #10 #11 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b268	0x4001b268 <context_switch+312>
+npc            0x4001b26c	0x4001b26c <context_switch+316>
+fsr            0x0	[ ]
+csr            0x0	0
+0x4001b26c in context_switch ()
+=> 0x4001b26c <context_switch+316>:	80 a0 a0 00	cmp  %g2, 0
+   ID       TID P-ID Pri State                  Name
+    1  40031e68        0 Runnable               environment_task
+*   2  40039cb0        0 Runnable               c2
+    3  40034a20        0 Delay Sleep            c1
+  Id   Target Id         Frame
+  4    Thread 0x40034a40 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 3    Thread 0x40039cd0 (Ravenscar task) 0x4001b26c in context_switch ()
+  2    Thread 0x40031e88 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) 0x4001b26c in context_switch ()
+#0  0x4001b26c in context_switch ()
+#1  0x4001ed04 in ?? ()
+#2  0x4001ed04 in ?? ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x1	1
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0x4001ebf0	1073867760
+o1             0x4001eccc	1073867980
+o2             0x4001eb88	1073867656
+o3             0x4001ec7c	1073867900
+o4             0x4001eb88	1073867656
+o5             0x4001ec84	1073867908
+sp             0x4001ec20	0x4001ec20
+o7             0x4001ecf8	1073868024
+l0             0x20202041	538976321
+l1             0x2d2d2d2d	757935405
+l2             0x2d2d2d2d	757935405
+l3             0x2d20414c	757088588
+l4             0x41524d20	1095912736
+l5             0x51554555	1364542805
+l6             0x45202d2d	1159736621
+l7             0x2d2d2d2d	757935405
+i0             0x2d2d2d2d	757935405
+i1             0x2d2d2d2d	757935405
+i2             0x7c000000	2080374784
+i3             0x0	0
+i4             0x20202041	538976321
+i5             0x2d2d2d2d	757935405
+fp             0x2d2d2d20	0x2d2d2d20
+i7             0x454e4420	1162757152
+y              0x0	0
+psr            0xfe7	[ #0 #1 #2 ET PS S #8 #9 #10 #11 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b26c	0x4001b26c <context_switch+316>
+npc            0x4001b270	0x4001b270 <context_switch+320>
+fsr            0x0	[ ]
+csr            0x0	0
+No symbol table info available.
+No symbol table info available.
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x1	1
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0x4001ebf0	1073867760
+o1             0x4001eccc	1073867980
+o2             0x4001eb88	1073867656
+o3             0x4001ec7c	1073867900
+o4             0x4001eb88	1073867656
+o5             0x4001ec84	1073867908
+sp             0x4001ec20	0x4001ec20
+o7             0x4001ecf8	1073868024
+l0             0x20202041	538976321
+l1             0x2d2d2d2d	757935405
+l2             0x2d2d2d2d	757935405
+l3             0x2d20414c	757088588
+l4             0x41524d20	1095912736
+l5             0x51554555	1364542805
+l6             0x45202d2d	1159736621
+l7             0x2d2d2d2d	757935405
+i0             0x2d2d2d2d	757935405
+i1             0x2d2d2d2d	757935405
+i2             0x7c000000	2080374784
+i3             0x0	0
+i4             0x20202041	538976321
+i5             0x2d2d2d2d	757935405
+fp             0x2d2d2d20	0x2d2d2d20
+i7             0x454e4420	1162757152
+y              0x0	0
+psr            0xfe7	[ #0 #1 #2 ET PS S #8 #9 #10 #11 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b26c	0x4001b26c <context_switch+316>
+npc            0x4001b270	0x4001b270 <context_switch+320>
+fsr            0x0	[ ]
+csr            0x0	0
+0x4001b270 in context_switch ()
+=> 0x4001b270 <context_switch+320>:	02 80 00 04	be  0x4001b280 <context_switch+336>
+   ID       TID P-ID Pri State                  Name
+    1  40031e68        0 Runnable               environment_task
+*   2  40039cb0        0 Runnable               c2
+    3  40034a20        0 Delay Sleep            c1
+  Id   Target Id         Frame
+  4    Thread 0x40034a40 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 3    Thread 0x40039cd0 (Ravenscar task) 0x4001b270 in context_switch ()
+  2    Thread 0x40031e88 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) 0x4001b270 in context_switch ()
+#0  0x4001b270 in context_switch ()
+#1  0x4001ed04 in ?? ()
+#2  0x4001ed04 in ?? ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x1	1
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0x4001ebf0	1073867760
+o1             0x4001eccc	1073867980
+o2             0x4001eb88	1073867656
+o3             0x4001ec7c	1073867900
+o4             0x4001eb88	1073867656
+o5             0x4001ec84	1073867908
+sp             0x4001ec20	0x4001ec20
+o7             0x4001ecf8	1073868024
+l0             0x20202041	538976321
+l1             0x2d2d2d2d	757935405
+l2             0x2d2d2d2d	757935405
+l3             0x2d20414c	757088588
+l4             0x41524d20	1095912736
+l5             0x51554555	1364542805
+l6             0x45202d2d	1159736621
+l7             0x2d2d2d2d	757935405
+i0             0x2d2d2d2d	757935405
+i1             0x2d2d2d2d	757935405
+i2             0x7c000000	2080374784
+i3             0x0	0
+i4             0x20202041	538976321
+i5             0x2d2d2d2d	757935405
+fp             0x2d2d2d20	0x2d2d2d20
+i7             0x454e4420	1162757152
+y              0x0	0
+psr            0xfe7	[ #0 #1 #2 ET PS S #8 #9 #10 #11 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b270	0x4001b270 <context_switch+320>
+npc            0x4001b274	0x4001b274 <context_switch+324>
+fsr            0x0	[ ]
+csr            0x0	0
+No symbol table info available.
+No symbol table info available.
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x1	1
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0x4001ebf0	1073867760
+o1             0x4001eccc	1073867980
+o2             0x4001eb88	1073867656
+o3             0x4001ec7c	1073867900
+o4             0x4001eb88	1073867656
+o5             0x4001ec84	1073867908
+sp             0x4001ec20	0x4001ec20
+o7             0x4001ecf8	1073868024
+l0             0x20202041	538976321
+l1             0x2d2d2d2d	757935405
+l2             0x2d2d2d2d	757935405
+l3             0x2d20414c	757088588
+l4             0x41524d20	1095912736
+l5             0x51554555	1364542805
+l6             0x45202d2d	1159736621
+l7             0x2d2d2d2d	757935405
+i0             0x2d2d2d2d	757935405
+i1             0x2d2d2d2d	757935405
+i2             0x7c000000	2080374784
+i3             0x0	0
+i4             0x20202041	538976321
+i5             0x2d2d2d2d	757935405
+fp             0x2d2d2d20	0x2d2d2d20
+i7             0x454e4420	1162757152
+y              0x0	0
+psr            0xfe7	[ #0 #1 #2 ET PS S #8 #9 #10 #11 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b270	0x4001b270 <context_switch+320>
+npc            0x4001b274	0x4001b274 <context_switch+324>
+fsr            0x0	[ ]
+csr            0x0	0
+0x4001b274 in context_switch ()
+=> 0x4001b274 <context_switch+324>:	84 00 bf ff	add  %g2, -1, %g2
+   ID       TID P-ID Pri State                  Name
+    1  40031e68        0 Runnable               environment_task
+*   2  40039cb0        0 Runnable               c2
+    3  40034a20        0 Delay Sleep            c1
+  Id   Target Id         Frame
+  4    Thread 0x40034a40 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 3    Thread 0x40039cd0 (Ravenscar task) 0x4001b274 in context_switch ()
+  2    Thread 0x40031e88 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) 0x4001b274 in context_switch ()
+#0  0x4001b274 in context_switch ()
+#1  0x4001ed04 in ?? ()
+#2  0x4001ed04 in ?? ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x1	1
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0x4001ebf0	1073867760
+o1             0x4001eccc	1073867980
+o2             0x4001eb88	1073867656
+o3             0x4001ec7c	1073867900
+o4             0x4001eb88	1073867656
+o5             0x4001ec84	1073867908
+sp             0x4001ec20	0x4001ec20
+o7             0x4001ecf8	1073868024
+l0             0x20202041	538976321
+l1             0x2d2d2d2d	757935405
+l2             0x2d2d2d2d	757935405
+l3             0x2d20414c	757088588
+l4             0x41524d20	1095912736
+l5             0x51554555	1364542805
+l6             0x45202d2d	1159736621
+l7             0x2d2d2d2d	757935405
+i0             0x2d2d2d2d	757935405
+i1             0x2d2d2d2d	757935405
+i2             0x7c000000	2080374784
+i3             0x0	0
+i4             0x20202041	538976321
+i5             0x2d2d2d2d	757935405
+fp             0x2d2d2d20	0x2d2d2d20
+i7             0x454e4420	1162757152
+y              0x0	0
+psr            0xfe7	[ #0 #1 #2 ET PS S #8 #9 #10 #11 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b274	0x4001b274 <context_switch+324>
+npc            0x4001b278	0x4001b278 <context_switch+328>
+fsr            0x0	[ ]
+csr            0x0	0
+No symbol table info available.
+No symbol table info available.
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x1	1
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0x4001ebf0	1073867760
+o1             0x4001eccc	1073867980
+o2             0x4001eb88	1073867656
+o3             0x4001ec7c	1073867900
+o4             0x4001eb88	1073867656
+o5             0x4001ec84	1073867908
+sp             0x4001ec20	0x4001ec20
+o7             0x4001ecf8	1073868024
+l0             0x20202041	538976321
+l1             0x2d2d2d2d	757935405
+l2             0x2d2d2d2d	757935405
+l3             0x2d20414c	757088588
+l4             0x41524d20	1095912736
+l5             0x51554555	1364542805
+l6             0x45202d2d	1159736621
+l7             0x2d2d2d2d	757935405
+i0             0x2d2d2d2d	757935405
+i1             0x2d2d2d2d	757935405
+i2             0x7c000000	2080374784
+i3             0x0	0
+i4             0x20202041	538976321
+i5             0x2d2d2d2d	757935405
+fp             0x2d2d2d20	0x2d2d2d20
+i7             0x454e4420	1162757152
+y              0x0	0
+psr            0xfe7	[ #0 #1 #2 ET PS S #8 #9 #10 #11 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b274	0x4001b274 <context_switch+324>
+npc            0x4001b278	0x4001b278 <context_switch+328>
+fsr            0x0	[ ]
+csr            0x0	0
+0x4001b278 in context_switch ()
+=> 0x4001b278 <context_switch+328>:	10 bf ff f5	b  0x4001b24c <context_switch+284>
+   ID       TID P-ID Pri State                  Name
+    1  40031e68        0 Runnable               environment_task
+*   2  40039cb0        0 Runnable               c2
+    3  40034a20        0 Delay Sleep            c1
+  Id   Target Id         Frame
+  4    Thread 0x40034a40 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 3    Thread 0x40039cd0 (Ravenscar task) 0x4001b278 in context_switch ()
+  2    Thread 0x40031e88 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) 0x4001b278 in context_switch ()
+#0  0x4001b278 in context_switch ()
+#1  0x4001ed04 in ?? ()
+#2  0x4001ed04 in ?? ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x0	0
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0x4001ebf0	1073867760
+o1             0x4001eccc	1073867980
+o2             0x4001eb88	1073867656
+o3             0x4001ec7c	1073867900
+o4             0x4001eb88	1073867656
+o5             0x4001ec84	1073867908
+sp             0x4001ec20	0x4001ec20
+o7             0x4001ecf8	1073868024
+l0             0x20202041	538976321
+l1             0x2d2d2d2d	757935405
+l2             0x2d2d2d2d	757935405
+l3             0x2d20414c	757088588
+l4             0x41524d20	1095912736
+l5             0x51554555	1364542805
+l6             0x45202d2d	1159736621
+l7             0x2d2d2d2d	757935405
+i0             0x2d2d2d2d	757935405
+i1             0x2d2d2d2d	757935405
+i2             0x7c000000	2080374784
+i3             0x0	0
+i4             0x20202041	538976321
+i5             0x2d2d2d2d	757935405
+fp             0x2d2d2d20	0x2d2d2d20
+i7             0x454e4420	1162757152
+y              0x0	0
+psr            0xfe7	[ #0 #1 #2 ET PS S #8 #9 #10 #11 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b278	0x4001b278 <context_switch+328>
+npc            0x4001b27c	0x4001b27c <context_switch+332>
+fsr            0x0	[ ]
+csr            0x0	0
+No symbol table info available.
+No symbol table info available.
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x0	0
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0x4001ebf0	1073867760
+o1             0x4001eccc	1073867980
+o2             0x4001eb88	1073867656
+o3             0x4001ec7c	1073867900
+o4             0x4001eb88	1073867656
+o5             0x4001ec84	1073867908
+sp             0x4001ec20	0x4001ec20
+o7             0x4001ecf8	1073868024
+l0             0x20202041	538976321
+l1             0x2d2d2d2d	757935405
+l2             0x2d2d2d2d	757935405
+l3             0x2d20414c	757088588
+l4             0x41524d20	1095912736
+l5             0x51554555	1364542805
+l6             0x45202d2d	1159736621
+l7             0x2d2d2d2d	757935405
+i0             0x2d2d2d2d	757935405
+i1             0x2d2d2d2d	757935405
+i2             0x7c000000	2080374784
+i3             0x0	0
+i4             0x20202041	538976321
+i5             0x2d2d2d2d	757935405
+fp             0x2d2d2d20	0x2d2d2d20
+i7             0x454e4420	1162757152
+y              0x0	0
+psr            0xfe7	[ #0 #1 #2 ET PS S #8 #9 #10 #11 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b278	0x4001b278 <context_switch+328>
+npc            0x4001b27c	0x4001b27c <context_switch+332>
+fsr            0x0	[ ]
+csr            0x0	0
+0x4001b27c in context_switch ()
+=> 0x4001b27c <context_switch+332>:	81 e8 00 00	restore
+   ID       TID P-ID Pri State                  Name
+    1  40031e68        0 Runnable               environment_task
+*   2  40039cb0        0 Runnable               c2
+    3  40034a20        0 Delay Sleep            c1
+  Id   Target Id         Frame
+  4    Thread 0x40034a40 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 3    Thread 0x40039cd0 (Ravenscar task) 0x4001b27c in context_switch ()
+  2    Thread 0x40031e88 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) 0x4001b27c in context_switch ()
+#0  0x4001b27c in context_switch ()
+#1  0x4001ed04 in ?? ()
+#2  0x4001ed04 in ?? ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x0	0
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0x4001ebf0	1073867760
+o1             0x4001eccc	1073867980
+o2             0x4001eb88	1073867656
+o3             0x4001ec7c	1073867900
+o4             0x4001eb88	1073867656
+o5             0x4001ec84	1073867908
+sp             0x4001ec20	0x4001ec20
+o7             0x4001ecf8	1073868024
+l0             0x20202041	538976321
+l1             0x2d2d2d2d	757935405
+l2             0x2d2d2d2d	757935405
+l3             0x2d20414c	757088588
+l4             0x41524d20	1095912736
+l5             0x51554555	1364542805
+l6             0x45202d2d	1159736621
+l7             0x2d2d2d2d	757935405
+i0             0x2d2d2d2d	757935405
+i1             0x2d2d2d2d	757935405
+i2             0x7c000000	2080374784
+i3             0x0	0
+i4             0x20202041	538976321
+i5             0x2d2d2d2d	757935405
+fp             0x2d2d2d20	0x2d2d2d20
+i7             0x454e4420	1162757152
+y              0x0	0
+psr            0xfe7	[ #0 #1 #2 ET PS S #8 #9 #10 #11 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b27c	0x4001b27c <context_switch+332>
+npc            0x4001b24c	0x4001b24c <context_switch+284>
+fsr            0x0	[ ]
+csr            0x0	0
+No symbol table info available.
+No symbol table info available.
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x0	0
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0x4001ebf0	1073867760
+o1             0x4001eccc	1073867980
+o2             0x4001eb88	1073867656
+o3             0x4001ec7c	1073867900
+o4             0x4001eb88	1073867656
+o5             0x4001ec84	1073867908
+sp             0x4001ec20	0x4001ec20
+o7             0x4001ecf8	1073868024
+l0             0x20202041	538976321
+l1             0x2d2d2d2d	757935405
+l2             0x2d2d2d2d	757935405
+l3             0x2d20414c	757088588
+l4             0x41524d20	1095912736
+l5             0x51554555	1364542805
+l6             0x45202d2d	1159736621
+l7             0x2d2d2d2d	757935405
+i0             0x2d2d2d2d	757935405
+i1             0x2d2d2d2d	757935405
+i2             0x7c000000	2080374784
+i3             0x0	0
+i4             0x20202041	538976321
+i5             0x2d2d2d2d	757935405
+fp             0x2d2d2d20	0x2d2d2d20
+i7             0x454e4420	1162757152
+y              0x0	0
+psr            0xfe7	[ #0 #1 #2 ET PS S #8 #9 #10 #11 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b27c	0x4001b27c <context_switch+332>
+npc            0x4001b24c	0x4001b24c <context_switch+284>
+fsr            0x0	[ ]
+csr            0x0	0
+
+Breakpoint 1, 0x4001b24c in context_switch ()
+=> 0x4001b24c <context_switch+284>:	e0 1b a0 00	ldd  [ %sp ], %l0
+   ID       TID P-ID Pri State                  Name
+    1  40031e68        0 Runnable               environment_task
+*   2  40039cb0        0 Runnable               c2
+    3  40034a20        0 Delay Sleep            c1
+  Id   Target Id         Frame
+  4    Thread 0x40034a40 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 3    Thread 0x40039cd0 (Ravenscar task) 0x4001b24c in context_switch ()
+  2    Thread 0x40031e88 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) 0x4001b24c in context_switch ()
+#0  0x4001b24c in context_switch ()
+#1  0x454e4428 in ?? ()
+#2  0x454e4428 in ?? ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x0	0
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0x2d2d2d2d	757935405
+o1             0x2d2d2d2d	757935405
+o2             0x7c000000	2080374784
+o3             0x0	0
+o4             0x20202041	538976321
+o5             0x2d2d2d2d	757935405
+sp             0x2d2d2d20	0x2d2d2d20
+o7             0x454e4420	1162757152
+l0             0x0	0
+l1             0x40007010	1073770512
+l2             0x40007014	1073770516
+l3             0x91	145
+l4             0x40001000	1073745920
+l5             0x0	0
+l6             0x8	8
+l7             0x40034a40	1073957440
+i0             0x40034a40	1073957440
+i1             0x91a816b	152732011
+i2             0xd	13
+i3             0x9	9
+i4             0x0	0
+i5             0x0	0
+fp             0x40037ff0	0x40037ff0
+i7             0x40004198	1073758616
+y              0x0	0
+psr            0xfe0	[ ET PS S #8 #9 #10 #11 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b24c	0x4001b24c <context_switch+284>
+npc            0x4001b250	0x4001b250 <context_switch+288>
+fsr            0x0	[ ]
+csr            0x0	0
+No symbol table info available.
+No symbol table info available.
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x0	0
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0x2d2d2d2d	757935405
+o1             0x2d2d2d2d	757935405
+o2             0x7c000000	2080374784
+o3             0x0	0
+o4             0x20202041	538976321
+o5             0x2d2d2d2d	757935405
+sp             0x2d2d2d20	0x2d2d2d20
+o7             0x454e4420	1162757152
+l0             0x0	0
+l1             0x40007010	1073770512
+l2             0x40007014	1073770516
+l3             0x91	145
+l4             0x40001000	1073745920
+l5             0x0	0
+l6             0x8	8
+l7             0x40034a40	1073957440
+i0             0x40034a40	1073957440
+i1             0x91a816b	152732011
+i2             0xd	13
+i3             0x9	9
+i4             0x0	0
+i5             0x0	0
+fp             0x40037ff0	0x40037ff0
+i7             0x40004198	1073758616
+y              0x0	0
+psr            0xfe0	[ ET PS S #8 #9 #10 #11 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b24c	0x4001b24c <context_switch+284>
+npc            0x4001b250	0x4001b250 <context_switch+288>
+fsr            0x0	[ ]
+csr            0x0	0
+
+Program received signal SIGSEGV, Segmentation fault.
+0x4001b24c in context_switch ()
+=> 0x4001b24c <context_switch+284>:	e0 1b a0 00	ldd  [ %sp ], %l0
+   ID       TID P-ID Pri State                  Name
+    1  40031e68        0 Runnable               environment_task
+*   2  40039cb0        0 Runnable               c2
+    3  40034a20        0 Delay Sleep            c1
+  Id   Target Id         Frame
+  4    Thread 0x40034a40 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 3    Thread 0x40039cd0 (Ravenscar task) 0x4001b24c in context_switch ()
+  2    Thread 0x40031e88 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) 0x4001b24c in context_switch ()
+#0  0x4001b24c in context_switch ()
+#1  0x454e4428 in ?? ()
+#2  0x454e4428 in ?? ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x0	0
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0x2d2d2d2d	757935405
+o1             0x2d2d2d2d	757935405
+o2             0x7c000000	2080374784
+o3             0x0	0
+o4             0x20202041	538976321
+o5             0x2d2d2d2d	757935405
+sp             0x2d2d2d20	0x2d2d2d20
+o7             0x454e4420	1162757152
+l0             0x0	0
+l1             0x40007010	1073770512
+l2             0x40007014	1073770516
+l3             0x91	145
+l4             0x40001000	1073745920
+l5             0x0	0
+l6             0x8	8
+l7             0x40034a40	1073957440
+i0             0x40034a40	1073957440
+i1             0x91a816b	152732011
+i2             0xd	13
+i3             0x9	9
+i4             0x0	0
+i5             0x0	0
+fp             0x40037ff0	0x40037ff0
+i7             0x40004198	1073758616
+y              0x0	0
+psr            0xfe0	[ ET PS S #8 #9 #10 #11 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b24c	0x4001b24c <context_switch+284>
+npc            0x4001b250	0x4001b250 <context_switch+288>
+fsr            0x0	[ ]
+csr            0x0	0
+No symbol table info available.
+No symbol table info available.
+g0             0x0	0
+g1             0x40039cd0	1073978576
+g2             0x0	0
+g3             0x80000000	-2147483648
+g4             0x400fe6	4198374
+g5             0x50000000	1342177280
+g6             0x400fe1	4198369
+g7             0x1000	4096
+o0             0x2d2d2d2d	757935405
+o1             0x2d2d2d2d	757935405
+o2             0x7c000000	2080374784
+o3             0x0	0
+o4             0x20202041	538976321
+o5             0x2d2d2d2d	757935405
+sp             0x2d2d2d20	0x2d2d2d20
+o7             0x454e4420	1162757152
+l0             0x0	0
+l1             0x40007010	1073770512
+l2             0x40007014	1073770516
+l3             0x91	145
+l4             0x40001000	1073745920
+l5             0x0	0
+l6             0x8	8
+l7             0x40034a40	1073957440
+i0             0x40034a40	1073957440
+i1             0x91a816b	152732011
+i2             0xd	13
+i3             0x9	9
+i4             0x0	0
+i5             0x0	0
+fp             0x40037ff0	0x40037ff0
+i7             0x40004198	1073758616
+y              0x0	0
+psr            0xfe0	[ ET PS S #8 #9 #10 #11 ]
+wim            0x2	2
+tbr            0x40000060	1073741920
+pc             0x4001b24c	0x4001b24c <context_switch+284>
+npc            0x4001b250	0x4001b250 <context_switch+288>
+fsr            0x0	[ ]
+csr            0x0	0

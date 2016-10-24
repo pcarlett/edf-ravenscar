@@ -202,8 +202,8 @@ package body System.BB.Protection is
       --  Now we need to set the hardware interrupt masking level equal to the
       --  software priority of the task that is executing.
 
-      CPU_Primitives.Enable_Interrupts (System.Any_Priority (0));
-      --  (Threads.Queues.Running_Thread.Active_Priority);
+      CPU_Primitives.Enable_Interrupts
+        (Threads.Queues.Running_Thread.Active_Priority);
 
       if Debug_Prot then
          System.IO.Put_Line ("Leaving Kernel Process... Ended.");

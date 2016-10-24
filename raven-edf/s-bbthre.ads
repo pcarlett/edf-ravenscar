@@ -102,23 +102,6 @@ package System.BB.Threads is
       --  field is marked as Volatile for a fast implementation of
       --  Get_Priority.
 
-      Base_Relative_Deadline : System.BB.Deadlines.Relative_Deadline;
-      --  Base relative deadline of the thread
-
-      Active_Relative_Deadline : System.BB.Deadlines.Relative_Deadline;
-      pragma Volatile (Active_Relative_Deadline);
-      --  Active relative deadline: differs (as priority does) from base
-      --  relative deadline due to changes required by the Floor Deadline
-      --  Protocol. As done for Priority, this field is marked Volatile for a
-      --  fast implementation of Get_Relative_Deadline method.
-
-      Active_Absolute_Deadline : System.BB.Deadlines.Absolute_Deadline;
-      pragma Volatile (Active_Absolute_Deadline);
-      --  Active absolute deadline differs from active relative deadline
-      --  because it rappresents an absolute time value: it is updated every
-      --  time a thread is appened in the ready queue because absolute
-      --  deadline is the comparison value for correct queue order
-
       Top_Of_Stack : System.Address;
       --  Address of the top of the stack that is used by the thread
 
@@ -153,6 +136,23 @@ package System.BB.Threads is
 
       Execution_Time : System.BB.Time.Time;
       --  CPU time spent for this thread
+
+      Base_Relative_Deadline : System.BB.Deadlines.Relative_Deadline;
+      --  Base relative deadline of the thread
+
+      Active_Relative_Deadline : System.BB.Deadlines.Relative_Deadline;
+      pragma Volatile (Active_Relative_Deadline);
+      --  Active relative deadline: differs (as priority does) from base
+      --  relative deadline due to changes required by the Floor Deadline
+      --  Protocol. As done for Priority, this field is marked Volatile for a
+      --  fast implementation of Get_Relative_Deadline method.
+
+      Active_Absolute_Deadline : System.BB.Deadlines.Absolute_Deadline;
+      pragma Volatile (Active_Absolute_Deadline);
+      --  Active absolute deadline differs from active relative deadline
+      --  because it rappresents an absolute time value: it is updated every
+      --  time a thread is appened in the ready queue because absolute
+      --  deadline is the comparison value for correct queue order
    end record;
 
    function Get_Affinity

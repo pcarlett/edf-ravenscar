@@ -55,17 +55,27 @@ package body Cyclic_Tasks is
     loop
        delay until Next_Period;
          if T_Num = 1 then
-          -- delay until Ada.Real_Time.Time (Ada.Real_Time.Clock + Ada.Real_Time.Milliseconds (5000));
-          Put_Line("                   Gauss(2026600) takes"
+            -- delay until Ada.Real_Time.Time (Ada.Real_Time.Clock + Ada.Real_Time.Milliseconds (5000));
+            Put_Line("                   Begin Calc for Task n. " & Integer'Image(T_Num));
+            Put("                   Gauss(2026600) takes"
                 & Duration'Image(Time_It(Gauss_Access, 2026600))
                 & " seconds on Task n. " & Integer'Image(T_Num));
-         else
-	  Put_Line("BEGIN CALC FOR T2");
-          Put_Line("                   Gauss(202660000) takes"
-                & Duration'Image(Time_It(Gauss_Access, 202660000))
+	    Put_Line("... Done.");
+            Put_Line("                   End Calc for Task n. " & Integer'Image(T_Num));
+         elsif T_Num = 2 then
+            Put_Line("                   Begin Calc for Task n. " & Integer'Image(T_Num));
+            Put_Line("                   Gauss(6079800) takes"
+                & Duration'Image(Time_It(Gauss_Access, 6079800))
                 & " seconds on Task n. " & Integer'Image(T_Num));
-	  Put_Line("END CALC FOR T2");
-       end if;
+            Put_Line("                   End Calc for Task n. " & Integer'Image(T_Num));
+         elsif T_Num = 3 then
+            -- delay until Ada.Real_Time.Time (Ada.Real_Time.Clock + Ada.Real_Time.Milliseconds (5000));
+            Put("                   Gauss(2026600) takes"
+                & Duration'Image(Time_It(Gauss_Access, 2026600))
+                & " seconds on Task n. " & Integer'Image(T_Num));
+	    Put_Line("... Done.");
+            Put_Line("                   End Calc for Task n. " & Integer'Image(T_Num));
+         end if;
 
       -- wait one whole period before executing
       -- Non-suspending periodic response code
@@ -93,9 +103,9 @@ package body Cyclic_Tasks is
 
   ----------------------------------------
   -- TESTED SEQUENCE OF TASK SCHEDULING --
-  C1 : Cyclic(0, 4000, 5000, 1); --
-  C2 : Cyclic(0, 200000, 200000, 2); --
-  -- C3 : Cyclic(0, 8000, 3000, 3); --
+  C1 : Cyclic(0, 3000, 5000, 1); --
+  C2 : Cyclic(0, 20000, 20000, 2); --
+  C3 : Cyclic(0, 4000, 5000, 3); --
   ----------------------------------------
 
 end Cyclic_Tasks;

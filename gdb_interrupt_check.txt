@@ -1,0 +1,664 @@
+info breakpoints
+Num     Type           Disp Enb Address    What
+1       breakpoint     keep y   0x40004154 in system.bb.cpu_primitives.context_switch at raven-edf/s-bbcppr.adb:155
+2       breakpoint     keep y   0x4001183c in system.bb.protection.leave_kernel at raven-edf/s-bbprot.adb:96
+3       breakpoint     keep y   0x40003b18 in system.bb.interrupts.interrupt_wrapper at raven-edf/s-bbinte.adb:173
+Ambiguous delete command "b 2": bookmark, breakpoints.
+d breakpoints
+i breakpoints
+Num     Type           Disp Enb Address    What
+1       breakpoint     keep y   0x40004154 in system.bb.cpu_primitives.context_switch at raven-edf/s-bbcppr.adb:155
+3       breakpoint     keep y   0x40003b18 in system.bb.interrupts.interrupt_wrapper at raven-edf/s-bbinte.adb:173
+"info" must be followed by the name of an info command.
+List of info subcommands:
+
+info address -- Describe where symbol SYM is stored
+info all-registers -- List of all registers and their contents
+info args -- Argument variables of current stack frame
+info auto-load-scripts -- Print the list of automatically loaded scripts
+info auxv -- Display the inferior's auxiliary vector
+info bookmarks -- Status of user-settable bookmarks
+info breakpoints -- Status of specified breakpoints (all user-settable breakpoints if no argument)
+info catch -- Exceptions that can be caught in the current stack frame
+info classes -- All Objective-C classes
+info common -- Print out the values contained in a Fortran COMMON block
+info copying -- Conditions for redistributing copies of GDB
+info dcache -- Print information on the dcache performance
+info display -- Expressions to display when program stops
+info exceptions -- List all Ada exception names
+info extensions -- All filename extensions associated with a source language
+info files -- Names of targets and files being debugged
+info float -- Print the status of the floating point unit
+info frame -- All about selected stack frame
+info functions -- All function names
+info handle -- What debugger does when program gets various signals
+info inferiors -- IDs of specified inferiors (all inferiors if no argument)
+info line -- Core addresses of the code for a source line
+info locals -- Local variables of current stack frame
+info macro -- Show the definition of MACRO
+info macros -- Show the definitions of all macros at LINESPEC
+info mem -- Memory region attributes
+info os -- Show OS data ARG
+info pretty-printer -- GDB command to list all registered pretty-printers
+info program -- Execution status of the program
+info record -- Info record options
+info registers -- List of integer registers and their contents
+info scope -- List the variables local to a scope
+info selectors -- All Objective-C selectors
+info set -- Show all GDB settings
+info sharedlibrary -- Status of loaded shared object libraries
+info signals -- What debugger does when program gets various signals
+info skip -- Display the status of skips
+info source -- Information about the current source file
+info sources -- Source files in the program
+info stack -- Backtrace of the stack
+info static-tracepoint-markers -- List target static tracepoints markers
+info symbol -- Describe what symbol is at location ADDR
+info target -- Names of targets and files being debugged
+info tasks -- Provide information about all known Ada tasks
+info terminal -- Print inferior's saved terminal status
+info threads -- Display currently known threads
+info tracepoints -- Status of specified tracepoints (all tracepoints if no argument)
+info tvariables -- Status of trace state variables and their values
+info types -- All type names
+info variables -- All global and static variable names
+info vector -- Print the status of the vector unit
+info warranty -- Various kinds of warranty you do not have
+info watchpoints -- Status of specified watchpoints (all watchpoints if no argument)
+
+Type "help info" followed by info subcommand name for full documentation.
+Type "apropos word" to search for commands related to "word".
+Command name abbreviations are allowed if unambiguous.
+i bookmarks
+i breakpoints
+Num     Type           Disp Enb Address    What
+1       breakpoint     keep y   0x40004154 in system.bb.cpu_primitives.context_switch at raven-edf/s-bbcppr.adb:155
+3       breakpoint     keep y   0x40003b18 in system.bb.interrupts.interrupt_wrapper at raven-edf/s-bbinte.adb:173
+Ambiguous info command "w": warranty, watchpoints.
+i warranty
+i watchpoints
+No watchpoints.
+"info" must be followed by the name of an info command.
+List of info subcommands:
+
+info address -- Describe where symbol SYM is stored
+info all-registers -- List of all registers and their contents
+info args -- Argument variables of current stack frame
+info auto-load-scripts -- Print the list of automatically loaded scripts
+info auxv -- Display the inferior's auxiliary vector
+info bookmarks -- Status of user-settable bookmarks
+info breakpoints -- Status of specified breakpoints (all user-settable breakpoints if no argument)
+info catch -- Exceptions that can be caught in the current stack frame
+info classes -- All Objective-C classes
+info common -- Print out the values contained in a Fortran COMMON block
+info copying -- Conditions for redistributing copies of GDB
+info dcache -- Print information on the dcache performance
+info display -- Expressions to display when program stops
+info exceptions -- List all Ada exception names
+info extensions -- All filename extensions associated with a source language
+info files -- Names of targets and files being debugged
+info float -- Print the status of the floating point unit
+info frame -- All about selected stack frame
+info functions -- All function names
+info handle -- What debugger does when program gets various signals
+info inferiors -- IDs of specified inferiors (all inferiors if no argument)
+info line -- Core addresses of the code for a source line
+info locals -- Local variables of current stack frame
+info macro -- Show the definition of MACRO
+info macros -- Show the definitions of all macros at LINESPEC
+info mem -- Memory region attributes
+info os -- Show OS data ARG
+info pretty-printer -- GDB command to list all registered pretty-printers
+info program -- Execution status of the program
+info record -- Info record options
+info registers -- List of integer registers and their contents
+info scope -- List the variables local to a scope
+info selectors -- All Objective-C selectors
+info set -- Show all GDB settings
+info sharedlibrary -- Status of loaded shared object libraries
+info signals -- What debugger does when program gets various signals
+info skip -- Display the status of skips
+info source -- Information about the current source file
+info sources -- Source files in the program
+info stack -- Backtrace of the stack
+info static-tracepoint-markers -- List target static tracepoints markers
+info symbol -- Describe what symbol is at location ADDR
+info target -- Names of targets and files being debugged
+info tasks -- Provide information about all known Ada tasks
+info terminal -- Print inferior's saved terminal status
+info threads -- Display currently known threads
+info tracepoints -- Status of specified tracepoints (all tracepoints if no argument)
+info tvariables -- Status of trace state variables and their values
+info types -- All type names
+info variables -- All global and static variable names
+info vector -- Print the status of the vector unit
+info warranty -- Various kinds of warranty you do not have
+info watchpoints -- Status of specified watchpoints (all watchpoints if no argument)
+
+Type "help info" followed by info subcommand name for full documentation.
+Type "apropos word" to search for commands related to "word".
+Command name abbreviations are allowed if unambiguous.
+Continuing.
+[New Thread 0x40032378]
+[Switching to Thread 0x40032378]
+
+Breakpoint 1, system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+/home/paolo/workspace/ravenscar/raven-edf/s-bbcppr.adb:155:7496:beg:0x40004154
+   ID       TID P-ID Pri State                  Name
+*   1  40032360        0 Runnable               environment_task
+  Id   Target Id         Frame 
+* 2    Thread 0x40032378 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+  1    Thread 0xffffffff (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+#0  system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+#1  0x40011b1c in system.bb.protection.leave_kernel () at raven-edf/s-bbprot.adb:188
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+Continuing.
+[New Thread 0x40034f30]
+[Switching to Thread 0x40034f30]
+
+Breakpoint 1, system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+/home/paolo/workspace/ravenscar/raven-edf/s-bbcppr.adb:155:7496:beg:0x40004154
+   ID       TID P-ID Pri State                  Name
+    1  40032360        0 Runnable               environment_task
+*   2  40034f18        0 Runnable               c1
+  Id   Target Id         Frame 
+* 3    Thread 0x40034f30 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+  2    Thread 0x40032378 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+#0  system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+#1  0x40011b1c in system.bb.protection.leave_kernel () at raven-edf/s-bbprot.adb:188
+Continuing.
+[Switching to Thread 0x40032378]
+
+Breakpoint 1, system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+/home/paolo/workspace/ravenscar/raven-edf/s-bbcppr.adb:155:7496:beg:0x40004154
+   ID       TID P-ID Pri State                  Name
+*   1  40032360        0 Runnable               environment_task
+    2  40034f18        0 Runnable               c1
+  Id   Target Id         Frame 
+  3    Thread 0x40034f30 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 2    Thread 0x40032378 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+  1    Thread 0xffffffff (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+#0  system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+#1  0x40011b1c in system.bb.protection.leave_kernel () at raven-edf/s-bbprot.adb:188
+Continuing.
+[Switching to Thread 0x40034f30]
+
+Breakpoint 1, system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+/home/paolo/workspace/ravenscar/raven-edf/s-bbcppr.adb:155:7496:beg:0x40004154
+   ID       TID P-ID Pri State                  Name
+    1  40032360        0 Runnable               environment_task
+*   2  40034f18        0 Delay Sleep            c1
+  Id   Target Id         Frame 
+* 3    Thread 0x40034f30 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+  2    Thread 0x40032378 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+#0  system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+#1  0x40011b1c in system.bb.protection.leave_kernel () at raven-edf/s-bbprot.adb:188
+Continuing.
+[Switching to Thread 0x40032378]
+
+Breakpoint 3, system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:173
+/home/paolo/workspace/ravenscar/raven-edf/s-bbinte.adb:173:7714:beg:0x40003b18
+   ID       TID P-ID Pri State                  Name
+*   1  40032360        0 Runnable               environment_task
+    2  40034f18        0 Delay Sleep            c1
+  Id   Target Id         Frame 
+  3    Thread 0x40034f30 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 2    Thread 0x40032378 (Ravenscar task) system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:173
+  1    Thread 0xffffffff (Ravenscar task) system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:173
+#0  system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:173
+#1  0x4001be64 in common_handler ()
+#2  0x4001be64 in common_handler ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+Continuing.
+
+Breakpoint 3, system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:173
+/home/paolo/workspace/ravenscar/raven-edf/s-bbinte.adb:173:7714:beg:0x40003b18
+   ID       TID P-ID Pri State                  Name
+*   1  40032360        0 Runnable               environment_task
+    2  40034f18        0 Delay Sleep            c1
+  Id   Target Id         Frame 
+  3    Thread 0x40034f30 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 2    Thread 0x40032378 (Ravenscar task) system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:173
+  1    Thread 0xffffffff (Ravenscar task) system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:173
+#0  system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:173
+#1  0x4001be64 in common_handler ()
+#2  0x4001be64 in common_handler ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+Continuing.
+
+Breakpoint 1, system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+/home/paolo/workspace/ravenscar/raven-edf/s-bbcppr.adb:155:7496:beg:0x40004154
+   ID       TID P-ID Pri State                  Name
+*   1  40032360        0 Runnable               environment_task
+    2  40034f18        0 Delay Sleep            c1
+  Id   Target Id         Frame 
+  3    Thread 0x40034f30 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 2    Thread 0x40032378 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+  1    Thread 0xffffffff (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+#0  system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+#1  0x40011b1c in system.bb.protection.leave_kernel () at raven-edf/s-bbprot.adb:188
+i bookmarks
+i breakpoints
+Num     Type           Disp Enb Address    What
+1       breakpoint     keep y   0x40004154 in system.bb.cpu_primitives.context_switch at raven-edf/s-bbcppr.adb:155
+	breakpoint already hit 5 times
+3       breakpoint     keep y   0x40003b18 in system.bb.interrupts.interrupt_wrapper at raven-edf/s-bbinte.adb:173
+	breakpoint already hit 2 times
+d breakpoints
+Continuing.
+[Switching to Thread 0x40034f30]
+
+Breakpoint 3, system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:173
+/home/paolo/workspace/ravenscar/raven-edf/s-bbinte.adb:173:7714:beg:0x40003b18
+   ID       TID P-ID Pri State                  Name
+    1  40032360        0 Runnable               environment_task
+*   2  40034f18        0 Runnable               c1
+  Id   Target Id         Frame 
+* 3    Thread 0x40034f30 (Ravenscar task) system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:173
+  2    Thread 0x40032378 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:173
+#0  system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:173
+#1  0x4001be64 in common_handler ()
+#2  0x4001be64 in common_handler ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+Continuing.
+
+Breakpoint 3, system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:173
+/home/paolo/workspace/ravenscar/raven-edf/s-bbinte.adb:173:7714:beg:0x40003b18
+   ID       TID P-ID Pri State                  Name
+    1  40032360        0 Runnable               environment_task
+*   2  40034f18        0 Runnable               c1
+  Id   Target Id         Frame 
+* 3    Thread 0x40034f30 (Ravenscar task) system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:173
+  2    Thread 0x40032378 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:173
+#0  system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:173
+#1  0x4001be64 in common_handler ()
+#2  0x4001be64 in common_handler ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+Continuing.
+
+Breakpoint 3, system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:173
+/home/paolo/workspace/ravenscar/raven-edf/s-bbinte.adb:173:7714:beg:0x40003b18
+   ID       TID P-ID Pri State                  Name
+    1  40032360        0 Runnable               environment_task
+*   2  40034f18        0 Runnable               c1
+  Id   Target Id         Frame 
+* 3    Thread 0x40034f30 (Ravenscar task) system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:173
+  2    Thread 0x40032378 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:173
+#0  system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:173
+#1  0x4001be64 in common_handler ()
+#2  0x4001be64 in common_handler ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+Continuing.
+
+Program received signal SIGSEGV, Segmentation fault.
+[Switching to Thread 0x40032378]
+0x40011c0c in system.bb.protection.leave_kernel () at raven-edf/s-bbprot.adb:212
+/home/paolo/workspace/ravenscar/raven-edf/s-bbprot.adb:212:8592:beg:0x40011c0c
+   ID       TID P-ID Pri State                  Name
+*   1  40032360        0 Runnable               environment_task
+    2  40034f18        0 Delay Sleep            c1
+  Id   Target Id         Frame 
+  3    Thread 0x40034f30 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 2    Thread 0x40032378 (Ravenscar task) 0x40011c0c in system.bb.protection.leave_kernel () at raven-edf/s-bbprot.adb:212
+  1    Thread 0xffffffff (Ravenscar task) 0x40011c0c in system.bb.protection.leave_kernel () at raven-edf/s-bbprot.adb:212
+#0  0x40011c0c in system.bb.protection.leave_kernel () at raven-edf/s-bbprot.adb:212
+#1  0x40003cdc in system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:230
+#2  0x4001be64 in common_handler ()
+#3  0x4001be64 in common_handler ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+Num     Type           Disp Enb Address    What
+3       breakpoint     keep y   0x40003b18 in system.bb.interrupts.interrupt_wrapper at raven-edf/s-bbinte.adb:173
+	breakpoint already hit 5 times
+Num     Type           Disp Enb Address    What
+1       breakpoint     keep y   0x40003b18 in system.bb.interrupts.interrupt_wrapper at raven-edf/s-bbinte.adb:173
+b context_buffer
+b context_id
+b context_switch
+b context_switch_needed
+b context_switch
+b context_switch_needed
+Breakpoint 2 at 0x40004154: context_switch. (2 locations)
+Num     Type           Disp Enb Address    What
+1       breakpoint     keep y   0x40003b18 in system.bb.interrupts.interrupt_wrapper at raven-edf/s-bbinte.adb:173
+2       breakpoint     keep y   <MULTIPLE> 
+2.1                         y     0x40004154 in system.bb.cpu_primitives.context_switch at raven-edf/s-bbcppr.adb:155
+2.2                         y     0x4001b610 <context_switch>
+Continuing.
+[New Thread 0x40032378]
+[Switching to Thread 0x40032378]
+
+Breakpoint 2, system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+/home/paolo/workspace/ravenscar/raven-edf/s-bbcppr.adb:155:7496:beg:0x40004154
+   ID       TID P-ID Pri State                  Name
+*   1  40032360        0 Runnable               environment_task
+  Id   Target Id         Frame 
+* 2    Thread 0x40032378 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+  1    Thread 0xffffffff (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+#0  system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+#1  0x40011b1c in system.bb.protection.leave_kernel () at raven-edf/s-bbprot.adb:188
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+Continuing.
+
+Breakpoint 2, 0x4001b610 in context_switch ()
+   ID       TID P-ID Pri State                  Name
+*   1  40032360        0 Runnable               environment_task
+  Id   Target Id         Frame 
+* 2    Thread 0x40032378 (Ravenscar task) 0x4001b610 in context_switch ()
+  1    Thread 0xffffffff (Ravenscar task) 0x4001b610 in context_switch ()
+#0  0x4001b610 in context_switch ()
+#1  0x400041a0 in system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+#2  0x40011b1c in system.bb.protection.leave_kernel () at raven-edf/s-bbprot.adb:188
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+Continuing.
+[New Thread 0x40034f30]
+[Switching to Thread 0x40034f30]
+
+Breakpoint 2, system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+/home/paolo/workspace/ravenscar/raven-edf/s-bbcppr.adb:155:7496:beg:0x40004154
+   ID       TID P-ID Pri State                  Name
+    1  40032360        0 Runnable               environment_task
+*   2  40034f18        0 Runnable               c1
+  Id   Target Id         Frame 
+* 3    Thread 0x40034f30 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+  2    Thread 0x40032378 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+#0  system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+#1  0x40011b1c in system.bb.protection.leave_kernel () at raven-edf/s-bbprot.adb:188
+Continuing.
+
+Breakpoint 2, 0x4001b610 in context_switch ()
+   ID       TID P-ID Pri State                  Name
+    1  40032360        0 Runnable               environment_task
+*   2  40034f18        0 Runnable               c1
+  Id   Target Id         Frame 
+* 3    Thread 0x40034f30 (Ravenscar task) 0x4001b610 in context_switch ()
+  2    Thread 0x40032378 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) 0x4001b610 in context_switch ()
+#0  0x4001b610 in context_switch ()
+#1  0x400041a0 in system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+#2  0x40011b1c in system.bb.protection.leave_kernel () at raven-edf/s-bbprot.adb:188
+Continuing.
+[Switching to Thread 0x40032378]
+
+Breakpoint 2, system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+/home/paolo/workspace/ravenscar/raven-edf/s-bbcppr.adb:155:7496:beg:0x40004154
+   ID       TID P-ID Pri State                  Name
+*   1  40032360        0 Runnable               environment_task
+    2  40034f18        0 Runnable               c1
+  Id   Target Id         Frame 
+  3    Thread 0x40034f30 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 2    Thread 0x40032378 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+  1    Thread 0xffffffff (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+#0  system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+#1  0x40011b1c in system.bb.protection.leave_kernel () at raven-edf/s-bbprot.adb:188
+Continuing.
+
+Breakpoint 2, 0x4001b610 in context_switch ()
+   ID       TID P-ID Pri State                  Name
+*   1  40032360        0 Runnable               environment_task
+    2  40034f18        0 Runnable               c1
+  Id   Target Id         Frame 
+  3    Thread 0x40034f30 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 2    Thread 0x40032378 (Ravenscar task) 0x4001b610 in context_switch ()
+  1    Thread 0xffffffff (Ravenscar task) 0x4001b610 in context_switch ()
+#0  0x4001b610 in context_switch ()
+#1  0x400041a0 in system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+#2  0x40011b1c in system.bb.protection.leave_kernel () at raven-edf/s-bbprot.adb:188
+Continuing.
+[Switching to Thread 0x40034f30]
+
+Breakpoint 2, system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+/home/paolo/workspace/ravenscar/raven-edf/s-bbcppr.adb:155:7496:beg:0x40004154
+   ID       TID P-ID Pri State                  Name
+    1  40032360        0 Runnable               environment_task
+*   2  40034f18        0 Delay Sleep            c1
+  Id   Target Id         Frame 
+* 3    Thread 0x40034f30 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+  2    Thread 0x40032378 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+#0  system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+#1  0x40011b1c in system.bb.protection.leave_kernel () at raven-edf/s-bbprot.adb:188
+Continuing.
+
+Breakpoint 2, 0x4001b610 in context_switch ()
+   ID       TID P-ID Pri State                  Name
+    1  40032360        0 Runnable               environment_task
+*   2  40034f18        0 Delay Sleep            c1
+  Id   Target Id         Frame 
+* 3    Thread 0x40034f30 (Ravenscar task) 0x4001b610 in context_switch ()
+  2    Thread 0x40032378 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) 0x4001b610 in context_switch ()
+#0  0x4001b610 in context_switch ()
+#1  0x400041a0 in system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+#2  0x40011b1c in system.bb.protection.leave_kernel () at raven-edf/s-bbprot.adb:188
+Continuing.
+[Switching to Thread 0x40032378]
+
+Breakpoint 1, system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:173
+/home/paolo/workspace/ravenscar/raven-edf/s-bbinte.adb:173:7714:beg:0x40003b18
+   ID       TID P-ID Pri State                  Name
+*   1  40032360        0 Runnable               environment_task
+    2  40034f18        0 Delay Sleep            c1
+  Id   Target Id         Frame 
+  3    Thread 0x40034f30 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 2    Thread 0x40032378 (Ravenscar task) system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:173
+  1    Thread 0xffffffff (Ravenscar task) system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:173
+#0  system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:173
+#1  0x4001be64 in common_handler ()
+#2  0x4001be64 in common_handler ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+Continuing.
+
+Breakpoint 1, system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:173
+/home/paolo/workspace/ravenscar/raven-edf/s-bbinte.adb:173:7714:beg:0x40003b18
+   ID       TID P-ID Pri State                  Name
+*   1  40032360        0 Runnable               environment_task
+    2  40034f18        0 Delay Sleep            c1
+  Id   Target Id         Frame 
+  3    Thread 0x40034f30 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 2    Thread 0x40032378 (Ravenscar task) system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:173
+  1    Thread 0xffffffff (Ravenscar task) system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:173
+#0  system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:173
+#1  0x4001be64 in common_handler ()
+#2  0x4001be64 in common_handler ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+/home/paolo/workspace/ravenscar/raven-edf/s-bbinte.adb:181:8024:beg:0x40003b24
+   ID       TID P-ID Pri State                  Name
+*   1  40032360        0 Runnable               environment_task
+    2  40034f18        0 Delay Sleep            c1
+  Id   Target Id         Frame 
+  3    Thread 0x40034f30 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 2    Thread 0x40032378 (Ravenscar task) system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:181
+  1    Thread 0xffffffff (Ravenscar task) system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:181
+#0  system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:181
+#1  0x4001be64 in common_handler ()
+#2  0x4001be64 in common_handler ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+/home/paolo/workspace/ravenscar/raven-edf/s-bbinte.adb:180:7975:beg:0x40003b30
+   ID       TID P-ID Pri State                  Name
+*   1  40032360        0 Runnable               environment_task
+    2  40034f18        0 Delay Sleep            c1
+  Id   Target Id         Frame 
+  3    Thread 0x40034f30 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 2    Thread 0x40032378 (Ravenscar task) system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:180
+  1    Thread 0xffffffff (Ravenscar task) system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:180
+#0  system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:180
+#1  0x4001be64 in common_handler ()
+#2  0x4001be64 in common_handler ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+/home/paolo/workspace/ravenscar/raven-edf/s-bbinte.adb:182:8095:beg:0x40003b40
+   ID       TID P-ID Pri State                  Name
+*   1  40032360        0 Runnable               environment_task
+    2  40034f18        0 Delay Sleep            c1
+  Id   Target Id         Frame 
+  3    Thread 0x40034f30 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 2    Thread 0x40032378 (Ravenscar task) system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:182
+  1    Thread 0xffffffff (Ravenscar task) system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:182
+#0  system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:182
+#1  0x4001be64 in common_handler ()
+#2  0x4001be64 in common_handler ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+/home/paolo/workspace/ravenscar/raven-edf/s-bbinte.adb:184:8218:beg:0x40003b50
+   ID       TID P-ID Pri State                  Name
+*   1  40032360        0 Runnable               environment_task
+    2  40034f18        0 Delay Sleep            c1
+  Id   Target Id         Frame 
+  3    Thread 0x40034f30 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 2    Thread 0x40032378 (Ravenscar task) system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:184
+  1    Thread 0xffffffff (Ravenscar task) system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:184
+#0  system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:184
+#1  0x4001be64 in common_handler ()
+#2  0x4001be64 in common_handler ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+/home/paolo/workspace/ravenscar/raven-edf/s-bbinte.adb:186:8281:beg:0x40003b5c
+   ID       TID P-ID Pri State                  Name
+*   1  40032360        0 Runnable               environment_task
+    2  40034f18        0 Delay Sleep            c1
+  Id   Target Id         Frame 
+  3    Thread 0x40034f30 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 2    Thread 0x40032378 (Ravenscar task) system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:186
+  1    Thread 0xffffffff (Ravenscar task) system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:186
+#0  system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:186
+#1  0x4001be64 in common_handler ()
+#2  0x4001be64 in common_handler ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+/home/paolo/workspace/ravenscar/raven-edf/s-bbinte.adb:192:8442:beg:0x40003b80
+   ID       TID P-ID Pri State                  Name
+*   1  40032360        0 Runnable               environment_task
+    2  40034f18        0 Delay Sleep            c1
+  Id   Target Id         Frame 
+  3    Thread 0x40034f30 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 2    Thread 0x40032378 (Ravenscar task) system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:192
+  1    Thread 0xffffffff (Ravenscar task) system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:192
+#0  system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:192
+#1  0x4001be64 in common_handler ()
+#2  0x4001be64 in common_handler ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+/home/paolo/workspace/ravenscar/raven-edf/s-bbinte.adb:202:8680:beg:0x40003bc4
+   ID       TID P-ID Pri State                  Name
+*   1  40032360        0 Runnable               environment_task
+    2  40034f18        0 Delay Sleep            c1
+  Id   Target Id         Frame 
+  3    Thread 0x40034f30 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 2    Thread 0x40032378 (Ravenscar task) system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:202
+  1    Thread 0xffffffff (Ravenscar task) system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:202
+#0  system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:202
+#1  0x4001be64 in common_handler ()
+#2  0x4001be64 in common_handler ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+/home/paolo/workspace/ravenscar/raven-edf/s-bbinte.adb:209:8873:beg:0x40003bf0
+   ID       TID P-ID Pri State                  Name
+*   1  40032360        0 Runnable               environment_task
+    2  40034f18        0 Delay Sleep            c1
+  Id   Target Id         Frame 
+  3    Thread 0x40034f30 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 2    Thread 0x40032378 (Ravenscar task) system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:209
+  1    Thread 0xffffffff (Ravenscar task) system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:209
+#0  system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:209
+#1  0x4001be64 in common_handler ()
+#2  0x4001be64 in common_handler ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+/home/paolo/workspace/ravenscar/raven-edf/s-bbinte.adb:215:9109:beg:0x40003c14
+   ID       TID P-ID Pri State                  Name
+*   1  40032360        0 Runnable               environment_task
+    2  40034f18        0 Delay Sleep            c1
+  Id   Target Id         Frame 
+  3    Thread 0x40034f30 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 2    Thread 0x40032378 (Ravenscar task) system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:215
+  1    Thread 0xffffffff (Ravenscar task) system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:215
+#0  system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:215
+#1  0x4001be64 in common_handler ()
+#2  0x4001be64 in common_handler ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+/home/paolo/workspace/ravenscar/raven-edf/s-bbinte.adb:219:9227:beg:0x40003c58
+   ID       TID P-ID Pri State                  Name
+*   1  40032360        0 Runnable               environment_task
+    2  40034f18        0 Delay Sleep            c1
+  Id   Target Id         Frame 
+  3    Thread 0x40034f30 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 2    Thread 0x40032378 (Ravenscar task) system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:219
+  1    Thread 0xffffffff (Ravenscar task) system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:219
+#0  system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:219
+#1  0x4001be64 in common_handler ()
+#2  0x4001be64 in common_handler ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+/home/paolo/workspace/ravenscar/raven-edf/s-bbinte.adb:221:9296:beg:0x40003c6c
+   ID       TID P-ID Pri State                  Name
+*   1  40032360        0 Runnable               environment_task
+    2  40034f18        0 Delay Sleep            c1
+  Id   Target Id         Frame 
+  3    Thread 0x40034f30 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 2    Thread 0x40032378 (Ravenscar task) system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:221
+  1    Thread 0xffffffff (Ravenscar task) system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:221
+#0  system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:221
+#1  0x4001be64 in common_handler ()
+#2  0x4001be64 in common_handler ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+/home/paolo/workspace/ravenscar/raven-edf/s-bbinte.adb:225:9385:beg:0x40003c78
+   ID       TID P-ID Pri State                  Name
+*   1  40032360        0 Runnable               environment_task
+    2  40034f18        0 Delay Sleep            c1
+  Id   Target Id         Frame 
+  3    Thread 0x40034f30 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 2    Thread 0x40032378 (Ravenscar task) system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:225
+  1    Thread 0xffffffff (Ravenscar task) system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:225
+#0  system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:225
+#1  0x4001be64 in common_handler ()
+#2  0x4001be64 in common_handler ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+/home/paolo/workspace/ravenscar/raven-edf/s-bbinte.adb:230:9532:beg:0x40003cbc
+   ID       TID P-ID Pri State                  Name
+*   1  40032360        0 Runnable               environment_task
+    2  40034f18        0 Delay Sleep            c1
+  Id   Target Id         Frame 
+  3    Thread 0x40034f30 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 2    Thread 0x40032378 (Ravenscar task) system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:230
+  1    Thread 0xffffffff (Ravenscar task) system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:230
+#0  system.bb.interrupts.interrupt_wrapper (vector=24) at raven-edf/s-bbinte.adb:230
+#1  0x4001be64 in common_handler ()
+#2  0x4001be64 in common_handler ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+
+Breakpoint 2, system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+/home/paolo/workspace/ravenscar/raven-edf/s-bbcppr.adb:155:7496:beg:0x40004154
+   ID       TID P-ID Pri State                  Name
+*   1  40032360        0 Runnable               environment_task
+    2  40034f18        0 Delay Sleep            c1
+  Id   Target Id         Frame 
+  3    Thread 0x40034f30 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 2    Thread 0x40032378 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+  1    Thread 0xffffffff (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+#0  system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:155
+#1  0x40011b1c in system.bb.protection.leave_kernel () at raven-edf/s-bbprot.adb:188
+/home/paolo/workspace/ravenscar/raven-edf/s-bbcppr.adb:159:7597:beg:0x40004198
+   ID       TID P-ID Pri State                  Name
+*   1  40032360        0 Runnable               environment_task
+    2  40034f18        0 Delay Sleep            c1
+  Id   Target Id         Frame 
+  3    Thread 0x40034f30 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 2    Thread 0x40032378 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+  1    Thread 0xffffffff (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+#0  system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+#1  0x40011b1c in system.bb.protection.leave_kernel () at raven-edf/s-bbprot.adb:188
+
+Breakpoint 2, 0x4001b610 in context_switch ()
+   ID       TID P-ID Pri State                  Name
+*   1  40032360        0 Runnable               environment_task
+    2  40034f18        0 Delay Sleep            c1
+  Id   Target Id         Frame 
+  3    Thread 0x40034f30 (Ravenscar task) system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+* 2    Thread 0x40032378 (Ravenscar task) 0x4001b610 in context_switch ()
+  1    Thread 0xffffffff (Ravenscar task) 0x4001b610 in context_switch ()
+#0  0x4001b610 in context_switch ()
+#1  0x400041a0 in system.bb.cpu_primitives.context_switch () at raven-edf/s-bbcppr.adb:159
+#2  0x40011b1c in system.bb.protection.leave_kernel () at raven-edf/s-bbprot.adb:188
+Single stepping until exit from function context_switch,
+which has no line number information.
+/caen.a/gnatmail/gpl-2012/build-caen/leon-elf-linux/gdb-7.4/src/gdb/infrun.c:3862: internal-error: handle_inferior_event: Assertion `ptid_equal (inferior_ptid, singlestep_ptid)' failed.
+A problem internal to GDB has been detected,
+further debugging may prove unreliable.

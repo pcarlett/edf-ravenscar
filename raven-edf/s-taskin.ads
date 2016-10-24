@@ -300,12 +300,6 @@ package System.Tasking is
       --
       --  Protection: Only written by Self, accessed by anyone
 
-      Base_Relative_Deadline : System.BB.Deadlines.Relative_Deadline;
-      --  Base relative deadline
-      --
-      --  Protection: Only written by Self, accessed by anyone
-      --              (same as Base_Priority record)
-
       Protected_Action_Nesting : Natural;
       pragma Atomic (Protected_Action_Nesting);
       --  The dynamic level of protected action nesting for this task. This
@@ -361,6 +355,11 @@ package System.Tasking is
       --
       --  Protection: Only accessed by Self
 
+      Base_Relative_Deadline : System.BB.Deadlines.Relative_Deadline;
+      --  Base relative deadline
+      --
+      --  Protection: Only written by Self, accessed by anyone
+      --              (same as Base_Priority record)
    end record;
    pragma Suppress_Initialization (Common_ATCB);
 

@@ -378,9 +378,13 @@ package body System.BB.Threads.Queues is
       --  equal to the task currently executing (Running_Thread).
 
       pragma Assert (First_Thread /= Null_Thread_Id
-                       and then Running_Thread /= Null_Thread_Id);
+                     and then Running_Thread /= Null_Thread_Id);
 
-      return First_Thread /= Running_Thread;
+      if not Busy_For_Interrupts then
+         return First_Thread /= Running_Thread;
+      else
+         return False;
+      end if;
    end Context_Switch_Needed;
 
    ----------------------
@@ -463,10 +467,10 @@ package body System.BB.Threads.Queues is
          System.IO.Put_Line ("Ready Queue Extraction Process... Extraction.");
       end if;
 
-      if not Busy_For_Interrupts then
+      --  if not Busy_For_Interrupts then
          First_Thread_Table (CPU_Id) := Thread.Next;
          Thread.Next := Null_Thread_Id;
-      end if;
+      --  end if;
 
       if Debug_Thqu then
          System.IO.Put_Line ("Ready Queue Extraction Process... Ended.");
