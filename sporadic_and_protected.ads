@@ -13,7 +13,7 @@ package Sporadic_and_Protected is
            Dead : Positive;
            Cycle_Time : Positive;
            T_Num : Integer) is
-      pragma Priority(1);
+      --  pragma Priority(1);
    end Periodic;
 
    task type Sporadic
@@ -21,11 +21,11 @@ package Sporadic_and_Protected is
             Dead : Positive;
             Cycle_Time : Positive;
             T_Num : Integer) is
-      pragma Priority(1);
+      --  pragma Priority(1);
    end Sporadic;
 
    protected Event is
-      pragma Priority (25000000);
+      pragma Priority (50000000);
       --> in valore del floor deve essere il piu' basso di tutti
       --> in quanto deve garantire l'accesso senza prerilascio!!!
       --> in questo caso il valore e' maggiore rispetto a quello

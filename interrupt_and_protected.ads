@@ -15,7 +15,7 @@ package Interrupt_and_Protected is
            Dead : Positive;
            Cycle_Time : Positive;
            T_Num : Integer) is
-     pragma Priority (1);
+     --  pragma Priority (1);
   end Cyclic;
 
   task type Interrupt

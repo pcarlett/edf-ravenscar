@@ -24,7 +24,7 @@ help:
 libs:
 	$(CC) $(DEBUG) $(FLAGS) $(LIBSDIR)/$(SOURCES)
 
-unit01:	clean libs
+unit01:	libs
 	$(CC) $(INCLUDE) $(DEBUG) unit01.adb
 
 unit02:	libs

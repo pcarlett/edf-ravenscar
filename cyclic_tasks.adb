@@ -103,9 +103,9 @@ package body Cyclic_Tasks is
 
   ----------------------------------------
   -- TESTED SEQUENCE OF TASK SCHEDULING --
-  C1 : Cyclic(0, 3000, 5000, 1); --
+  C1 : Cyclic(0, 4000, 4000, 1); --
   C2 : Cyclic(0, 20000, 20000, 2); --
-  C3 : Cyclic(0, 4000, 5000, 3); --
+  -- C3 : Cyclic(0, 4000, 5000, 3); --
   ----------------------------------------
 
 end Cyclic_Tasks;
