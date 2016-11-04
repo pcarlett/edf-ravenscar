@@ -1,4 +1,4 @@
-with Sporadic_and_Protected;
+with Sporadic_And_Protected_Entry;
 with System.IO;
 
 --  For debugging process
@@ -11,5 +11,5 @@ with System.BB.Time;
 procedure Unit02 is
    --  pragma Priority (0);
 begin
-   Sporadic_and_Protected.Init;
+   Sporadic_And_Protected_Entry.Init;
 end Unit02;

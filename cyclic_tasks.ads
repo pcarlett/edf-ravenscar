@@ -6,12 +6,11 @@ with Ada.Real_Time;
 package Cyclic_Tasks is
 
    task type Cyclic
-          (Pri : System.Priority;
-           Dead : Positive;
-           Cycle_Time : Positive;
-           T_Num : Integer) is
-      -- pragma Priority(1);
-      -- pragma Relative_Deadline (Ada.Real_Time.Milliseconds(Dead));
+     (Pri        : System.Priority;
+      Dead       : Positive;
+      Cycle_Time : Positive;
+      T_Num      : Integer;
+      Gauss_Num  : Integer) is
    end Cyclic;
 
    procedure Init;

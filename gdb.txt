@@ -2649,3 +2649,4 @@ pc             0x4001b24c	0x4001b24c <context_switch+284>
 npc            0x4001b250	0x4001b250 <context_switch+288>
 fsr            0x0	[ ]
 csr            0x0	0
+Quitting: Remote connection closed

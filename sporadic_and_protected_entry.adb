@@ -7,7 +7,7 @@ with System.BB.Time;
 
 with System_Time;
 
-package body Sporadic_and_Protected is
+package body Sporadic_and_Protected_Entry is
 
    task body Periodic is
       Task_Static_Offset : constant Time_Span :=
@@ -35,41 +35,37 @@ package body Sporadic_and_Protected is
          for I in 1..Times loop
             Num := Num + I;
          end loop;
+         Event.Signal;
       end Gauss;
       Gauss_Access : Proc_Access := Gauss'access;
    begin
       -- Initialization code
       -- Setting artificial deadline: it forces system to read deadlines and use
       -- it as main ordering
-      Put ("                   ");
-      Put_Line ("|-|-|-|-|-|-|-|-> Setting R_Dead "
-            & Duration'Image (System.BB.Time.To_Duration (System.BB.Time.Milliseconds (Dead)))
-                          & " for Task " & Integer'Image(T_Num) & " --|");
+       Put_Line ("---> Setting R_Dead "
+           & Duration'Image (System.BB.Time.To_Duration
+             (System.BB.Time.Milliseconds (Dead)))
+           & " for Task " & Integer'Image(T_Num));
 
-      System.Task_Primitives.Operations.Set_Relative_Deadline
-           (System.Task_Primitives.Operations.Self,
-            System.BB.Time.Milliseconds (Dead));
+       System.Task_Primitives.Operations.Set_Relative_Deadline
+            (System.Task_Primitives.Operations.Self,
+             System.BB.Time.Milliseconds (Dead));
 
       loop
          delay until Next_Period;
-         Put_Line("                   Begin Calc for Task n. " & Integer'Image(T_Num));
-         if T_Num = 1 then
-            -- delay until Ada.Real_Time.Time (Ada.Real_Time.Clock + Ada.Real_Time.Milliseconds (5000));
-            Put("                   Gauss(2026600) takes"
-                & Duration'Image(Time_It(Gauss_Access, 2026600))
-                & " seconds on Task n. " & Integer'Image(T_Num));
-            Put_Line("... Done.");
-         elsif T_Num = 2 then
-            Put_Line("                   Gauss(2026600) takes"
-                & Duration'Image(Time_It(Gauss_Access, 2026600))
-                & " seconds on Task n. " & Integer'Image(T_Num));
-         end if;
-         Put_Line("                   End Calc for Task n. " & Integer'Image(T_Num));
+
+         Put_Line("Begin Calc for Task n. " & Integer'Image(T_Num));
+         Put("Gauss(" & Integer'Image(Gauss_Num) & ") takes"
+             & Duration'Image(Time_It(Gauss_Access, Gauss_Num))
+             & " seconds on Task n. " & Integer'Image(T_Num));
+         Put_Line("... Done.");
+         Put_Line("End Calc for Task n. " & Integer'Image(T_Num));
 
          -- wait one whole period before executing
          -- Non-suspending periodic response code
          -- May include calls to protected procedures
-         Event.Signal;
+
+         -- Event.Signal;
 
          Next_Period := Next_Period + Period;
       end loop;
@@ -107,23 +103,26 @@ package body Sporadic_and_Protected is
       -- Initialization code
       -- Setting artificial deadline: it forces system to read deadlines and use
       -- it as main ordering
-      Put ("                   ");
-      Put_Line ("|-|-|-|-|-|-|-|-> Setting R_Dead "
-            & Duration'Image (System.BB.Time.To_Duration (System.BB.Time.Milliseconds (Dead)))
-                          & " for Task " & Integer'Image(T_Num) & " --|");
+    Put_Line ("---> Setting R_Dead "
+        & Duration'Image (System.BB.Time.To_Duration
+          (System.BB.Time.Milliseconds (Dead)))
+        & " for Task " & Integer'Image(T_Num));
 
-      System.Task_Primitives.Operations.Set_Relative_Deadline
-           (System.Task_Primitives.Operations.Self,
-            System.BB.Time.Milliseconds (Dead));
+    System.Task_Primitives.Operations.Set_Relative_Deadline
+         (System.Task_Primitives.Operations.Self,
+          System.BB.Time.Milliseconds (Dead));
 
       loop
+         delay until Next_Period;
+
          Event.Wait;
-         Put_Line("                   Begin Calc for Task n. " & Integer'Image(T_Num));
-         Put("                   Gauss(6079800) takes"
-             & Duration'Image(Time_It(Gauss_Access, 6079800))
+
+         Put_Line("Begin Calc for Task n. " & Integer'Image(T_Num));
+         Put("Gauss(" & Integer'Image(Gauss_Num) & ") takes"
+             & Duration'Image(Time_It(Gauss_Access, Gauss_Num))
              & " seconds on Task n. " & Integer'Image(T_Num));
          Put_Line("... Done.");
-         Put_Line("                   End Calc for Task n. " & Integer'Image(T_Num));
+         Put_Line("End Calc for Task n. " & Integer'Image(T_Num));
       end loop;
 
    end Sporadic;
@@ -131,9 +130,10 @@ package body Sporadic_and_Protected is
    protected body Event is
       procedure Signal is
       begin
-         System.IO.Put_Line (">>> Signaled: Cycle num. " & Integer'Image (Integer (Cycle)));
          Cycle := Cycle + 1;
-         if Cycle = 5 then
+         System.IO.Put_Line ("--->>> Signaled: Cycle num. "
+                             & Integer'Image (Integer (Cycle)));
+         if Cycle = 3 then
             Cycle := 0;
             Occurred := True;
          end if;
@@ -141,7 +141,7 @@ package body Sporadic_and_Protected is
 
       entry Wait when Occurred is
       begin
-         System.IO.Put_Line (">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Waited");
+         System.IO.Put_Line ("------->>>>>> Guard Unlocked!!!");
          Occurred := False;
       end Wait;
    end Event;
@@ -152,8 +152,7 @@ package body Sporadic_and_Protected is
         (System.Task_Primitives.Operations.Self,
          System.BB.Time.Milliseconds (900000));
 
-     System.IO.Put ("                   ");
-     System.IO.Put_Line ("|-|-|-|-|-|-|-|->  UNIT01 BEGIN  -->  R_Dead "
+     System.IO.Put_Line ("--->  Unit02 Start  -->  R_Dead "
         & Duration'Image (System.BB.Time.To_Duration
         (System.BB.Time.Milliseconds (900000))) & " ---|");
      loop
@@ -163,9 +162,10 @@ package body Sporadic_and_Protected is
 
    ----------------------------------------
    -- TESTED SEQUENCE OF TASK SCHEDULING --
-   C1 : Periodic(1, 4000, 8000, 1);--
-   C2 : Periodic(1, 4000, 8000, 2);--
-   C3 : Sporadic(1, 9000, 9000, 3);--
+   --       Prio,  Dead,  Cycle,  Task,  Exec
+   P1 : Periodic(0,  4000,  4000, 1, 1340732); -- Exec 2 sec
+   -- P2 : Periodic(0,  9000,  9000, 2, 2011100); -- Exec 3 sec
+   S3 : Sporadic(0, 22000, 22000, 3, 6033300); -- Exec 9 sec
    ----------------------------------------
 
-end Sporadic_and_Protected;
+end Sporadic_And_Protected_Entry;

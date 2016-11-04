@@ -556,6 +556,16 @@ package body System.BB.Threads.Queues is
       CPU_Id      : constant CPU := Get_CPU (Thread);
 
    begin
+
+      if Debug_Insert then
+         System.IO.Put_Line ("---    Thread => "
+            & "R_Dead: " & Duration'Image (System.BB.Time.To_Duration
+            (Thread.Active_Relative_Deadline)) & " => A_Dead" &
+            Duration'Image (System.BB.Time.To_Duration
+            (Thread.Active_Absolute_Deadline
+                - System.BB.Time.Time_First)));
+      end if;
+
       --  ??? This pragma is disabled because the Tasks_Activated only
       --  represents the end of activation for one package not all the
       --  packages. We have to find a better milestone for the end of tasks
@@ -780,7 +790,7 @@ package body System.BB.Threads.Queues is
          Wakeup_Thread.State := Threads.Runnable;
 
          Threads.Queues.Change_Absolute_Deadline (Wakeup_Thread,
-                 Wakeup_Thread.Active_Relative_Deadline + Now);
+              (Wakeup_Thread.Active_Relative_Deadline + System.BB.Time.Clock));
 
          Threads.Queues.Insert (Wakeup_Thread);
 

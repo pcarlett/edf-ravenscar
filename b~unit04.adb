@@ -1,18 +1,18 @@
 pragma Ada_95;
-pragma Source_File_Name (ada_main, Spec_File_Name => "b~unit03.ads");
-pragma Source_File_Name (ada_main, Body_File_Name => "b~unit03.adb");
+pragma Source_File_Name (ada_main, Spec_File_Name => "b~unit04.ads");
+pragma Source_File_Name (ada_main, Body_File_Name => "b~unit04.adb");
 
 package body ada_main is
    pragma Warnings (Off);
 
    E033 : Short_Integer; pragma Import (Ada, E033, "ada__tags_E");
    E084 : Short_Integer; pragma Import (Ada, E084, "system__bb__timing_events_E");
-   E108 : Short_Integer; pragma Import (Ada, E108, "system__tasking__protected_objects_E");
-   E112 : Short_Integer; pragma Import (Ada, E112, "system__tasking__protected_objects__multiprocessors_E");
-   E114 : Short_Integer; pragma Import (Ada, E114, "system__tasking__restricted__stages_E");
+   E118 : Short_Integer; pragma Import (Ada, E118, "system__tasking__protected_objects_E");
+   E122 : Short_Integer; pragma Import (Ada, E122, "system__tasking__protected_objects__multiprocessors_E");
+   E111 : Short_Integer; pragma Import (Ada, E111, "system__tasking__restricted__stages_E");
    E006 : Short_Integer; pragma Import (Ada, E006, "ada__real_time_E");
-   E104 : Short_Integer; pragma Import (Ada, E104, "sporadic_and_protected_procedure_E");
-   E116 : Short_Integer; pragma Import (Ada, E116, "system_time_E");
+   E104 : Short_Integer; pragma Import (Ada, E104, "interrupt_and_protected_E");
+   E124 : Short_Integer; pragma Import (Ada, E124, "system_time_E");
 
    Local_Priority_Specific_Dispatching : constant String := "";
    Local_Interrupt_States : constant String := "";
@@ -101,23 +101,23 @@ package body ada_main is
       Ada.Tags'Elab_Body;
       E033 := E033 + 1;
       System.Tasking.Protected_Objects'Elab_Body;
-      E108 := E108 + 1;
+      E118 := E118 + 1;
       System.Tasking.Protected_Objects.Multiprocessors'Elab_Body;
-      E112 := E112 + 1;
+      E122 := E122 + 1;
       System.Tasking.Restricted.Stages'Elab_Body;
-      E114 := E114 + 1;
+      E111 := E111 + 1;
       Ada.Real_Time'Elab_Spec;
       Ada.Real_Time'Elab_Body;
       E006 := E006 + 1;
-      Sporadic_And_Protected_Procedure'Elab_Spec;
+      Interrupt_And_Protected'Elab_Spec;
       System_Time'Elab_Spec;
-      E116 := E116 + 1;
-      Sporadic_And_Protected_Procedure'Elab_Body;
+      E124 := E124 + 1;
+      Interrupt_And_Protected'Elab_Body;
       E104 := E104 + 1;
    end adainit;
 
    procedure Ada_Main_Program;
-   pragma Import (Ada, Ada_Main_Program, "_ada_unit02");
+   pragma Import (Ada, Ada_Main_Program, "_ada_unit04");
 
    procedure main is
       procedure Initialize (Addr : System.Address);
@@ -197,15 +197,20 @@ package body ada_main is
    --   ./s-taprob.o
    --   ./s-tpobmu.o
    --   ./s-tposen.o
+   --   ./s-interr.o
+   --   ./a-interr.o
+   --   ./a-intnam.o
    --   ./s-tasres.o
    --   ./s-tarest.o
+   --   ./a-taside.o
    --   ./a-except.o
    --   ./s-traceb.o
    --   ./a-reatim.o
    --   ./a-retide.o
-   --   ./unit03.o
+   --   ./force_external_interrupt_2.o
+   --   ./unit04.o
    --   ./system_time.o
-   --   ./sporadic_and_protected_procedure.o
+   --   ./interrupt_and_protected.o
    --   -L./
    --   -L./raven-edf/
    --   -L/usr/gnat-rvs/lib/gcc/leon-elf/4.5.4/rts-ravenscar/adalib/

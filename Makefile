@@ -15,8 +15,9 @@ help:
 	@echo "To make unit program to compile you have to specify which unit you want:"
 	@echo ""
 	@echo "-->  \"make unit01\": it build test for cyclic and delayed tasks"
-	@echo "-->  \"make unit02\": it build test for sporadic tasks and protected objects"
-	@echo "-->  \"make unit03\": it build test for interrupts and protected objects"
+	@echo "-->  \"make unit02\": it build test for cyclic and sporadic tasks with activations"
+	@echo "-->  \"make unit03\": it build test for sporadic tasks and protected objects"
+	@echo "-->  \"make unit04\": it build test for interrupts and protected objects"
 	@echo ""
 	@echo "Use \"make clean\" to remove any builded file"
 	@echo ""
@@ -33,10 +34,13 @@ unit02:	libs
 unit03:	libs
 	$(CC) $(INCLUDE) $(DEBUG) unit03.adb
 
+unit04:	libs
+	$(CC) $(INCLUDE) $(DEBUG) unit04.adb
+
 .PHONY: clean
 
 clean: cleanlibs
-	rm -rf *.o *.ali *.dg unit01 unit02 unit03
+	rm -rf *.o *.ali *.dg unit01 unit02 unit03 unit04
 
 cleanlibs:
 	rm -rf raven-edf/*.o raven-edf/*.ali

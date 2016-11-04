@@ -11,7 +11,7 @@ package body ada_main is
    E112 : Short_Integer; pragma Import (Ada, E112, "system__tasking__protected_objects__multiprocessors_E");
    E114 : Short_Integer; pragma Import (Ada, E114, "system__tasking__restricted__stages_E");
    E006 : Short_Integer; pragma Import (Ada, E006, "ada__real_time_E");
-   E104 : Short_Integer; pragma Import (Ada, E104, "sporadic_and_protected_E");
+   E104 : Short_Integer; pragma Import (Ada, E104, "sporadic_and_protected_entry_E");
    E116 : Short_Integer; pragma Import (Ada, E116, "system_time_E");
 
    Local_Priority_Specific_Dispatching : constant String := "";
@@ -109,10 +109,10 @@ package body ada_main is
       Ada.Real_Time'Elab_Spec;
       Ada.Real_Time'Elab_Body;
       E006 := E006 + 1;
-      Sporadic_And_Protected'Elab_Spec;
+      Sporadic_And_Protected_Entry'Elab_Spec;
       System_Time'Elab_Spec;
       E116 := E116 + 1;
-      Sporadic_And_Protected'Elab_Body;
+      Sporadic_And_Protected_Entry'Elab_Body;
       E104 := E104 + 1;
    end adainit;
 
@@ -205,7 +205,7 @@ package body ada_main is
    --   ./a-retide.o
    --   ./unit02.o
    --   ./system_time.o
-   --   ./sporadic_and_protected.o
+   --   ./sporadic_and_protected_entry.o
    --   -L./
    --   -L./raven-edf/
    --   -L/usr/gnat-rvs/lib/gcc/leon-elf/4.5.4/rts-ravenscar/adalib/

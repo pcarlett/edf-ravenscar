@@ -5,8 +5,6 @@ with System;
 with System.Task_Primitives.Operations;
 with System.BB.Time;
 
-with System.Address_Image;
-
 with System_Time;
 
 package body Cyclic_Tasks is
@@ -43,39 +41,24 @@ package body Cyclic_Tasks is
     -- Initialization code
     -- Setting artificial deadline: it forces system to read deadlines and use
     -- it as main ordering
-    Put ("                   ");
-    Put_Line ("|-|-|-|-|-|-|-|-> Setting R_Dead "
-          & Duration'Image (System.BB.Time.To_Duration (System.BB.Time.Milliseconds (Dead)))
-                        & " for Task " & Integer'Image(T_Num) & " --|");
+    Put_Line ("---> Setting R_Dead "
+        & Duration'Image (System.BB.Time.To_Duration
+          (System.BB.Time.Milliseconds (Dead)))
+        & " for Task " & Integer'Image(T_Num));
 
     System.Task_Primitives.Operations.Set_Relative_Deadline
          (System.Task_Primitives.Operations.Self,
           System.BB.Time.Milliseconds (Dead));
 
     loop
-       delay until Next_Period;
-         if T_Num = 1 then
-            -- delay until Ada.Real_Time.Time (Ada.Real_Time.Clock + Ada.Real_Time.Milliseconds (5000));
-            Put_Line("                   Begin Calc for Task n. " & Integer'Image(T_Num));
-            Put("                   Gauss(2026600) takes"
-                & Duration'Image(Time_It(Gauss_Access, 2026600))
-                & " seconds on Task n. " & Integer'Image(T_Num));
-	    Put_Line("... Done.");
-            Put_Line("                   End Calc for Task n. " & Integer'Image(T_Num));
-         elsif T_Num = 2 then
-            Put_Line("                   Begin Calc for Task n. " & Integer'Image(T_Num));
-            Put_Line("                   Gauss(6079800) takes"
-                & Duration'Image(Time_It(Gauss_Access, 6079800))
-                & " seconds on Task n. " & Integer'Image(T_Num));
-            Put_Line("                   End Calc for Task n. " & Integer'Image(T_Num));
-         elsif T_Num = 3 then
-            -- delay until Ada.Real_Time.Time (Ada.Real_Time.Clock + Ada.Real_Time.Milliseconds (5000));
-            Put("                   Gauss(2026600) takes"
-                & Duration'Image(Time_It(Gauss_Access, 2026600))
-                & " seconds on Task n. " & Integer'Image(T_Num));
-	    Put_Line("... Done.");
-            Put_Line("                   End Calc for Task n. " & Integer'Image(T_Num));
-         end if;
+      delay until Next_Period;
+
+      Put_Line("Begin Calc for Task n. " & Integer'Image(T_Num));
+      Put("Gauss(" & Integer'Image(Gauss_Num) & ") takes"
+          & Duration'Image(Time_It(Gauss_Access, Gauss_Num))
+          & " seconds on Task n. " & Integer'Image(T_Num));
+      Put_Line("... Done.");
+      Put_Line("End Calc for Task n. " & Integer'Image(T_Num));
 
       -- wait one whole period before executing
       -- Non-suspending periodic response code
@@ -90,22 +73,19 @@ package body Cyclic_Tasks is
         (System.Task_Primitives.Operations.Self,
          System.BB.Time.Milliseconds (900000));
 
-     System.IO.Put ("                   ");
-     System.IO.Put_Line ("|-|-|-|-|-|-|-|->  UNIT01 BEGIN  -->  R_Dead "
+     System.IO.Put_Line ("--->  Unit01 Start  -->  R_Dead "
         & Duration'Image (System.BB.Time.To_Duration
-        (System.BB.Time.Milliseconds (900000))) & " ---|");
+        (System.BB.Time.Milliseconds (900000))));
      loop
-        -- System.IO.Put ("                   ");
-        -- System.IO.Put_Line ("|------------------|  --> Init Task");
         null;
      end loop;
   end Init;
 
   ----------------------------------------
   -- TESTED SEQUENCE OF TASK SCHEDULING --
-  C1 : Cyclic(0, 4000, 4000, 1); --
-  C2 : Cyclic(0, 20000, 20000, 2); --
-  -- C3 : Cyclic(0, 4000, 5000, 3); --
+  C1 : Cyclic(0,  4000,  4000, 1, 2011100); -- Exec 3sec
+  C2 : Cyclic(0, 20000, 20000, 2, 6033300); -- Exec 9sec
+  -- C3 : Cyclic(0, 4000, 5000, 3, 2011100); -- Exec 3sec
   ----------------------------------------
 
 end Cyclic_Tasks;

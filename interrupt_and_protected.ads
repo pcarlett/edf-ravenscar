@@ -10,19 +10,19 @@ package Interrupt_and_Protected is
   Priority_Of_External_Interrupt_2 : constant System.Interrupt_Priority
                                     := System.Interrupt_Priority'First + 5;
 
-  task type Cyclic
-          (Pri : System.Priority;
-           Dead : Positive;
-           Cycle_Time : Positive;
-           T_Num : Integer) is
-     --  pragma Priority (1);
-  end Cyclic;
+  task type Periodic
+     (Pri        : System.Priority;
+      Dead       : Positive;
+      Cycle_Time : Positive;
+      T_Num      : Integer;
+      Gauss_Num  : Integer) is
+  end Periodic;
 
   task type Interrupt
-          (Pri : System.Priority;
-           Dead : Positive;
-           Cycle_Time : Positive;
-           T_Num : Integer) is
+     (Pri        : System.Priority;
+      Dead       : Positive;
+      Cycle_Time : Positive;
+      T_Num      : Integer) is
      pragma Priority (System.Priority'Last);
   end Interrupt;
 
@@ -30,7 +30,8 @@ package Interrupt_and_Protected is
      pragma Priority (250); -- (Priority_Of_External_Interrupt_2);
      entry Wait;
      procedure Signal;
-     pragma Attach_Handler (Signal, Ada.Interrupts.Names.External_Interrupt_2);
+     procedure Busy_Handler;
+     pragma Attach_Handler (Busy_Handler, Ada.Interrupts.Names.External_Interrupt_2);
   private
      Signaled : Boolean := False;
   end Interrupt_Semaphore;

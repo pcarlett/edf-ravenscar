@@ -2,20 +2,6 @@ with Ada.Real_Time;
 
 package System_Time is
 
-   --  % Library Package:
-   --      Definition of basic types and operations related to time
-   --  % Active Tasks:
-   --  >   None
-   --  % Passive Tasks:
-   --  >   None
-
-   --  % Subprogram:
-   --      Get the current system time.
-   --  % Parameter Constraints:
-   --  >   None
-   --  % Exceptions Raised:
-   --  >   None
-
    function Clock
    return Ada.Real_Time.Time renames Ada.Real_Time.Clock;
 

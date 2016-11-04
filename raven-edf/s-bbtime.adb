@@ -308,16 +308,19 @@ package body System.BB.Time is
 
       Now := Clock;
 
-      if Debug_Delay then
-         System.IO.Put_Line ("Delay Until Process... Now: "
-               & Duration'Image (To_Duration (Now - System.BB.Time.Time_First))
-                & " - T: " & Duration'Image
-                        (To_Duration (T - System.BB.Time.Time_First)));
-      end if;
-
       Protection.Enter_Kernel;
 
       Self := Threads.Thread_Self;
+
+      if Debug_Delay_Time then
+         System.IO.Put_Line ("Delay Until Process... Now: "
+               & Duration'Image (To_Duration (Now - System.BB.Time.Time_First))
+                             & " - T: " & Duration'Image
+                               (To_Duration (T - System.BB.Time.Time_First))
+                             & " - Abs_Dead: " & Duration'Image
+             (To_Duration (Self.Active_Absolute_Deadline -
+                System.BB.Time.Time_First)));
+      end if;
 
       --  Test if the alarm time is in the future
 
@@ -379,7 +382,7 @@ package body System.BB.Time is
 
          Threads.Queues.Change_Absolute_Deadline
            (Thread       => Self,
-            Abs_Deadline => Self.Active_Relative_Deadline + Now);
+            Abs_Deadline => Self.Active_Relative_Deadline + T);
 
          Threads.Queues.Yield (Self);
       end if;

@@ -8,7 +8,7 @@ package ada_main is
                     "GNAT Version: GPL 2012 (20120509)" & ASCII.NUL;
    pragma Export (C, GNAT_Version, "__gnat_version");
 
-   Ada_Main_Program_Name : constant String := "_ada_unit01" & ASCII.NUL;
+   Ada_Main_Program_Name : constant String := "_ada_unit04" & ASCII.NUL;
    pragma Export (C, Ada_Main_Program_Name, "__gnat_ada_main_program_name");
 
    procedure adainit;
@@ -21,8 +21,8 @@ package ada_main is
    pragma Export (C, main, "main");
 
    type Version_32 is mod 2 ** 32;
-   u00001 : constant Version_32 := 16#818636df#;
-   pragma Export (C, u00001, "unit01B");
+   u00001 : constant Version_32 := 16#843334a4#;
+   pragma Export (C, u00001, "unit04B");
    u00002 : constant Version_32 := 16#dec386da#;
    pragma Export (C, u00002, "system__standard_libraryB");
    u00003 : constant Version_32 := 16#4d31c507#;
@@ -225,26 +225,54 @@ package ada_main is
    pragma Export (C, u00101, "system__tracebackS");
    u00102 : constant Version_32 := 16#ff8c918e#;
    pragma Export (C, u00102, "interfaces__cS");
-   u00103 : constant Version_32 := 16#ba7dbb89#;
-   pragma Export (C, u00103, "cyclic_tasksB");
-   u00104 : constant Version_32 := 16#f150839e#;
-   pragma Export (C, u00104, "cyclic_tasksS");
+   u00103 : constant Version_32 := 16#fa032104#;
+   pragma Export (C, u00103, "interrupt_and_protectedB");
+   u00104 : constant Version_32 := 16#d3d77b67#;
+   pragma Export (C, u00104, "interrupt_and_protectedS");
    u00105 : constant Version_32 := 16#aa332a8f#;
    pragma Export (C, u00105, "ada__real_time__delaysB");
    u00106 : constant Version_32 := 16#4d02654a#;
    pragma Export (C, u00106, "ada__real_time__delaysS");
-   u00107 : constant Version_32 := 16#ce0fa359#;
-   pragma Export (C, u00107, "system__tasking__restricted__stagesB");
-   u00108 : constant Version_32 := 16#5eca94a0#;
-   pragma Export (C, u00108, "system__tasking__restricted__stagesS");
+   u00107 : constant Version_32 := 16#7f0cc7d3#;
+   pragma Export (C, u00107, "ada__task_identificationB");
+   u00108 : constant Version_32 := 16#3e23dad0#;
+   pragma Export (C, u00108, "ada__task_identificationS");
    u00109 : constant Version_32 := 16#36859160#;
    pragma Export (C, u00109, "system__tasking__restrictedS");
-   u00110 : constant Version_32 := 16#ccc6d0aa#;
-   pragma Export (C, u00110, "system_timeS");
-   u00111 : constant Version_32 := 16#6b556097#;
-   pragma Export (C, u00111, "system__memoryB");
-   u00112 : constant Version_32 := 16#55d70e72#;
-   pragma Export (C, u00112, "system__memoryS");
+   u00110 : constant Version_32 := 16#ce0fa359#;
+   pragma Export (C, u00110, "system__tasking__restricted__stagesB");
+   u00111 : constant Version_32 := 16#5eca94a0#;
+   pragma Export (C, u00111, "system__tasking__restricted__stagesS");
+   u00112 : constant Version_32 := 16#0881a9ba#;
+   pragma Export (C, u00112, "force_external_interrupt_2B");
+   u00113 : constant Version_32 := 16#a34e0368#;
+   pragma Export (C, u00113, "ada__interruptsB");
+   u00114 : constant Version_32 := 16#4d3b525e#;
+   pragma Export (C, u00114, "ada__interruptsS");
+   u00115 : constant Version_32 := 16#f1976f02#;
+   pragma Export (C, u00115, "system__interruptsB");
+   u00116 : constant Version_32 := 16#b9ccfbad#;
+   pragma Export (C, u00116, "system__interruptsS");
+   u00117 : constant Version_32 := 16#430c9cf2#;
+   pragma Export (C, u00117, "system__tasking__protected_objectsB");
+   u00118 : constant Version_32 := 16#051b9201#;
+   pragma Export (C, u00118, "system__tasking__protected_objectsS");
+   u00119 : constant Version_32 := 16#35c773fa#;
+   pragma Export (C, u00119, "system__tasking__protected_objects__single_entryB");
+   u00120 : constant Version_32 := 16#eb574b2f#;
+   pragma Export (C, u00120, "system__tasking__protected_objects__single_entryS");
+   u00121 : constant Version_32 := 16#64881ceb#;
+   pragma Export (C, u00121, "system__tasking__protected_objects__multiprocessorsB");
+   u00122 : constant Version_32 := 16#9393985e#;
+   pragma Export (C, u00122, "system__tasking__protected_objects__multiprocessorsS");
+   u00123 : constant Version_32 := 16#655a1be9#;
+   pragma Export (C, u00123, "ada__interrupts__namesS");
+   u00124 : constant Version_32 := 16#ccc6d0aa#;
+   pragma Export (C, u00124, "system_timeS");
+   u00125 : constant Version_32 := 16#6b556097#;
+   pragma Export (C, u00125, "system__memoryB");
+   u00126 : constant Version_32 := 16#55d70e72#;
+   pragma Export (C, u00126, "system__memoryS");
    --  BEGIN ELABORATION ORDER
    --  ada%s
    --  interfaces%s
@@ -302,6 +330,7 @@ package ada_main is
    --  system.task_info%b
    --  system.task_primitives%s
    --  system.tasking%s
+   --  ada.task_identification%s
    --  system.task_primitives.operations%s
    --  system.soft_links%b
    --  system.tasking.debug%s
@@ -344,9 +373,21 @@ package ada_main is
    --  system.secondary_stack%b
    --  system.address_image%b
    --  ada.exceptions.traceback%b
+   --  system.tasking.protected_objects%s
+   --  system.tasking.protected_objects%b
+   --  system.tasking.protected_objects.multiprocessors%s
+   --  system.tasking.protected_objects.multiprocessors%b
+   --  system.tasking.protected_objects.single_entry%s
+   --  system.tasking.protected_objects.single_entry%b
+   --  system.interrupts%s
+   --  system.interrupts%b
+   --  ada.interrupts%s
+   --  ada.interrupts%b
+   --  ada.interrupts.names%s
    --  system.tasking.restricted%s
    --  system.tasking.restricted.stages%s
    --  system.tasking.restricted.stages%b
+   --  ada.task_identification%b
    --  system.traceback%s
    --  ada.exceptions%b
    --  system.traceback%b
@@ -354,10 +395,11 @@ package ada_main is
    --  ada.real_time%b
    --  ada.real_time.delays%s
    --  ada.real_time.delays%b
-   --  cyclic_tasks%s
-   --  unit01%b
+   --  force_external_interrupt_2%b
+   --  interrupt_and_protected%s
+   --  unit04%b
    --  system_time%s
-   --  cyclic_tasks%b
+   --  interrupt_and_protected%b
    --  END ELABORATION ORDER
 
 

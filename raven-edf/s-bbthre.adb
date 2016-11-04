@@ -557,6 +557,15 @@ package body System.BB.Threads is
       Queues.Change_Absolute_Deadline
               (Queues.Running_Thread, Abs_Deadline);
 
+      if Debug_Abs_Dead then
+         System.IO.Put_Line ("---    Thread => "
+            & "R_Dead: " & Duration'Image (System.BB.Time.To_Duration
+            (Queues.Running_Thread.Active_Relative_Deadline)) & " => A_Dead" &
+            Duration'Image (System.BB.Time.To_Duration
+            (Queues.Running_Thread.Active_Absolute_Deadline
+                - System.BB.Time.Time_First)));
+      end if;
+
       if Debug_Thre then
          System.IO.Put_Line ("Thread Setting A_Deadline Process... Ended.");
       end if;

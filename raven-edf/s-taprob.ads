@@ -180,9 +180,9 @@ package System.Tasking.Protected_Objects is
 
    Null_PO : constant Protection_Access := null;
 
-   --  procedure Initialize_Protection
-   --    (Object           : Protection_Access;
-   --     Ceiling_Priority : Integer);
+   procedure Initialize_Protection
+     (Object           : Protection_Access;
+      Ceiling_Priority : Integer);
    --  Initialize the Object parameter so that it can be used by the runtime
    --  to keep track of the runtime state of a protected object.
 

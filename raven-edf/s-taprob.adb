@@ -55,54 +55,53 @@ package body System.Tasking.Protected_Objects is
    -- Initialize_Protection --
    ---------------------------
 
-   --  Removed from Ravenscar EDF version
-   --  procedure Initialize_Protection
-   --     (Object           : Protection_Access;
-   --      Ceiling_Priority : Integer)
-   --  is
-   --     Init_Priority : Integer := Ceiling_Priority;
+   procedure Initialize_Protection
+      (Object           : Protection_Access;
+       Ceiling_Priority : Integer)
+   is
+      Init_Priority : Integer := Ceiling_Priority;
 
-   --  begin
+   begin
 
-   --     if Debug_Prob then
-   --        System.IO.Put_Line
-   --        ("  **  Protected Objects Ceiling Initialize Prot. Process..."
-   --           & " Begin.");
-   --     end if;
+      if Debug_Prob then
+         System.IO.Put_Line
+         ("  **  Protected Objects Ceiling Initialize Prot. Process..."
+            & " Begin.");
+      end if;
 
-   --     if Init_Priority = Unspecified_Priority then
-   --        if Debug_Prob then
-   --           System.IO.Put_Line
-   --               ("  **  Protected Objects Ceiling Initialize Prot."
-   --                & " Process... Init Prio at 'First.");
-   --        end if;
+      if Init_Priority = Unspecified_Priority then
+         if Debug_Prob then
+            System.IO.Put_Line
+                ("  **  Protected Objects Ceiling Initialize Prot."
+                 & " Process... Init Prio at 'First.");
+         end if;
 
-   --        Init_Priority := System.Priority'Last;
-   --     end if;
+         Init_Priority := System.Priority'Last;
+      end if;
 
-   --     if Debug_Prob then
-   --        System.IO.Put_Line
-   --           ("  **  Protected Objects Ceiling Initialize Prot. Process..."
-   --              & " Setting.");
-   --     end if;
+      if Debug_Prob then
+         System.IO.Put_Line
+            ("  **  Protected Objects Ceiling Initialize Prot. Process..."
+               & " Setting.");
+      end if;
 
-   --     if Debug_Prob then
-   --        System.IO.Put_Line ("  **  Priority Ceiling: "
-   --              & Integer'Image (Init_Priority));
-   --     end if;
+      if Debug_Prob then
+         System.IO.Put_Line ("  **  Priority Ceiling: "
+               & Integer'Image (Init_Priority));
+      end if;
 
-   --     Object.Ceiling := System.Any_Priority (Init_Priority);
-   --     Object.Caller_Priority := System.Any_Priority'First;
-   --     Object.Owner := Null_Task;
-   --     Multiprocessors.Fair_Locks.Initialize (Object.Lock);
+      Object.Ceiling := System.Any_Priority (Init_Priority);
+      Object.Caller_Priority := System.Any_Priority'First;
+      Object.Owner := Null_Task;
+      Multiprocessors.Fair_Locks.Initialize (Object.Lock);
 
-   --     if Debug_Prob then
-   --        System.IO.Put_Line
-   --           ("  **  Protected Objects Ceiling Initialize Prot. Process..."
-   --              & " Ended.");
-   --     end if;
+      if Debug_Prob then
+         System.IO.Put_Line
+            ("  **  Protected Objects Ceiling Initialize Prot. Process..."
+               & " Ended.");
+      end if;
 
-   --  end Initialize_Protection;
+   end Initialize_Protection;
 
    ---------------------------
    -- Initialize_Protection --
