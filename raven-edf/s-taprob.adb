@@ -55,53 +55,23 @@ package body System.Tasking.Protected_Objects is
    -- Initialize_Protection --
    ---------------------------
 
-   procedure Initialize_Protection
-      (Object           : Protection_Access;
-       Ceiling_Priority : Integer)
-   is
-      Init_Priority : Integer := Ceiling_Priority;
-
-   begin
-
-      if Debug_Prob then
-         System.IO.Put_Line
-         ("  **  Protected Objects Ceiling Initialize Prot. Process..."
-            & " Begin.");
-      end if;
-
-      if Init_Priority = Unspecified_Priority then
-         if Debug_Prob then
-            System.IO.Put_Line
-                ("  **  Protected Objects Ceiling Initialize Prot."
-                 & " Process... Init Prio at 'First.");
-         end if;
-
-         Init_Priority := System.Priority'Last;
-      end if;
-
-      if Debug_Prob then
-         System.IO.Put_Line
-            ("  **  Protected Objects Ceiling Initialize Prot. Process..."
-               & " Setting.");
-      end if;
-
-      if Debug_Prob then
-         System.IO.Put_Line ("  **  Priority Ceiling: "
-               & Integer'Image (Init_Priority));
-      end if;
-
-      Object.Ceiling := System.Any_Priority (Init_Priority);
-      Object.Caller_Priority := System.Any_Priority'First;
-      Object.Owner := Null_Task;
-      Multiprocessors.Fair_Locks.Initialize (Object.Lock);
-
-      if Debug_Prob then
-         System.IO.Put_Line
-            ("  **  Protected Objects Ceiling Initialize Prot. Process..."
-               & " Ended.");
-      end if;
-
-   end Initialize_Protection;
+   --  procedure Initialize_Protection
+   --    (Object           : Protection_Access;
+   --     Ceiling_Priority : Integer)
+   --  is
+   --     Init_Priority : Integer := Ceiling_Priority;
+   --
+   --  begin
+   --     if Init_Priority = Unspecified_Priority then
+   --        Init_Priority := System.Priority'Last;
+   --     end if;
+   --
+   --     Object.Ceiling := System.Any_Priority (Init_Priority);
+   --     Object.Caller_Priority := System.Any_Priority'First;
+   --     Object.Owner := Null_Task;
+   --     Multiprocessors.Fair_Locks.Initialize (Object.Lock);
+   --
+   --  end Initialize_Protection;
 
    ---------------------------
    -- Initialize_Protection --
@@ -167,6 +137,10 @@ package body System.Tasking.Protected_Objects is
       --  Store caller relative deadline value
       Caller_Relative_Deadline : constant Relative_Deadline :=
                             Get_Relative_Deadline (Self_Id);
+
+      --  Store caller absolute deadline value
+      Caller_Absolute_Deadline : constant Absolute_Deadline :=
+                            Get_Absolute_Deadline (Self_Id);
 
    begin
       --  For this run time, pragma Detect_Blocking is always active. As
@@ -239,6 +213,8 @@ package body System.Tasking.Protected_Objects is
 
       Object.Caller_Relative_Deadline := Caller_Relative_Deadline;
 
+      Object.Caller_Absolute_Deadline := Caller_Absolute_Deadline;
+
       --  We are entering in a protected action, so that we increase the
       --  protected object nesting level.
 
@@ -304,7 +280,9 @@ package body System.Tasking.Protected_Objects is
                         (To_Duration (Object.Floor)));
       end if;
 
-      Set_Relative_Deadline (Self_Id, Object.Caller_Relative_Deadline);
+      Restore_Relative_Deadline (Self_Id, Object.Caller_Relative_Deadline);
+
+      Set_Absolute_Deadline (Self_Id, Object.Caller_Absolute_Deadline);
 
       if Debug_Prob then
          System.IO.Put_Line

@@ -326,12 +326,19 @@ package body System.BB.Time is
 
       if Print_Miss then
          if Now > Self.Active_Absolute_Deadline then
-            System.IO.Put_Line ("Deadline_Miss; Task n." &
-               System.Address'Image (Self.ATCB) & "; Time:" &
+            System.IO.Put_Line ("DEADLINE MISS; " &
+               System.Address'Image (Self.ATCB) & "; " &
                Duration'Image (To_Duration
-               (Now - System.BB.Time.Time_First)) & "; Absolute_Deadline:" &
+               (Now - System.BB.Time.Time_First)) & "; " &
                Duration'Image (To_Duration
-                 (Self.Active_Absolute_Deadline - System.BB.Time.Time_First)));
+                (Self.Active_Absolute_Deadline - System.BB.Time.Time_First))
+                 & "; " & Duration'Image (To_Duration
+                (Self.Active_Absolute_Deadline - Now)));
+         else
+            System.IO.Put_Line ("EXECUTED; " &
+               System.Address'Image (Self.ATCB) & "; " &
+               Duration'Image (To_Duration
+               (Now - System.BB.Time.Time_First)));
          end if;
       end if;
 
@@ -351,6 +358,8 @@ package body System.BB.Time is
          if Debug_Delay then
             System.IO.Put_Line ("Delay Until Process... Estracting.");
          end if;
+
+         Self.Preemption_Needed := False;
 
          Threads.Queues.Extract (Self);
 

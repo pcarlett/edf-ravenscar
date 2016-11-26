@@ -524,6 +524,50 @@ package body System.BB.Threads is
       Protection.Leave_Kernel;
    end Set_Relative_Deadline;
 
+   -------------------------------
+   -- Restore_Relative_Deadline --
+   -------------------------------
+
+   procedure Restore_Relative_Deadline (Rel_Deadline : Relative_Deadline) is
+   begin
+      Protection.Enter_Kernel;
+
+      --  The Ravenscar profile does not allow dynamic priority changes. Tasks
+      --  change their priority only when they inherit the ceiling priority of
+      --  a PO (Ceiling Locking policy). Hence, the task must be running when
+      --  changing the priority. It is not possible to change the priority of
+      --  another thread within the Ravenscar profile, so that is why
+      --  Running_Thread is used.
+
+      --  Priority changes are only possible as a result of inheriting the
+      --  ceiling priority of a protected object. Hence, it can never be set
+      --  a priority which is lower than the base priority of the thread.
+
+      if Debug_Thre then
+         System.IO.Put_Line ("Thread Setting R_Deadline Process... Begin.");
+      end if;
+
+      pragma Assert (Rel_Deadline >=
+              Queues.Running_Thread.Base_Relative_Deadline);
+
+      if Debug_Thre then
+         System.IO.Put_Line ("Thread Setting R_Deadline Process... Changing.");
+      end if;
+
+      if Debug_Thre then
+         System.IO.Put_Line ("Thread Setting R_Deadline Process... R_Dead: "
+               & Duration'Image (To_Duration (Rel_Deadline)));
+      end if;
+
+      Queues.Running_Thread.Active_Relative_Deadline := Rel_Deadline;
+
+      if Debug_Thre then
+         System.IO.Put_Line ("Thread Setting R_Deadline Process... Ended.");
+      end if;
+
+      Protection.Leave_Kernel;
+   end Restore_Relative_Deadline;
+
    ---------------------------
    -- Set_Absolute_Deadline --
    ---------------------------
@@ -790,6 +834,7 @@ package body System.BB.Threads is
    ------------
 
    procedure Wakeup (Id : Thread_Id) is
+      Now : constant System.BB.Time.Time := System.BB.Time.Clock;
    begin
       Protection.Enter_Kernel;
 
@@ -800,6 +845,11 @@ package body System.BB.Threads is
          --  Update status
 
          Id.State := Runnable;
+
+         --  Change the absolute deadline of the thread before inserting it in
+         --  the ready queue
+         Queues.Change_Absolute_Deadline
+           (Id, Id.Active_Relative_Deadline + Now);
 
          --  Insert the thread at the tail of its active priority so that the
          --  thread will resume execution.

@@ -25,7 +25,7 @@ package Sporadic_and_Protected_Procedure is
    end Sporadic;
 
    protected Event is
-      pragma Priority (50000000);
+      pragma Priority (37500000);
       --> floor value has to be the lowest between the relative deadlines
       --> related to the tasks that contend for the resource. it have to
       --> guarantee control without preemption

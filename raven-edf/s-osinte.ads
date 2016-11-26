@@ -186,6 +186,12 @@ package System.OS_Interface is
    --  Set the active relative deadline of the executing thread to the
    --  given value
 
+   procedure Restore_Relative_Deadline
+            (Rel_Deadline  : System.BB.Deadlines.Relative_Deadline)
+     renames System.BB.Threads.Restore_Relative_Deadline;
+   --  Restore the active relative deadline of the executing thread to the
+   --  given value
+
    function Get_Relative_Deadline  (Id : Thread_Id)
             return System.BB.Deadlines.Relative_Deadline
      renames System.BB.Threads.Get_Relative_Deadline;

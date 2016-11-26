@@ -43,7 +43,6 @@ with System.BB.CPU_Primitives.Multiprocessors;
 --  Used for debug procedures
 with System.IO;
 with System.BB.Debug; use System.BB.Debug;
---  with Ada.Real_Time;   use Ada.Real_Time;
 with System.Address_Image;
 -------------------------------------------------------------
 -------------------------------------------------------------
@@ -57,7 +56,7 @@ package body System.BB.Threads.Queues is
    --  for deadline references
 
    use System.IO;
-   --  use Ada.Real_Time;
+   use System.BB.Time;
 
    ----------------
    -- Local data --
@@ -81,7 +80,7 @@ package body System.BB.Threads.Queues is
       if Debug_Queue then
          Aux_Pointer := Running_Thread_Table (CPU_Id);
          System.IO.Put_Line ("");
-         System.IO.Put ("                                                  ");
+         System.IO.Put ("          ");
          System.IO.Put_Line ("   --> Running Thread => "
           & "R_Dead: " & Duration'Image (System.BB.Time.To_Duration
                (Aux_Pointer.Active_Relative_Deadline)) & " => A_Dead" &
@@ -89,13 +88,12 @@ package body System.BB.Threads.Queues is
                      (Aux_Pointer.Active_Absolute_Deadline
                            - System.BB.Time.Time_First)));
          System.IO.Put_Line ("");
-         System.IO.Put ("                                                  ");
+         System.IO.Put ("          ");
          System.IO.Put_Line ("   R--------- READY QUEUE -------------------|");
          Aux_Pointer := First_Thread_Table (CPU_Id);
          while Aux_Pointer /= Null_Thread_Id
          loop
-            System.IO.Put
-               ("                                                  ");
+            System.IO.Put ("          ");
             System.IO.Put_Line ("   " & Integer'Image (i) & ") Thread => "
                & "R_Dead: " & Duration'Image (System.BB.Time.To_Duration
                (Aux_Pointer.Active_Relative_Deadline)) & " => A_Dead" &
@@ -105,17 +103,16 @@ package body System.BB.Threads.Queues is
             Aux_Pointer := Aux_Pointer.Next;
             i := i + 1;
          end loop;
-         System.IO.Put ("                                                  ");
+         System.IO.Put ("          ");
          System.IO.Put_Line ("   R------- END READY QUEUE -----------------|");
          i := 1;
          System.IO.Put_Line ("");
-         System.IO.Put ("                                                  ");
+         System.IO.Put ("          ");
          System.IO.Put_Line ("   A--------- ALARM QUEUE --------------|");
          Aux_Pointer := Alarms_Table (CPU_Id);
          while Aux_Pointer /= Null_Thread_Id
          loop
-            System.IO.Put
-              ("                                                  ");
+            System.IO.Put ("          ");
             System.IO.Put_Line ("   " & Integer'Image (i) & ") Thread => "
              & "R_Dead: " & Duration'Image (System.BB.Time.To_Duration
                   (Aux_Pointer.Active_Relative_Deadline))
@@ -124,7 +121,7 @@ package body System.BB.Threads.Queues is
             Aux_Pointer := Aux_Pointer.Next_Alarm;
             i := i + 1;
          end loop;
-         System.IO.Put ("                                                  ");
+         System.IO.Put ("          ");
          System.IO.Put_Line ("   A------- END ALARM QUEUE ------------|");
          System.IO.Put_Line ("");
       end if;
@@ -380,7 +377,19 @@ package body System.BB.Threads.Queues is
       pragma Assert (First_Thread /= Null_Thread_Id
                      and then Running_Thread /= Null_Thread_Id);
 
-      if not Busy_For_Interrupts then
+      if not Busy_For_Interrupts
+        and not Busy_For_Handlers then
+         if Print_Preem then
+            if First_Thread /= Running_Thread
+              and Running_Thread.Preemption_Needed then
+               System.IO.Put_Line ("PREEMPTION; " &
+                  System.Address'Image (First_Thread.ATCB) & "; " &
+                  System.Address'Image (Running_Thread.ATCB) & "; " &
+                  Duration'Image (To_Duration
+                  (System.BB.Time.Clock - System.BB.Time.Time_First)));
+            end if;
+         end if;
+
          return First_Thread /= Running_Thread;
       else
          return False;
@@ -757,7 +766,6 @@ package body System.BB.Threads.Queues is
    ---------------------------
 
    procedure Wakeup_Expired_Alarms is
-      use System.BB.Time;
 
       Now           : constant System.BB.Time.Time := Clock;
       Next_Alarm    : System.BB.Time.Time := System.BB.Time.Time'Last;
@@ -789,8 +797,20 @@ package body System.BB.Threads.Queues is
 
          Wakeup_Thread.State := Threads.Runnable;
 
+         Wakeup_Thread.Preemption_Needed := True;
+
          Threads.Queues.Change_Absolute_Deadline (Wakeup_Thread,
-              (Wakeup_Thread.Active_Relative_Deadline + System.BB.Time.Clock));
+              (Wakeup_Thread.Active_Relative_Deadline + Now));
+
+         if Debug_Wakeup_Time then
+            System.IO.Put_Line ("Wakeup Expired Alarms Process... Now: "
+               & Duration'Image (To_Duration (Now - System.BB.Time.Time_First))
+              & " - Rel_Dead: " & Duration'Image (To_Duration
+                (Wakeup_Thread.Active_Relative_Deadline))
+              & " - Abs_Dead: " & Duration'Image
+                 (To_Duration (Wakeup_Thread.Active_Absolute_Deadline -
+                    System.BB.Time.Time_First)));
+         end if;
 
          Threads.Queues.Insert (Wakeup_Thread);
 

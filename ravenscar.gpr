@@ -1,8 +1,7 @@
-
 project Ravenscar is
 
    for Source_Dirs use (".", "raven-edf");
-   for Main use ("unit01.adb", "unit02.adb", "unit03.adb");
+   for Main use ("unit01.adb", "unit02.adb", "unit03.adb", "unit04.adb");
 
    package Pretty_Printer is
    end Pretty_Printer;
@@ -27,3 +26,4 @@ project Ravenscar is
    end Make;
 
 end Ravenscar;
+

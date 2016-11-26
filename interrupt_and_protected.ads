@@ -7,9 +7,6 @@ with System.BB.Deadlines;
 
 package Interrupt_and_Protected is
 
-  Priority_Of_External_Interrupt_2 : constant System.Interrupt_Priority
-                                    := System.Interrupt_Priority'First + 5;
-
   task type Periodic
      (Pri        : System.Priority;
       Dead       : Positive;
@@ -27,13 +24,9 @@ package Interrupt_and_Protected is
   end Interrupt;
 
   protected Interrupt_Semaphore is
-     pragma Priority (250); -- (Priority_Of_External_Interrupt_2);
-     entry Wait;
-     procedure Signal;
+     pragma Interrupt_Priority (250);
      procedure Busy_Handler;
      pragma Attach_Handler (Busy_Handler, Ada.Interrupts.Names.External_Interrupt_2);
-  private
-     Signaled : Boolean := False;
   end Interrupt_Semaphore;
 
   procedure Init;

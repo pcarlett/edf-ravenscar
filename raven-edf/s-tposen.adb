@@ -69,6 +69,8 @@ with System.Tasking.Protected_Objects.Multiprocessors;
 
 with System.IO;
 with System.BB.Debug; use System.BB.Debug;
+with System.BB.Time; use System.BB.Time;
+with System.BB.Threads.Queues; use System.BB.Threads.Queues;
 
 package body System.Tasking.Protected_Objects.Single_Entry is
 
@@ -116,7 +118,7 @@ package body System.Tasking.Protected_Objects.Single_Entry is
    --  is
    --  begin
    --     Initialize_Protection (Object.Common'Access, Ceiling_Priority);
-
+   --
    --     Object.Compiler_Info := Compiler_Info;
    --     Object.Call_In_Progress := null;
    --     Object.Entry_Body := Entry_Body;
@@ -188,6 +190,8 @@ package body System.Tasking.Protected_Objects.Single_Entry is
 
       use type Ada.Exceptions.Exception_Id;
 
+      Now : System.BB.Time.Time;
+
    begin
       --  For this run time, pragma Detect_Blocking is always active, so we
       --  must raise Program_Error if this potentially blocking operation is
@@ -195,6 +199,27 @@ package body System.Tasking.Protected_Objects.Single_Entry is
 
       if Self_Id.Common.Protected_Action_Nesting > 0 then
          raise Program_Error;
+      end if;
+
+      Now := System.BB.Time.Clock;
+
+      if Print_Miss then
+         if Now > Running_Thread.Active_Absolute_Deadline then
+            System.IO.Put_Line ("DEADLINE MISS; " &
+                System.Address'Image (Running_Thread.ATCB) & "; " &
+                Duration'Image (To_Duration
+                (Now - System.BB.Time.Time_First)) & "; " &
+                Duration'Image (To_Duration
+                 (Running_Thread.Active_Absolute_Deadline
+                   - System.BB.Time.Time_First))
+                 & "; " & Duration'Image (To_Duration
+                (Running_Thread.Active_Absolute_Deadline - Now)));
+         else
+            System.IO.Put_Line ("EXECUTED; " &
+                System.Address'Image (Running_Thread.ATCB) & "; " &
+                Duration'Image (To_Duration
+                (Now - System.BB.Time.Time_First)));
+         end if;
       end if;
 
       Lock_Entry (Object);

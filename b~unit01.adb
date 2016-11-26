@@ -6,7 +6,7 @@ package body ada_main is
    pragma Warnings (Off);
 
    E033 : Short_Integer; pragma Import (Ada, E033, "ada__tags_E");
-   E084 : Short_Integer; pragma Import (Ada, E084, "system__bb__timing_events_E");
+   E086 : Short_Integer; pragma Import (Ada, E086, "system__bb__timing_events_E");
    E108 : Short_Integer; pragma Import (Ada, E108, "system__tasking__restricted__stages_E");
    E006 : Short_Integer; pragma Import (Ada, E006, "ada__real_time_E");
    E104 : Short_Integer; pragma Import (Ada, E104, "cyclic_tasks_E");
@@ -95,7 +95,7 @@ package body ada_main is
       end if;
 
       System.Bb.Timing_Events'Elab_Spec;
-      E084 := E084 + 1;
+      E086 := E086 + 1;
       Ada.Tags'Elab_Body;
       E033 := E033 + 1;
       System.Tasking.Restricted.Stages'Elab_Body;

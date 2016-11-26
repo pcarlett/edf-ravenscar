@@ -65,8 +65,6 @@ package body Sporadic_and_Protected_Procedure is
          -- Non-suspending periodic response code
          -- May include calls to protected procedures
 
-         -- Event.Signal;
-
          Next_Period := Next_Period + Period;
       end loop;
    end Periodic;
@@ -112,8 +110,14 @@ package body Sporadic_and_Protected_Procedure is
          (System.Task_Primitives.Operations.Self,
           System.BB.Time.Milliseconds (Dead));
 
+    delay until Next_Period;
+
       loop
          Event.Wait;
+
+         System.IO.Put_Line ("------->>>> Starting Elaboration Protected Procedure");
+
+         Event.Busy_Procedure;
 
          Put_Line("Begin Calc for Task n. " & Integer'Image(T_Num));
          Put("Gauss(" & Integer'Image(Gauss_Num) & ") takes"
@@ -131,7 +135,7 @@ package body Sporadic_and_Protected_Procedure is
          Cycle := Cycle + 1;
          System.IO.Put_Line ("--->>> Signaled: Cycle num. "
                              & Integer'Image (Integer (Cycle)));
-         if Cycle = 5 then
+         if Cycle = 3 then
             Cycle := 0;
             Occurred := True;
          end if;
@@ -164,15 +168,14 @@ package body Sporadic_and_Protected_Procedure is
         end Gauss;
         Gauss_Access : Proc_Access := Gauss'access;
       begin
-
+        -- 10 secs elaboration time
         Put_Line("Begin Calc for Busy Procedure");
-        Put("Gauss(" & Integer'Image(6703660) & ") takes"
-            & Duration'Image(Time_It(Gauss_Access, 6703660))
+        Put("Gauss(" & Integer'Image(5362928) & ") takes"
+            & Duration'Image(Time_It(Gauss_Access, 5362928))
             & " seconds on Busy Procedure");
         Put_Line("... Done.");
            Put_Line("End Calc for Busy Procedure");
      end Busy_Procedure;
-
    end Event;
 
    procedure Init is
@@ -194,7 +197,7 @@ package body Sporadic_and_Protected_Procedure is
    --       Prio,  Dead,  Cycle,  Task,  Exec
    P1 : Periodic(0,  4000,  4000, 1, 1340732); -- Exec 2 sec
    -- P2 : Periodic(0,  9000,  9000, 2, 2011100); -- Exec 3 sec
-   S3 : Sporadic(0, 25000, 25000, 3, 6033300); -- Exec 9 sec
+   S3 : Sporadic(0, 3000, 3000, 3, 1340732); -- Exec 2 sec
    ----------------------------------------
 
 end Sporadic_and_Protected_Procedure;

@@ -180,9 +180,9 @@ package System.Tasking.Protected_Objects is
 
    Null_PO : constant Protection_Access := null;
 
-   procedure Initialize_Protection
-     (Object           : Protection_Access;
-      Ceiling_Priority : Integer);
+   --  procedure Initialize_Protection
+   --    (Object           : Protection_Access;
+   --     Ceiling_Priority : Integer);
    --  Initialize the Object parameter so that it can be used by the runtime
    --  to keep track of the runtime state of a protected object.
 
@@ -226,7 +226,12 @@ private
 
       Caller_Relative_Deadline : System.BB.Deadlines.Relative_Deadline;
       --  Task's active relative deadline when the protected operation was
-      --  called. This realtive deadline is restored when the task relinquish
+      --  called. This relative deadline is restored when the task relinquish
+      --  the protected object.
+
+      Caller_Absolute_Deadline : System.BB.Deadlines.Absolute_Deadline;
+      --  Task's active absolute deadline when the protected operation was
+      --  called. This absolute deadline is restored when the task relinquish
       --  the protected object.
 
       Owner : Task_Id;

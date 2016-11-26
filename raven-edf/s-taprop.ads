@@ -94,6 +94,11 @@ package System.Task_Primitives.Operations is
       Relative_Deadline : System.BB.Deadlines.Relative_Deadline);
    pragma Inline (Set_Relative_Deadline);
 
+   procedure Restore_Relative_Deadline
+     (T    : ST.Task_Id;
+      Relative_Deadline : System.BB.Deadlines.Relative_Deadline);
+   pragma Inline (Restore_Relative_Deadline);
+
    function Get_Relative_Deadline (T : ST.Task_Id)
             return System.BB.Deadlines.Relative_Deadline;
    pragma Inline (Get_Relative_Deadline);

@@ -47,6 +47,10 @@ package System.BB.Threads.Queues is
    --  Boolean that indicates whether an interrupt is running inside a wrapped
    --  thread. Its value enables/disables First_Thread_Table change
 
+   Busy_For_Handlers : Boolean := False;
+   --  Boolean that indicates whether an handler is activated inside a wrapped
+   --  thread. Its value enables/disables any context switch until it completes
+
    ----------------------
    -- Debug Procedures --
    ----------------------

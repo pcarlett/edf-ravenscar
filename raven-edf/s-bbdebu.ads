@@ -60,19 +60,21 @@ package System.BB.Debug is
    Debug_Abs   : Boolean := General;
 
    Debug_Tasks : Boolean := General;
+   Debug_Handler  : Boolean := General;
 
    Debug_Time  : Boolean := General;
 
    Debug_Add   : Boolean := Delays;
    Debug_Delay : Boolean := Delays;
 
-   Debug_Delay_Time : Boolean := True;
+   Debug_Delay_Time : Boolean := False;
+   Debug_Wakeup_Time : Boolean := False;
 
-   Debug_Insert : Boolean := True;
+   Debug_Insert : Boolean := False;
    Debug_Abs_Dead : Boolean := False;
 
    Debug_Queue : Boolean := False;
-   Debug_Clock : Boolean := True;
+   Debug_Clock : Boolean := False;
 
    Print_Miss  : Boolean := Bench;
    Print_Preem : Boolean := Bench;

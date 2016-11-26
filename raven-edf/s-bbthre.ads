@@ -153,6 +153,10 @@ package System.BB.Threads is
       --  because it rappresents an absolute time value: it is updated every
       --  time a thread is appened in the ready queue because absolute
       --  deadline is the comparison value for correct queue order
+
+      Preemption_Needed : Boolean := False;
+      --  Boolean that indicates whether an urgent task after a wakeup needs to
+      --  preempt the running task before its natural suspension.
    end record;
 
    function Get_Affinity
@@ -222,6 +226,12 @@ package System.BB.Threads is
           (Rel_Deadline : System.BB.Deadlines.Relative_Deadline);
    pragma Inline (Set_Relative_Deadline);
    --  Set the active relative deadline of the executing thread to the
+   --  given value
+
+   procedure Restore_Relative_Deadline
+          (Rel_Deadline : System.BB.Deadlines.Relative_Deadline);
+   pragma Inline (Restore_Relative_Deadline);
+   --  Restore the active relative deadline of the executing thread to the
    --  given value
 
    function Get_Relative_Deadline

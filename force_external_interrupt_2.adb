@@ -22,8 +22,8 @@ procedure Force_External_Interrupt_2 is
 
 begin
 
-   System.IO.Put ("Interruption Loading: " &
-                    Ada.Interrupts.Interrupt_ID'Image (Ada.Interrupts.Names.External_Interrupt_2) & "...");
+   System.IO.Put_Line ("Interruption Loading: " &
+                    Ada.Interrupts.Interrupt_ID'Image (Ada.Interrupts.Names.External_Interrupt_2) & ".");
 
    Interrupt_Mask_Auxiliary.External_2 := True;
    Interrupt_Clear_Auxiliary.External_2 := True;
@@ -32,7 +32,5 @@ begin
    SPR.Interrupt_Mask_and_Priority := Interrupt_Mask_Auxiliary;
    SPR.Interrupt_Clear := Interrupt_Clear_Auxiliary;
    SPR.Interrupt_Force := Interrupt_Force_Auxiliary;
-
-   System.Io.Put_Line (" Done.");
 
 end Force_External_Interrupt_2;

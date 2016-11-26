@@ -109,16 +109,6 @@ package body Interrupt_and_Protected is
    end Interrupt;
 
    protected body Interrupt_Semaphore is
-      entry Wait when Signaled is
-      begin
-         Signaled := False;
-      end Wait;
-
-      procedure Signal is
-      begin
-         Signaled := True;
-      end Signal;
-
       procedure Busy_Handler is
          -- Other declarations
          type Proc_Access is access procedure(X : in out Integer);
@@ -167,10 +157,10 @@ package body Interrupt_and_Protected is
 
    ----------------------------------------
    -- TESTED SEQUENCE OF TASK SCHEDULING --
-   P1  : Periodic  (1, 3000, 3000, 1, 670366); -- Exec 1 sec
+   P1  : Periodic  (1, 3000, 3000, 1, 1343072); -- Exec 1 sec
    -- P2  : Periodic    (1, 6000, 6000, 2);--
    -- P3  : Periodic    (1, 9000, 9000, 3);--
-   Int : Interrupt (1, 10000, 10000, 4);--
+   Int : Interrupt (1, 6000, 6000, 4);--
    ----------------------------------------
 
 end Interrupt_and_Protected;

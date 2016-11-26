@@ -160,6 +160,22 @@ package body System.Task_Primitives.Operations is
    end Set_Relative_Deadline;
 
    ---------------------------
+   -- Restore_Relative_Deadline --
+   ---------------------------
+
+   procedure Restore_Relative_Deadline (T : ST.Task_Id;
+        Relative_Deadline : System.BB.Deadlines.Relative_Deadline) is
+   begin
+      --  A task can only change its own relative deadline
+
+      pragma Assert (T = Self);
+
+      --  Change the relative deadline in the underlying executive
+
+      System.OS_Interface.Restore_Relative_Deadline (Relative_Deadline);
+   end Restore_Relative_Deadline;
+
+   ---------------------------
    -- Get_Relative_Deadline --
    ---------------------------
 

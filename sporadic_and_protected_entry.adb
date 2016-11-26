@@ -112,9 +112,10 @@ package body Sporadic_and_Protected_Entry is
          (System.Task_Primitives.Operations.Self,
           System.BB.Time.Milliseconds (Dead));
 
-      loop
-         delay until Next_Period;
+    delay until Next_Period;
 
+      loop
+         Put_Line("Task n. " & Integer'Image(T_Num) & " Waiting on Entry.");
          Event.Wait;
 
          Put_Line("Begin Calc for Task n. " & Integer'Image(T_Num));
@@ -123,6 +124,7 @@ package body Sporadic_and_Protected_Entry is
              & " seconds on Task n. " & Integer'Image(T_Num));
          Put_Line("... Done.");
          Put_Line("End Calc for Task n. " & Integer'Image(T_Num));
+
       end loop;
 
    end Sporadic;
@@ -165,7 +167,7 @@ package body Sporadic_and_Protected_Entry is
    --       Prio,  Dead,  Cycle,  Task,  Exec
    P1 : Periodic(0,  4000,  4000, 1, 1340732); -- Exec 2 sec
    -- P2 : Periodic(0,  9000,  9000, 2, 2011100); -- Exec 3 sec
-   S3 : Sporadic(0, 22000, 22000, 3, 6033300); -- Exec 9 sec
+   S3 : Sporadic(0, 12000, 12000, 3, 6033300); -- Exec 9 sec
    ----------------------------------------
 
 end Sporadic_And_Protected_Entry;
