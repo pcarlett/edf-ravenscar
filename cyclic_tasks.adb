@@ -3,14 +3,18 @@ with Ada.Real_Time; use Ada.Real_Time;
 with System;
 
 with System.BB.Threads;
+with System.Address_Image;
+
 with System.Task_Primitives.Operations;
 with System.BB.Time;
+
+--  with System.Address_Image;
 
 with System_Time;
 
 package body Cyclic_Tasks is
 
-  task body Cyclic is
+   task body Cyclic is
       Task_Static_Offset : constant Time_Span :=
                Ada.Real_Time.Microseconds (0);
 
@@ -19,74 +23,71 @@ package body Cyclic_Tasks is
 
       Period : constant Ada.Real_Time.Time_Span :=
                Ada.Real_Time.Microseconds (Cycle_Time);
-      -- Other declarations
-      type Proc_Access is access procedure(X : in out Integer);
-      function Time_It(Action : Proc_Access; Arg : Integer) return Duration is
-         Start_Time : Time := Clock;
+      --  Other declarations
+      type Proc_Access is access procedure (X : in out Integer);
+      function Time_It (Action : Proc_Access; Arg : Integer) return Duration is
+         Start_Time : constant Time := Clock;
          Finis_Time : Time;
          Func_Arg : Integer := Arg;
       begin
-         Action(Func_Arg);
+         Action (Func_Arg);
          Finis_Time := Clock;
          return To_Duration (Finis_Time - Start_Time);
       end Time_It;
-      procedure Gauss(Times : in out Integer) is
+      procedure Gauss (Times : in out Integer) is
          Num : Integer := 0;
       begin
-         for I in 1..Times loop
+         for I in 1 .. Times loop
             Num := Num + I;
          end loop;
       end Gauss;
-      Gauss_Access : Proc_Access := Gauss'access;
+      Gauss_Access : constant Proc_Access := Gauss'Access;
 
-      Self : System.BB.Threads.Thread_Id := System.BB.Threads.Thread_Self;
-  begin
-    -- Initialization code
-    -- Setting artificial deadline: it forces system to read deadlines and use
-    -- it as main ordering
-    Put_Line ("---> Setting R_Dead "
+      Temp : Integer;
+
+   begin
+      --  Initialization code
+      --  Setting artificial deadline: it forces system to read deadlines and use
+      --  it as main ordering
+      Put_Line ("---> Setting R_Dead;"
         & Duration'Image (System.BB.Time.To_Duration
           (System.BB.Time.Microseconds (Dead)))
-        & " for Task " & Integer'Image(T_Num));
+        & ";Task;" & Integer'Image (T_Num) &
+       ";" & System.Address_Image (System.BB.Threads.Get_ATCB));
 
-    System.Task_Primitives.Operations.Set_Relative_Deadline
+      System.Task_Primitives.Operations.Set_Relative_Deadline
          (System.Task_Primitives.Operations.Self,
           System.BB.Time.Microseconds (Dead));
 
-    loop
-      delay until Next_Period;
+      loop
+         delay until Next_Period;
 
-      Put_Line ("Gauss(" & Integer'Image(Gauss_Num) & ") takes"
-          & Duration'Image(Time_It(Gauss_Access, Gauss_Num))
-                & " seconds");
-      -- on Task " & System.Address'Image (Self.ATCB));
+         --  Put_Line ("Gauss(" & Integer'Image (Gauss_Num) & ") takes"
+         --   & Duration'Image (Time_It (Gauss_Access, Gauss_Num))
+         --         & " seconds");
 
-      -- wait one whole period before executing
-      -- Non-suspending periodic response code
-      -- May include calls to protected procedures
-      Next_Period := Next_Period + Period;
-    end loop;
-  end Cyclic;
+         Temp := Gauss_Num;
+         Gauss (Temp);
 
-  procedure Init is
-  begin
-     System.Task_Primitives.Operations.Set_Relative_Deadline
-        (System.Task_Primitives.Operations.Self,
-         System.BB.Time.Microseconds (900000000));
+         --  wait one whole period before executing
+         --  Non-suspending periodic response code
+         --  May include calls to protected procedures
+         Next_Period := Next_Period + Period;
+      end loop;
+   end Cyclic;
 
-     System.IO.Put_Line ("--->  Unit01 Start  -->  R_Dead "
-        & Duration'Image (System.BB.Time.To_Duration
-        (System.BB.Time.Microseconds (900000000))));
-     loop
-        null;
-     end loop;
-  end Init;
+   procedure Init is
+   begin
+      System.Task_Primitives.Operations.Set_Relative_Deadline
+       (System.Task_Primitives.Operations.Self,
+        System.BB.Time.Milliseconds (900000));
 
-
-   ----------------------------------------
-  -- TESTED SEQUENCE OF TASK SCHEDULING --
-  C1 : Cyclic(0,  4000,  4000, 1, 2011100); -- Exec 3sec
-  C2 : Cyclic(0, 20000, 20000, 2, 6033300); -- Exec 9sec
-  ----------------------------------------
+      -- System.IO.Put_Line ("--->  Unit01 Start  -->  R_Dead "
+      --  & Duration'Image (System.BB.Time.To_Duration
+      --  (System.BB.Time.Milliseconds (900000))) & " ---|");
+      loop
+         null;
+      end loop;
+   end Init;
 
 end Cyclic_Tasks;

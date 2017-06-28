@@ -44,9 +44,6 @@ with System.BB.Threads.Queues;
 with System.BB.Board_Support;
 with System.BB.Time;
 
-with System.IO;
-with System.BB.Debug; use System.BB.Debug;
-
 package body System.BB.Interrupts is
 
    use type System.Storage_Elements.Storage_Offset;
@@ -127,21 +124,10 @@ package body System.BB.Interrupts is
    procedure Attach_Handler (Handler : Interrupt_Handler; Id : Interrupt_ID) is
    begin
       --  Check that we are attaching to a real interrupt
-
-      if Debug_Inte then
-         System.IO.Put_Line ("Interrupt Attach Handler Process... Begin.");
-      end if;
-
       pragma Assert (Id /= No_Interrupt);
 
       --  Copy the user's handler to the appropriate place within the table
-
       Interrupt_Handlers_Table (Id) := Handler;
-
-      if Debug_Inte then
-         System.IO.Put_Line ("Interrupt Attach Handler Process... Interrupt "
-                & " n. " & Interrupt_ID'Image (Id));
-      end if;
 
       --  Transform the interrupt level to the place in the interrupt vector
       --  table. Then insert the wrapper for the interrupt handlers in the
@@ -149,11 +135,6 @@ package body System.BB.Interrupts is
 
       CPU_Primitives.Install_Handler
         (Interrupt_Wrapper'Address, Board_Support.Get_Vector (Id));
-
-      if Debug_Inte then
-         System.IO.Put_Line ("Interrupt Attach Handler Process... Ended.");
-      end if;
-
    end Attach_Handler;
 
    -----------------------
@@ -189,10 +170,6 @@ package body System.BB.Interrupts is
       Now : Time.Time;
 
    begin
-      if Debug_Inte then
-         System.IO.Put_Line ("Interrupt Wrapper Process... Begin.");
-      end if;
-
       --  This must be an external interrupt
 
       pragma Assert (Interrupt /= No_Interrupt);
@@ -211,22 +188,11 @@ package body System.BB.Interrupts is
       --  Then, we must set the appropriate software priority corresponding
       --  to the interrupt being handled. It comprises also the appropriate
       --  interrupt masking.
-
-      if Debug_Inte then
-         System.IO.Put_Line ("Interrupt Wrapper Process... Raise Priority.");
-      end if;
-
       Threads.Queues.Change_Priority (Self_Id, Int_Priority, True);
 
       CPU_Primitives.Enable_Interrupts (Int_Priority);
 
       --  Call the user handler
-
-      if Debug_Inte then
-         System.IO.Put_Line ("Interrupt Wrapper Process... "
-                     & "Manage Interrupts.");
-      end if;
-
       Interrupt_Handlers_Table (Interrupt).all (Interrupt);
 
       CPU_Primitives.Disable_Interrupts;
@@ -242,12 +208,6 @@ package body System.BB.Interrupts is
       --  Restore the software priority to the state before the interrupt
       --  happened. Interrupt unmasking is not done here (it will be done
       --  later by the interrupt epilogue).
-
-      if Debug_Inte then
-         System.IO.Put_Line ("Interrupt Wrapper Process... "
-                        & "Restore Priority.");
-      end if;
-
       Threads.Queues.Change_Priority (Self_Id, Self_Id.Base_Priority, False);
 
       --  Restore the interrupt that was being handled previously (if any)
@@ -264,11 +224,6 @@ package body System.BB.Interrupts is
 
          Disable_Execution_Time;
       end if;
-
-      if Debug_Inte then
-         System.IO.Put_Line ("Interrupt Wrapper Process... Ended.");
-      end if;
-
    end Interrupt_Wrapper;
 
    ----------------------------

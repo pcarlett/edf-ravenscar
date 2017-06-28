@@ -51,14 +51,6 @@ package System.BB.Threads.Queues is
    --  Boolean that indicates whether an handler is activated inside a wrapped
    --  thread. Its value enables/disables any context switch until it completes
 
-   ----------------------
-   -- Debug Procedures --
-   ----------------------
-
-   --  Procedure used for debugging process: it prints every Thread in the
-   --  ready queue with its attributes
-   procedure Print_Queues (Thread : Thread_Id);
-
    ----------------
    -- Ready list --
    ----------------

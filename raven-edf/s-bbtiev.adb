@@ -30,9 +30,6 @@ with System.BB.CPU_Primitives.Multiprocessors;
 with System.BB.Parameters;
 with System.BB.Protection;
 
-with System.IO;
-with System.BB.Debug; use System.BB.Debug;
-
 package body System.BB.Timing_Events is
 
    use type System.BB.Time.Time;
@@ -228,10 +225,6 @@ package body System.BB.Timing_Events is
       CPU_Id : constant CPU := Current_CPU;
 
    begin
-      if Debug_Event then
-         System.IO.Put_Line ("Time Event Extraction Process... Begin.");
-      end if;
-
       if System.BB.Parameters.Multiprocessor and then Event.CPU /= CPU_Id then
 
          --  Timing Events must always be handled by the same CPU
@@ -259,10 +252,6 @@ package body System.BB.Timing_Events is
 
       Event.Next := null;
       Event.Prev := null;
-
-      if Debug_Event then
-         System.IO.Put_Line ("Time Event Extraction Process... Ended.");
-      end if;
    end Extract;
 
    -------------
@@ -277,10 +266,6 @@ package body System.BB.Timing_Events is
       Aux_Pointer : Timing_Event_Access;
 
    begin
-      if Debug_Event then
-         System.IO.Put_Line ("Time Event Insertion Process... Begin.");
-      end if;
-
       --  The event should be set
 
       pragma Assert (Event.Handler /= null);
@@ -338,10 +323,6 @@ package body System.BB.Timing_Events is
          end if;
 
          Aux_Pointer.Next := Event;
-      end if;
-
-      if Debug_Event then
-         System.IO.Put_Line ("Time Event Insertion Process... Ended.");
       end if;
    end Insert;
 

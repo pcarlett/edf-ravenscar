@@ -38,14 +38,16 @@ package body Sporadic_and_Protected_Procedure is
          Event.Signal;
       end Gauss;
       Gauss_Access : Proc_Access := Gauss'access;
+
+      Temp : Integer;
    begin
       -- Initialization code
       -- Setting artificial deadline: it forces system to read deadlines and use
       -- it as main ordering
-       Put_Line ("---> Setting R_Dead "
-           & Duration'Image (System.BB.Time.To_Duration
-             (System.BB.Time.Milliseconds (Dead)))
-           & " for Task " & Integer'Image(T_Num));
+      -- Put_Line ("---> Setting R_Dead "
+      --     & Duration'Image (System.BB.Time.To_Duration
+      --       (System.BB.Time.Milliseconds (Dead)))
+      --     & " for Task " & Integer'Image(T_Num));
 
        System.Task_Primitives.Operations.Set_Relative_Deadline
             (System.Task_Primitives.Operations.Self,
@@ -54,12 +56,15 @@ package body Sporadic_and_Protected_Procedure is
       loop
          delay until Next_Period;
 
-         Put_Line("Begin Calc for Task n. " & Integer'Image(T_Num));
-         Put("Gauss(" & Integer'Image(Gauss_Num) & ") takes"
-             & Duration'Image(Time_It(Gauss_Access, Gauss_Num))
-             & " seconds on Task n. " & Integer'Image(T_Num));
-         Put_Line("... Done.");
-         Put_Line("End Calc for Task n. " & Integer'Image(T_Num));
+--           Put_Line("Begin Calc for Task n. " & Integer'Image(T_Num));
+--           Put("Gauss(" & Integer'Image(Gauss_Num) & ") takes"
+--               & Duration'Image(Time_It(Gauss_Access, Gauss_Num))
+--               & " seconds on Task n. " & Integer'Image(T_Num));
+--           Put_Line("... Done.");
+--           Put_Line("End Calc for Task n. " & Integer'Image(T_Num));
+
+         Temp := Gauss_Num;
+         Gauss (Temp);
 
          -- wait one whole period before executing
          -- Non-suspending periodic response code
@@ -101,10 +106,10 @@ package body Sporadic_and_Protected_Procedure is
       -- Initialization code
       -- Setting artificial deadline: it forces system to read deadlines and use
       -- it as main ordering
-    Put_Line ("---> Setting R_Dead "
-        & Duration'Image (System.BB.Time.To_Duration
-          (System.BB.Time.Milliseconds (Dead)))
-        & " for Task " & Integer'Image(T_Num));
+    -- Put_Line ("---> Setting R_Dead "
+    --    & Duration'Image (System.BB.Time.To_Duration
+    --      (System.BB.Time.Milliseconds (Dead)))
+    --    & " for Task " & Integer'Image(T_Num));
 
     System.Task_Primitives.Operations.Set_Relative_Deadline
          (System.Task_Primitives.Operations.Self,
@@ -115,16 +120,16 @@ package body Sporadic_and_Protected_Procedure is
       loop
          Event.Wait;
 
-         System.IO.Put_Line ("------->>>> Starting Elaboration Protected Procedure");
+         -- System.IO.Put_Line ("------->>>> Starting Elaboration Protected Procedure");
 
          Event.Busy_Procedure;
 
-         Put_Line("Begin Calc for Task n. " & Integer'Image(T_Num));
-         Put("Gauss(" & Integer'Image(Gauss_Num) & ") takes"
-             & Duration'Image(Time_It(Gauss_Access, Gauss_Num))
-             & " seconds on Task n. " & Integer'Image(T_Num));
-         Put_Line("... Done.");
-         Put_Line("End Calc for Task n. " & Integer'Image(T_Num));
+--           Put_Line("Begin Calc for Task n. " & Integer'Image(T_Num));
+--           Put("Gauss(" & Integer'Image(Gauss_Num) & ") takes"
+--               & Duration'Image(Time_It(Gauss_Access, Gauss_Num))
+--               & " seconds on Task n. " & Integer'Image(T_Num));
+--           Put_Line("... Done.");
+--           Put_Line("End Calc for Task n. " & Integer'Image(T_Num));
       end loop;
 
    end Sporadic;
@@ -166,16 +171,23 @@ package body Sporadic_and_Protected_Procedure is
               Num := Num + I;
            end loop;
         end Gauss;
-        Gauss_Access : Proc_Access := Gauss'access;
+         Gauss_Access : Proc_Access := Gauss'access;
+
+         Temp : Integer;
       begin
         -- 10 secs elaboration time
-        Put_Line("Begin Calc for Busy Procedure");
-        Put("Gauss(" & Integer'Image(5362928) & ") takes"
-            & Duration'Image(Time_It(Gauss_Access, 5362928))
-            & " seconds on Busy Procedure");
-        Put_Line("... Done.");
-           Put_Line("End Calc for Busy Procedure");
-     end Busy_Procedure;
+--          Put_Line("Begin Calc for Busy Procedure");
+--          Put("Gauss(" & Integer'Image(5362928) & ") takes"
+--              & Duration'Image(Time_It(Gauss_Access, 5362928))
+--              & " seconds on Busy Procedure");
+--          Put_Line("... Done.");
+--             Put_Line("End Calc for Busy Procedure");
+
+
+         Temp := 5362928;
+         Gauss (Temp);
+
+      end Busy_Procedure;
    end Event;
 
    procedure Init is

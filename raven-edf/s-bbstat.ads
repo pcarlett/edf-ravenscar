@@ -2,7 +2,7 @@
 --                                                                          --
 --                  GNAT RUN-TIME LIBRARY (GNARL) COMPONENTS                --
 --                                                                          --
---                         S Y S T E M . B B . D E B U G                    --
+--                         S Y S T E M . B B . S T A T S                    --
 --                                                                          --
 --                                  S p e c                                 --
 --                                                                          --
@@ -36,48 +36,11 @@
 
 pragma Restrictions (No_Elaboration_Code);
 
-package System.BB.Debug is
+package System.BB.Stats is
    pragma Preelaborate;
 
-   General : constant Boolean := False;
-   Queues  : constant Boolean := False;
-   Delays  : constant Boolean := False;
-   Clocks  : constant Boolean := False;
-   Bench   : constant Boolean := True;
+   Preemptions : Integer := 0;
+   Deadline_Miss : Integer := 0;
+   Executions : Integer := 0;
 
-   Debug_Inte  : Boolean := General;
-   Debug_Hand  : Boolean := General;
-   Debug_Prot  : Boolean := General;
-   Debug_Thre  : Boolean := General;
-   Debug_Prob  : Boolean := General;
-   Debug_Prop  : Boolean := General;
-   Debug_Rest  : Boolean := General;
-   Debug_Event : Boolean := General;
-   Debug_Soft  : Boolean := General;
-   Debug_POSE  : Boolean := General;
-
-   Debug_Thqu  : Boolean := General;
-   Debug_Timer : Boolean := General;
-   Debug_Abs   : Boolean := General;
-
-   Debug_Tasks : Boolean := General;
-   Debug_Handler  : Boolean := General;
-
-   Debug_Time  : Boolean := General;
-
-   Debug_Add   : Boolean := Delays;
-   Debug_Delay : Boolean := Delays;
-
-   Debug_Delay_Time : Boolean := Clocks;
-   Debug_Wakeup_Time : Boolean := Clocks;
-
-   Debug_Insert : Boolean := Queues;
-   Debug_Abs_Dead : Boolean := Clocks;
-
-   Debug_Queue : Boolean := Queues;
-   Debug_Clock : Boolean := Clocks;
-
-   Print_Miss  : Boolean := Bench;
-   Print_Preem : Boolean := Bench;
-
-end System.BB.Debug;
+end System.BB.Stats;

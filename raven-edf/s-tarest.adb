@@ -58,10 +58,6 @@ with System.Secondary_Stack;
 --  used for SS_Init
 --           Default_Secondary_Stack_Size
 
-with System.IO;
---  used for writing messages
-with System.BB.Debug; use System.BB.Debug;
-
 with System.Storage_Elements;
 --  used for Storage_Array
 
@@ -113,27 +109,15 @@ package body System.Tasking.Restricted.Stages is
       TH : Termination_Handler := null;
 
    begin
-      if Debug_Rest then
-         System.IO.Put_Line ("Restricted Task Wrapper Process... Begin.");
-      end if;
-
       Self_ID.Common.Compiler_Data.Sec_Stack_Addr := Secondary_Stack'Address;
       SS_Init (Secondary_Stack'Address, Integer (Sec_Stack_Size));
 
       --  Initialize low-level TCB components, that cannot be initialized by
       --  the creator.
 
-      if Debug_Rest then
-         System.IO.Put_Line ("Restricted Task Wrapper Process... Enter_Task.");
-      end if;
-
       Enter_Task (Self_ID);
 
       --  Call the task body procedure
-
-      if Debug_Rest then
-         System.IO.Put_Line ("Restricted Task Wrapper Process... Call Body.");
-      end if;
 
       Self_ID.Common.Task_Entry_Point (Self_ID.Common.Task_Arg);
 
@@ -147,41 +131,21 @@ package body System.Tasking.Restricted.Stages is
       --  Raise the priority to prevent race conditions when using
       --  System.Tasking.Fall_Back_Handler.
 
-      --  System.IO.Put_Line ("Restricted Task Wrapper Process... Set Prio.");
-
       --  Set_Priority (Self_ID, Any_Priority'Last);
 
       --  Lower the relative deadline (as done for priority) to prevent race
       --  conditions when using System.Tasking.Fall_Back_Handler.
 
-      if Debug_Rest then
-         System.IO.Put_Line ("Restricted Task Wrapper Process... Set R_Dead.");
-      end if;
-
       Set_Relative_Deadline (Self_ID,
                              System.BB.Deadlines.Relative_Deadline (0));
-
-      if Debug_Rest then
-         System.IO.Put_Line ("Restricted Task Wrapper Process... Fall_Back.");
-      end if;
 
       TH := System.Tasking.Fall_Back_Handler;
 
       --  Restore original priority after retrieving shared data
 
-      --  if Debug_Rest then
-      --     System.IO.Put_Line
-      --          ("Restricted Task Wrapper Process... Restore Prio.");
-      --  end if;
-
       --  Set_Priority (Self_ID, Self_ID.Common.Base_Priority);
 
       --  Restore original relative deadline after retrieving shared data
-
-      if Debug_Rest then
-         System.IO.Put_Line
-                  ("Restricted Task Wrapper Process... Restore R_Dead.");
-      end if;
 
       Set_Relative_Deadline (Self_ID, Self_ID.Common.Base_Relative_Deadline);
 
@@ -200,10 +164,6 @@ package body System.Tasking.Restricted.Stages is
       --  execute any more.
 
       Sleep (Self_ID, Terminated);
-
-      if Debug_Rest then
-         System.IO.Put_Line ("Restricted Task Wrapper Process... Ended.");
-      end if;
    end Task_Wrapper;
 
    -----------------------
@@ -223,31 +183,13 @@ package body System.Tasking.Restricted.Stages is
       Success : Boolean;
 
    begin
-
-      if Debug_Rest then
-         System.IO.Put_Line ("Activate Restricted Task Process... Begin.");
-      end if;
-
       --  Raise the priority to prevent activated tasks from racing ahead
       --  before we finish activating the chain.
-
-      --  System.IO.Put_Line
-      --            ("Activate Restricted Task Process... Reset Prio.");
 
       --  Set_Priority (Self_ID, System.Any_Priority'Last);
 
       --  Lower the relative deadline to prevent activated tasks from
       --  racing ahead before we finish activating the chain.
-
-      if Debug_Rest then
-         System.IO.Put_Line
-                  ("Activate Restricted Task Process... Reset R_Dead.");
-      end if;
-
-      if Debug_Rest then
-         System.IO.Put_Line (" ----> Zero Deadline to Activate Tasks: "
-               & Duration'Image (To_Duration (Relative_Deadline (0))));
-      end if;
 
       Set_Relative_Deadline (Self_ID,
                System.BB.Deadlines.Relative_Deadline (0));
@@ -259,11 +201,6 @@ package body System.Tasking.Restricted.Stages is
 
       --  Note that since all created tasks will be blocked trying to get our
       --  (environment task) lock, there is no need to lock C here.
-
-      if Debug_Rest then
-         System.IO.Put_Line
-               ("Activate Restricted Task Process... Activ. Chain.");
-      end if;
 
       C := Chain_Access.T_ID;
       while C /= null loop
@@ -291,41 +228,17 @@ package body System.Tasking.Restricted.Stages is
          C := Next_C;
       end loop;
 
-      if Debug_Rest then
-         System.IO.Put_Line
-           ("Activate Restricted Task Process... Storage Size: " &
-              System.Parameters.Size_Type'Image (Storage_Size (C)));
-      end if;
-
       Self_ID.Common.State := Runnable;
 
       --  Restore the original priority
 
-      --  System.IO.Put_Line ("Activate Restricted Task Process... Set Prio.");
-
       --  Set_Priority (Self_ID, Self_ID.Common.Base_Priority);
 
       --  Restore the original relative deadline
-
-      if Debug_Rest then
-         System.IO.Put_Line
-                  ("Activate Restricted Task Process... Set R_Dead.");
-      end if;
-
       Set_Relative_Deadline (Self_ID, Self_ID.Common.Base_Relative_Deadline);
 
       --  Remove the tasks from the chain
-
-      if Debug_Rest then
-         System.IO.Put_Line
-                  ("Activate Restricted Task Process... Deact. Chain.");
-      end if;
-
       Chain_Access.T_ID := null;
-
-      if Debug_Rest then
-         System.IO.Put_Line ("Activate Restricted Task Process... Ended.");
-      end if;
 
    end Activate_Restricted_Tasks;
 
@@ -382,30 +295,18 @@ package body System.Tasking.Restricted.Stages is
       Base_CPU               : System.Multiprocessors.CPU_Range;
       Success                : Boolean;
 
+      PPP : Any_Priority;
    begin
 
-      if Debug_Rest then
-         System.IO.Put_Line ("Create Restricted Task Process... Begin.");
+      PPP := Priority;
+      if PPP = 0 then
+         PPP := Base_Priority;
       end if;
 
-      if Debug_Rest then
-         System.IO.Put_Line ("Create Restricted Task Process... Base Prio.");
-      end if;
-
-      if Priority = 0 then
-         System.IO.Put_Line
-            ("Create Restricted Task Process... Base Prio Checked.");
-      end if;
-
-      --  Base_Priority := Priority;
       --  Base_Priority := Any_Priority (0);
 
       --  same as priority but related to assign a correct relative deadline
       --  value
-
-      if Debug_Rest then
-         System.IO.Put_Line ("Create Restricted Task Process... Base R_Dead.");
-      end if;
 
       --  IT WILL BE MODIFIED WHEN WE WILL HAVE A WORKING CALL FROM
       --  COMPILER TO THIS METHOD
@@ -415,10 +316,6 @@ package body System.Tasking.Restricted.Stages is
       --             System.BB.Deadlines.Unspecified_Relative_Deadline
       --     then System.BB.Deadlines.Default_Relative_Deadline
       --     else Relative_Deadline);
-
-      if Debug_Rest then
-         System.IO.Put_Line ("Create Restricted Task Process... Base CPU.");
-      end if;
 
       if CPU /= Unspecified_CPU
         and then (CPU < Integer (System.Multiprocessors.CPU_Range'First)
@@ -440,10 +337,6 @@ package body System.Tasking.Restricted.Stages is
 
       --  No need to lock Self_ID here, since only environment task is running
 
-      if Debug_Rest then
-         System.IO.Put_Line ("Create Restricted Task Process... Init. ATCB.");
-      end if;
-
       Initialize_ATCB  --  called in in s-taskin.adb
         (State, Discriminants,
 
@@ -457,21 +350,12 @@ package body System.Tasking.Restricted.Stages is
          raise Program_Error;
       end if;
 
-      if Debug_Rest then
-         System.IO.Put_Line
-                  ("Create Restricted Task Process... Activ. Chain.");
-      end if;
-
       Created_Task.Entry_Call.Self := Created_Task;
 
       --  Append this task to the activation chain
 
       Created_Task.Common.Activation_Link := Chain.T_ID;
       Chain.T_ID := Created_Task;
-
-      if Debug_Rest then
-         System.IO.Put_Line ("Create Restricted Task Process... Ended.");
-      end if;
 
    end Create_Restricted_Task;
 

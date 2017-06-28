@@ -40,9 +40,6 @@ pragma Polling (Off);
 with System.Task_Primitives.Operations;
 --  used for Self
 
-with System.IO;  --  For debugging process
-with System.BB.Debug; use System.BB.Debug;
-
 with System.Secondary_Stack;
 --  used for SS_Init
 --           Default_Secondary_Stack_Size
@@ -113,40 +110,19 @@ package body System.Tasking is
       Success                : out Boolean)
    is
    begin
-      if Debug_Tasks then
-         System.IO.Put_Line ("Tasking Init ATCB Process... Begin.");
-      end if;
-
       T.Common.State := Unactivated;
 
       --  Initialize T.Common.LL
-
-      if Debug_Tasks then
-         System.IO.Put_Line ("Tasking Init ATCB Process... TCB.");
-      end if;
-
       Task_Primitives.Operations.Initialize_TCB (T, Success);
 
       if not Success then
          return;
       end if;
 
-      if Debug_Tasks then
-         System.IO.Put_Line ("Tasking Init ATCB Process... Prio.");
-      end if;
-
       T.Common.Base_Priority := Base_Priority;
-
-      if Debug_Tasks then
-         System.IO.Put_Line ("Tasking Init ATCB Process... Rel_Dead.");
-      end if;
 
       T.Common.Base_Relative_Deadline := Base_Relative_Deadline;
       --  for relative deadline
-
-      if Debug_Tasks then
-         System.IO.Put_Line ("Tasking Init ATCB Process... CPU.");
-      end if;
 
       T.Common.Base_CPU := Base_CPU;
       T.Common.Protected_Action_Nesting := 0;
@@ -154,25 +130,12 @@ package body System.Tasking is
       T.Common.Task_Entry_Point := Task_Entry_Point;
       T.Common.Task_Info := Task_Info;
 
-      if Debug_Tasks then
-         System.IO.Put_Line ("Tasking Init ATCB Process... Addresses.");
-      end if;
-
       T.Common.Compiler_Data.Pri_Stack_Info.Start_Address :=
         Stack_Address;
 
       T.Common.Compiler_Data.Pri_Stack_Info.Size :=
         Storage_Elements.Storage_Offset
           (Parameters.Adjust_Storage_Size (Stack_Size));
-
-      if Debug_Tasks then
-         System.IO.Put_Line ("Tasking Init ATCB Process... Storage Size: " &
-                      System.Parameters.Size_Type'Image (Storage_Size (T)));
-      end if;
-
-      if Debug_Tasks then
-         System.IO.Put_Line ("Tasking Init ATCB Process... Ended.");
-      end if;
 
    end Initialize_ATCB;
 
@@ -204,19 +167,11 @@ package body System.Tasking is
       CPU_Not_In_Range : Boolean := False;
 
    begin
-      if Debug_Tasks then
-         System.IO.Put_Line ("Tasking Initialization Process... Begin.");
-      end if;
-
       if Initialized then
          return;
       end if;
 
       Initialized := True;
-
-      if Debug_Tasks then
-         System.IO.Put_Line ("Tasking Initialization Process... CPU.");
-      end if;
 
       if Main_CPU /= Unspecified_CPU
         and then (Main_CPU < Integer (System.Multiprocessors.CPU_Range'First)
@@ -250,20 +205,12 @@ package body System.Tasking is
 
       --  Base_Priority := System.Any_Priority (0);
 
-      if Debug_Tasks then
-         System.IO.Put_Line ("Tasking Initialization Process... Rel_Dead.");
-      end if;
-
       --  For Relative_Deadline configuration
       --  have to be restored after debugging process
       if Main_Relative_Deadline = Unspecified_Relative_Deadline then
          Base_Relative_Deadline := Default_Relative_Deadline;
       else
          Base_Relative_Deadline := Main_Relative_Deadline;
-      end if;
-
-      if Debug_Tasks then
-         System.IO.Put_Line ("Tasking Initialization Process... ATCB.");
       end if;
 
       Initialize_ATCB
@@ -277,11 +224,6 @@ package body System.Tasking is
          Base_CPU, Task_Info.Unspecified_Task_Info, Null_Address, 0,
          Environment_Task (Base_CPU)'Access, Success);
 
-      if Debug_Tasks then
-         System.IO.Put_Line
-               ("Tasking Initialization Process... Environment_Task.");
-      end if;
-
       Task_Primitives.Operations.Initialize
         (Environment_Task (Base_CPU)'Access);
 
@@ -293,11 +235,6 @@ package body System.Tasking is
         Environment_Task (Base_CPU)'Access;
 
       --  Initialize the secondary stack
-
-      if Debug_Tasks then
-         System.IO.Put_Line ("Tasking Initialization Process... Addresses.");
-      end if;
-
       Environment_Task (Base_CPU).Common.Compiler_Data.Sec_Stack_Addr :=
         Secondary_Stack'Address;
       SS_Init (Secondary_Stack'Address, Default_Secondary_Stack_Size);
@@ -310,10 +247,6 @@ package body System.Tasking is
 
       if CPU_Not_In_Range then
          raise Tasking_Error with "Main CPU not in range";
-      end if;
-
-      if Debug_Tasks then
-         System.IO.Put_Line ("Tasking Initialization Process... Ended.");
       end if;
 
    end Initialize;
@@ -334,14 +267,6 @@ package body System.Tasking is
    begin
       --  Initialize a fake environment task for this slave CPU
 
-      if Debug_Tasks then
-         System.IO.Put_Line ("Slave Tasking Initialization Process... Begin.");
-      end if;
-
-      if Debug_Tasks then
-         System.IO.Put_Line ("Slave Tasking Initialization Process... ATCB.");
-      end if;
-
       Initialize_ATCB
         (null, Null_Address,
 
@@ -353,20 +278,11 @@ package body System.Tasking is
          CPU_Id, Task_Info.Unspecified_Task_Info, Null_Address, 0,
          Environment_Task (CPU_Id)'Access, Success);
 
-      if Debug_Tasks then
-         System.IO.Put_Line ("Slave Tasking Initialization Process... CPU.");
-      end if;
-
       Task_Primitives.Operations.Initialize_Slave
         (Environment_Task (CPU_Id)'Access);
 
       --  Task_Primitives.Operations.Set_Priority
       --    (Environment_Task (CPU_Id)'Access, Base_Priority);
-
-      if Debug_Tasks then
-         System.IO.Put_Line
-               ("Slave Tasking Initialization Process... Rel_Dead.");
-      end if;
 
       Task_Primitives.Operations.Set_Relative_Deadline
         (Environment_Task (CPU_Id)'Access, Base_Relative_Deadline);
@@ -377,11 +293,6 @@ package body System.Tasking is
 
       --  The task has no code to execute and will stay in an unactivated state
 
-      if Debug_Tasks then
-         System.IO.Put_Line
-               ("Slave Tasking Initialization Process... Deactivate.");
-      end if;
-
       Environment_Task (CPU_Id).Common.State := Unactivated;
 
       --  This call to the sleep procedure will force the current CPU to start
@@ -389,10 +300,6 @@ package body System.Tasking is
 
       Task_Primitives.Operations.Sleep
         (Environment_Task (CPU_Id)'Access, Unactivated);
-
-      if Debug_Tasks then
-         System.IO.Put_Line ("Slave Tasking Initialization Process... Ended.");
-      end if;
 
    end Initialize_Slave;
 

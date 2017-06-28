@@ -38,9 +38,6 @@ with Ada.Unchecked_Conversion;
 with System.Storage_Elements;
 with System.Tasking.Debug;
 
-with System.IO;  --  For debugging process
-with System.BB.Debug; use System.BB.Debug;
-
 package body System.Task_Primitives.Operations is
 
    use System.OS_Interface;
@@ -253,11 +250,6 @@ package body System.Task_Primitives.Operations is
    begin
       --  Notify the underlying executive about the Ada task that is being
       --  executed by the running thread.
-
-      if Debug_Prop then
-         System.IO.Put_Line ("Prot. Ops. Enter Task Process... Begin.");
-      end if;
-
       System.OS_Interface.Set_ATCB (To_Address (Self_ID));
 
       --  Set lwp (for gdb)
@@ -271,23 +263,12 @@ package body System.Task_Primitives.Operations is
       --  Ensure that the task has the right priority at the end
       --  of its initialization (before calling the task's code).
 
-      --  System.IO.Put_Line ("Prot. Ops. Enter Task Process... Set Prio.");
-
       --  System.OS_Interface.Set_Priority (Self_ID.Common.Base_Priority);
 
       --  Ensure that the task has the right relative deadline at the end
       --  of its initialization (before calling the task's code).
-
-      if Debug_Prop then
-         System.IO.Put_Line ("Prot. Ops. Enter Task Process... Set R_Dead.");
-      end if;
-
       System.OS_Interface.Set_Relative_Deadline
             (Self_ID.Common.Base_Relative_Deadline);
-
-      if Debug_Prop then
-         System.IO.Put_Line ("Prot. Ops. Enter Task Process... Ended.");
-      end if;
 
    end Enter_Task;
 
@@ -319,11 +300,6 @@ package body System.Task_Primitives.Operations is
       Succeeded  : out Boolean)
    is
    begin
-
-      if Debug_Prop then
-         System.IO.Put_Line ("Prot. Ops. Create Thread Process... Begin.");
-      end if;
-
       --  The stack has been preallocated for these targets
 
       pragma Assert
@@ -331,15 +307,7 @@ package body System.Task_Primitives.Operations is
          and then Storage_Offset (Stack_Size) =
            T.Common.Compiler_Data.Pri_Stack_Info.Size);
 
-      if Debug_Prop then
-         System.IO.Put_Line ("Prot. Ops. Create Thread Process... Accessing.");
-      end if;
-
       T.Common.LL.Thread := T.Common.LL.Thread_Desc'Access;
-
-      if Debug_Prop then
-         System.IO.Put_Line ("Prot. Ops. Create Thread Process... Creating.");
-      end if;
 
       --  Create the underlying task
 
@@ -356,10 +324,6 @@ package body System.Task_Primitives.Operations is
 
       Succeeded :=  True;
 
-      if Debug_Prop then
-         System.IO.Put_Line ("Prot. Ops. Create Thread Process... Ended.");
-      end if;
-
    end Create_Task;
 
    ----------------
@@ -369,28 +333,14 @@ package body System.Task_Primitives.Operations is
    procedure Initialize (Environment_Task : ST.Task_Id) is
    begin
 
-      if Debug_Prop then
-         System.IO.Put_Line ("Prot. Ops Initialize Thread Process... Begin.");
-      end if;
-
       Environment_Task.Common.LL.Thread :=
         Environment_Task.Common.LL.Thread_Desc'Access;
 
       --  Clear Activation_Link, as required by Add_Task_Id
 
-      if Debug_Prop then
-         System.IO.Put_Line
-                  ("Prot. Ops Initialize Thread Process... Activate.");
-      end if;
-
       Environment_Task.Common.Activation_Link := null;
 
       --  First the underlying multitasking executive must be initialized
-
-      if Debug_Prop then
-         System.IO.Put_Line
-                  ("Prot. Ops Initialize Thread Process... Init OSI.");
-      end if;
 
       System.OS_Interface.Initialize
         (Environment_Task.Common.LL.Thread,
@@ -400,18 +350,7 @@ package body System.Task_Primitives.Operations is
 
       --  The environment task must also execute its initialization
 
-      if Debug_Prop then
-         System.IO.Put_Line
-                  ("Prot. Ops Initialize Thread Process... Entering.");
-      end if;
-
       Enter_Task (Environment_Task);
-
-      if Debug_Prop then
-         System.IO.Put_Line
-                  ("Prot. Ops Initialize Thread Process... Ended.");
-      end if;
-
    end Initialize;
 
    ----------------------

@@ -47,8 +47,6 @@ with Ada.Unchecked_Conversion;
 
 -----------------
 --  Used in debugging process
-with System.IO;
-with System.BB.Debug; use System.BB.Debug;
 with System.Address_Image;
 -----------------
 
@@ -200,11 +198,6 @@ package body System.BB.Threads is
    begin
       --  Perform some basic hardware initialization (clock, timer, and
       --  interrupt handlers).
-
-      if Debug_Thre then
-         System.IO.Put_Line ("Threads Initialization Process... Begin.");
-      end if;
-
       Board_Support.Initialize_Board;
       Interrupts.Initialize_Interrupts;
       Time.Initialize_Timers;
@@ -224,64 +217,32 @@ package body System.BB.Threads is
       pragma Warnings (On, "loop range is null*");
 
       --  Initialize internal queues and the environment task
-
-      if Debug_Thre then
-         System.IO.Put_Line ("Threads Initialization Process... Initialized.");
-      end if;
-
       Protection.Enter_Kernel;
 
       --  The environment thread executes the main procedure of the program
 
       --  CPU of the environment thread is current one (initialization CPU)
-
-      if Debug_Thre then
-         System.IO.Put_Line ("Threads Initialization Process... Entered.");
-      end if;
-
       Environment_Thread.Base_CPU := Main_CPU;
 
       --  The active priority is initially equal to the base priority
-
-      --  Removed from Ravenscar EDF version
-      --  System.IO.Put_Line
-      --          ("Threads Initialization Process... Init Priority.");
 
       Environment_Thread.Base_Priority   := Main_Priority;
       Environment_Thread.Active_Priority := Main_Priority;
 
       --  The active relative deadline is initially equal to the base
       --  relative deadline
-
-      if Debug_Thre then
-         System.IO.Put_Line ("Threads Initialization Process..."
-               & " Init Rel_Dead.");
-      end if;
-
       Environment_Thread.Base_Relative_Deadline   := Main_Rel_Deadline;
       Environment_Thread.Active_Relative_Deadline := Main_Rel_Deadline;
 
       --  The active absolute deadline is initially equal to the base relative
       --  deadline plus a NOW time value: it's necessary to convert relative
       --  deadline Time_Span value to absolute deadline Time value
-
-      if Debug_Thre then
-         System.IO.Put_Line ("Threads Initialization Process... "
-                           & "Init Abs_Dead.");
-      end if;
-
       Environment_Thread.Active_Absolute_Deadline :=
       --          Main_Rel_Deadline + Now;
               Main_Rel_Deadline + System.BB.Time.Clock;
 
       --  The currently executing thread (and the only one) is the
       --  environment thread.
-
-      if Debug_Thre then
-         System.IO.Put_Line ("Threads Initialization Process... "
-                           & "Task + Queues.");
-      end if;
-
       Queues.Running_Thread_Table (Main_CPU) := Environment_Thread;
       Queues.First_Thread_Table (Main_CPU)   := Environment_Thread;
       Queues.Global_List                     := Environment_Thread;
@@ -297,11 +258,6 @@ package body System.BB.Threads is
         Bottom_Of_Environment_Stack'Address;
 
       --  The initial state is Runnable
-
-      if Debug_Thre then
-         System.IO.Put_Line ("Threads Initialization Process... State.");
-      end if;
-
       Environment_Thread.State := Runnable;
 
       --  No wakeup has been yet signaled
@@ -309,11 +265,6 @@ package body System.BB.Threads is
       Environment_Thread.Wakeup_Signaled := False;
 
       --  Initialize alarm status
-
-      if Debug_Thre then
-         System.IO.Put_Line ("Threads Initialization Process... Alarm.");
-      end if;
-
       Environment_Thread.Alarm_Time :=
         System.BB.Time.Time'Last;
       Environment_Thread.Next_Alarm := Null_Thread_Id;
@@ -322,12 +273,6 @@ package body System.BB.Threads is
       --  execute because the environment task is already executing. We are
       --  interested in the initialization of the rest of the state, such as
       --  the interrupt nesting level and the cache state.
-
-      if Debug_Thre then
-         System.IO.Put_Line ("Threads Initialization Process... "
-                           & "Init Context.");
-      end if;
-
       Initialize_Context
         (Environment_Thread.Context'Access,
          Null_Address,
@@ -343,11 +288,6 @@ package body System.BB.Threads is
       Initialized := True;
 
       Protection.Leave_Kernel;
-
-      if Debug_Thre then
-         System.IO.Put_Line ("Threads Initialization Process... Ended.");
-      end if;
-
    end Initialize;
 
    ----------------------------------
@@ -359,11 +299,6 @@ package body System.BB.Threads is
 
    begin
       --  Initialize internal queues and the environment task
-
-      if Debug_Thre then
-         System.IO.Put_Line ("Slave Environment Initialization Process... "
-                           & "Begin");
-      end if;
       Protection.Enter_Kernel;
 
       Environment_Thread.Base_CPU        := CPU_Id;
@@ -426,10 +361,6 @@ package body System.BB.Threads is
          Environment_Thread.Top_Of_Stack);
 
       Protection.Leave_Kernel;
-      if Debug_Thre then
-         System.IO.Put_Line ("Slave Environment Initialization Process... "
-                     & "Ended");
-      end if;
    end Initialize_Slave_Environment;
 
    --------------
@@ -465,17 +396,11 @@ package body System.BB.Threads is
       --  ceiling priority of a protected object. Hence, it can never be set
       --  a priority which is lower than the base priority of the thread.
 
-   --     System.IO.Put_Line ("Threads Setting Priority Process... Begin.");
-
    --     pragma Assert (Priority >= Queues.Running_Thread.Base_Priority);
-
-   --     System.IO.Put_Line ("Threads Setting Priority Process... Changing.");
 
    --     Queues.Change_Priority (Queues.Running_Thread, Priority, False);
 
    --     Protection.Leave_Kernel;
-
-   --     System.IO.Put_Line ("Threads Setting Priority Process... Ended.");
 
    --  end Set_Priority;
 
@@ -497,29 +422,11 @@ package body System.BB.Threads is
       --  Priority changes are only possible as a result of inheriting the
       --  ceiling priority of a protected object. Hence, it can never be set
       --  a priority which is lower than the base priority of the thread.
-
-      if Debug_Thre then
-         System.IO.Put_Line ("Thread Setting R_Deadline Process... Begin.");
-      end if;
-
       pragma Assert (Rel_Deadline >=
               Queues.Running_Thread.Base_Relative_Deadline);
 
-      if Debug_Thre then
-         System.IO.Put_Line ("Thread Setting R_Deadline Process... Changing.");
-      end if;
-
-      if Debug_Thre then
-         System.IO.Put_Line ("Thread Setting R_Deadline Process... R_Dead: "
-               & Duration'Image (To_Duration (Rel_Deadline)));
-      end if;
-
       Queues.Change_Relative_Deadline
               (Queues.Running_Thread, Rel_Deadline);
-
-      if Debug_Thre then
-         System.IO.Put_Line ("Thread Setting R_Deadline Process... Ended.");
-      end if;
 
       Protection.Leave_Kernel;
    end Set_Relative_Deadline;
@@ -542,28 +449,10 @@ package body System.BB.Threads is
       --  Priority changes are only possible as a result of inheriting the
       --  ceiling priority of a protected object. Hence, it can never be set
       --  a priority which is lower than the base priority of the thread.
-
-      if Debug_Thre then
-         System.IO.Put_Line ("Thread Setting R_Deadline Process... Begin.");
-      end if;
-
       pragma Assert (Rel_Deadline >=
               Queues.Running_Thread.Base_Relative_Deadline);
 
-      if Debug_Thre then
-         System.IO.Put_Line ("Thread Setting R_Deadline Process... Changing.");
-      end if;
-
-      if Debug_Thre then
-         System.IO.Put_Line ("Thread Setting R_Deadline Process... R_Dead: "
-               & Duration'Image (To_Duration (Rel_Deadline)));
-      end if;
-
       Queues.Running_Thread.Active_Relative_Deadline := Rel_Deadline;
-
-      if Debug_Thre then
-         System.IO.Put_Line ("Thread Setting R_Deadline Process... Ended.");
-      end if;
 
       Protection.Leave_Kernel;
    end Restore_Relative_Deadline;
@@ -586,33 +475,11 @@ package body System.BB.Threads is
       --  Priority changes are only possible as a result of inheriting the
       --  ceiling priority of a protected object. Hence, it can never be set
       --  a priority which is lower than the base priority of the thread.
-
-      if Debug_Thre then
-         System.IO.Put_Line ("Thread Setting A_Deadline Process... Begin.");
-      end if;
-
       pragma Assert (Abs_Deadline >=
               Queues.Running_Thread.Active_Absolute_Deadline);
 
-      if Debug_Thre then
-         System.IO.Put_Line ("Thread Setting A_Deadline Process... Changing.");
-      end if;
-
       Queues.Change_Absolute_Deadline
               (Queues.Running_Thread, Abs_Deadline);
-
-      if Debug_Abs_Dead then
-         System.IO.Put_Line ("---    Thread => "
-            & "R_Dead: " & Duration'Image (System.BB.Time.To_Duration
-            (Queues.Running_Thread.Active_Relative_Deadline)) & " => A_Dead" &
-            Duration'Image (System.BB.Time.To_Duration
-            (Queues.Running_Thread.Active_Absolute_Deadline
-                - System.BB.Time.Time_First)));
-      end if;
-
-      if Debug_Thre then
-         System.IO.Put_Line ("Thread Setting A_Deadline Process... Ended.");
-      end if;
 
       Protection.Leave_Kernel;
    end Set_Absolute_Deadline;
@@ -624,9 +491,6 @@ package body System.BB.Threads is
    procedure Sleep is
       Self_Id : constant Thread_Id := Queues.Running_Thread;
    begin
-      if Debug_Thre then
-         System.IO.Put_Line ("Thread Sleep Process... Begin.");
-      end if;
       Protection.Enter_Kernel;
 
       if Self_Id.Wakeup_Signaled then
@@ -651,26 +515,13 @@ package body System.BB.Threads is
          --  may be preempted by task B in the window between releasing the
          --  protected object and actually suspending itself, and the Wakeup
          --  call by task B in 4) can happen before the Sleep call in 3).
-
-         if Debug_Thre then
-            System.IO.Put_Line ("Thread Sleep Process... "
-                  & "Wakeup Signaled False.");
-         end if;
          Self_Id.Wakeup_Signaled := False;
 
       else
          --  Update status
-
-         if Debug_Thre then
-            System.IO.Put_Line ("Thread Sleep Process... Changing State.");
-         end if;
          Self_Id.State := Suspended;
 
          --  Extract from the list of ready threads
-
-         if Debug_Thre then
-            System.IO.Put_Line ("Thread Sleep Process... Extract from Ready.");
-         end if;
          Queues.Extract (Self_Id);
 
          --  The currently executing thread is now blocked, and it will leave
@@ -681,10 +532,6 @@ package body System.BB.Threads is
       Protection.Leave_Kernel;
 
       --  Now the thread has been awaken again and it is executing
-      if Debug_Thre then
-         System.IO.Put_Line ("Thread Sleep Process... Ended.");
-      end if;
-
    end Sleep;
 
    -------------------
@@ -709,10 +556,6 @@ package body System.BB.Threads is
       --           Storage_Elements.Storage_Offset (64);
    begin
 
-      if Debug_Thre then
-         System.IO.Put_Line ("Threads Creation Process... Begin.");
-      end if;
-
       Protection.Enter_Kernel;
 
       --  Set the CPU affinity
@@ -721,60 +564,29 @@ package body System.BB.Threads is
 
       --  Set the base and active priority
 
-      --  System.IO.Put_Line ("Threads Creation Process... Setting Prio.");
-
       Id.Base_Priority   := Any_Priority (0);
       Id.Active_Priority := Any_Priority (0);
 
       --  Set the base and active relative deadline
 
-      if Debug_Thre then
-         System.IO.Put_Line ("Threads Creation Process... Setting Rel_Dead.");
-      end if;
-
       Id.Base_Relative_Deadline   := Relative_Deadline;
       Id.Active_Relative_Deadline := Relative_Deadline;
-
-      if Debug_Thre then
-         System.IO.Put_Line ("Threads Creation Process... Setting Abs_Dead.");
-      end if;
 
       --  Set the active absolute deadline
       Id.Active_Absolute_Deadline := --  System.BB.Time.Time
                      (Relative_Deadline) + System.BB.Time.Clock;
 
-      if Debug_Thre then
-         System.IO.Put_Line ("Threads Creation Process... Insert in G_List.");
-      end if;
-
       --  Insert in the global list
-
       Id.Global_List := Queues.Global_List;
       Queues.Global_List := Id;
 
       --  Insert task inside the ready list (as last within its priority)
-
-      if Debug_Thre then
-         System.IO.Put_Line ("Threads Creation Process... "
-                        & "Insert Ready Queue.");
-      end if;
-
       Queues.Insert (Id);
 
       --  Store stack information
-
-      if Debug_Thre then
-         System.IO.Put_Line ("Threads Creation Process... Stack Operations.");
-      end if;
-
       Id.Top_Of_Stack :=
         ((Stack_Address + Storage_Elements.Storage_Offset (Stack_Size))
          / Standard'Maximum_Alignment) * Standard'Maximum_Alignment;
-
-      if Debug_Thre then
-         System.IO.Put_Line ("Threads Creation Process... Stack Size: " &
-                               System.Parameters.Size_Type'Image (Stack_Size));
-      end if;
 
       Id.Bottom_Of_Stack := Stack_Address;
 
@@ -790,32 +602,18 @@ package body System.BB.Threads is
       --  stack pointer. The thread will execute the Thread_Caller procedure
       --  and the stack pointer points to the top of the stack assigned to the
       --  thread.
-
-      if Debug_Thre then
-         System.IO.Put_Line ("Threads Creation Process... "
-                     & "Initialize Context.");
-      end if;
-
       Initialize_Context (Id.Context'Access,
                           Code,
                           Arg,
                           Id.Top_Of_Stack);
 
       --  Initialize alarm status
-
-      if Debug_Thre then
-         System.IO.Put_Line ("Threads Creation Process... Initialize Alarm.");
-      end if;
-
       Id.Alarm_Time := System.BB.Time.Time'Last;
       Id.Next_Alarm := Null_Thread_Id;
 
       Id.Execution_Time := System.BB.Time.Time'First;
 
       Protection.Leave_Kernel;
-      if Debug_Thre then
-         System.IO.Put_Line ("Threads Creation Process... Ended.");
-      end if;
    end Thread_Create;
 
    -----------------

@@ -5,6 +5,7 @@ DEBUG=-g -O0
 FLAGS=-a
 LIBSDIR=raven-edf
 SOURCES=*.ad*
+BUILD=build
 
 help:
 	@echo ""
@@ -18,6 +19,7 @@ help:
 	@echo "-->  \"make unit02\": it build test for cyclic and sporadic tasks with activations"
 	@echo "-->  \"make unit03\": it build test for sporadic tasks and protected objects"
 	@echo "-->  \"make unit04\": it build test for interrupts and protected objects"
+	@echo "-->  \"make unit05\": it build test for deadline floor protocol"
 	@echo ""
 	@echo "Use \"make clean\" to remove any builded file"
 	@echo ""
@@ -37,10 +39,13 @@ unit03:	libs
 unit04:	libs
 	$(CC) $(INCLUDE) $(DEBUG) unit04.adb
 
+unit05:	libs
+	$(CC) $(INCLUDE) $(DEBUG) unit05.adb
+
 .PHONY: clean
 
 clean: cleanlibs
-	rm -rf *.o *.ali *.dg unit01 unit02 unit03 unit04
+	rm -rf *.o *.ali *.dg unit01 unit02 unit03 unit04 unit05
 
 cleanlibs:
-	rm -rf raven-edf/*.o raven-edf/*.ali
+	rm -rf $(BUILD)/*.o $(BUILD)/*.ali

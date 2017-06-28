@@ -42,9 +42,6 @@ with System.BB.Board_Support;
 with System.BB.Threads;
 with System.BB.Time;
 
-with System.IO;
-with System.BB.Debug; use System.BB.Debug;
-
 with System.BB.Threads.Queues;
 pragma Elaborate (System.BB.Threads.Queues);
 
@@ -70,16 +67,7 @@ package body System.BB.Protection is
    begin
       --  Interrupts are disabled to avoid concurrency problems when modifying
       --  kernel data. This way, external interrupts cannot be raised.
-
-      if Debug_Prot then
-         System.IO.Put_Line ("Entering Protection Kernel Process... Begin.");
-      end if;
-
       CPU_Primitives.Disable_Interrupts;
-
-      if Debug_Prot then
-         System.IO.Put_Line ("Entering Protection Kernel Process... Ended.");
-      end if;
    end Enter_Kernel;
 
    ------------------
@@ -92,10 +80,6 @@ package body System.BB.Protection is
 
    begin
       --  Interrupts are always disabled when entering here
-
-      if Debug_Prot then
-         System.IO.Put_Line ("Leaving Prot. Kernel Process... Begin.");
-      end if;
 
       --  Wake up served entry calls
 
@@ -110,11 +94,6 @@ package body System.BB.Protection is
       --  wait until there is any thread ready to execute. Interrupts are
       --  handled just after enabling interrupts.
 
-      if Debug_Prot then
-         System.IO.Put_Line ("Leaving Prot. Kernel Process... "
-                  & "Check Exec Thread.");
-      end if;
-
       if Threads.Queues.First_Thread = Threads.Null_Thread_Id then
          --  There is no task ready to execute so we need to wait until there
          --  is one, unless we are currently handling an interrupt.
@@ -122,11 +101,6 @@ package body System.BB.Protection is
          --  In the meantime, we put the task temporarily in the ready queue
          --  so interrupt handling is performed normally. Note that the task
          --  is inserted in the queue but its state is not Runnable.
-
-         if Debug_Prot then
-            System.IO.Put_Line ("Leaving Prot. Kernel Process... "
-                     & "No Ready Task.");
-         end if;
 
          Threads.Queues.Insert (Threads.Queues.Running_Thread);
 
@@ -165,11 +139,6 @@ package body System.BB.Protection is
 
       --  We need to check whether a context switch is needed
 
-      if Debug_Prot then
-         System.IO.Put_Line ("Leaving Prot. Kernel Process... "
-                     & "Check Context Switch");
-      end if;
-
       if Threads.Queues.Context_Switch_Needed then
          --  Perform a context switch because the currently executing thread
          --  is blocked or it is no longer the one with the highest priority.
@@ -180,23 +149,8 @@ package body System.BB.Protection is
             Scheduling_Event (System.BB.Time.Clock);
          end if;
 
-         if Debug_Prot then
-            System.IO.Put_Line ("Leaving Prot. Kernel Process... "
-                        & "Check Context Switch Needed.");
-         end if;
-
          CPU_Primitives.Context_Switch;
 
-         if Debug_Prot then
-            System.IO.Put_Line ("Leaving Prot. Kernel Process... "
-                        & "Context Switch Done");
-         end if;
-
-      end if;
-
-      if Debug_Prot then
-         System.IO.Put_Line ("Leaving Prot. Kernel Process... "
-                     & "Enabling Interrupts.");
       end if;
 
       --  Now we need to set the hardware interrupt masking level equal to the
@@ -204,10 +158,6 @@ package body System.BB.Protection is
 
       CPU_Primitives.Enable_Interrupts
         (Threads.Queues.Running_Thread.Active_Priority);
-
-      if Debug_Prot then
-         System.IO.Put_Line ("Leaving Kernel Process... Ended.");
-      end if;
 
    end Leave_Kernel;
 

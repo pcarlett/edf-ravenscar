@@ -44,6 +44,7 @@ with System.BB.CPU_Primitives.Multiprocessors;
 with System.IO;
 with System.BB.Debug; use System.BB.Debug;
 with System.Address_Image;
+with System.BB.Stats;
 -------------------------------------------------------------
 -------------------------------------------------------------
 
@@ -66,67 +67,6 @@ package body System.BB.Threads.Queues is
    pragma Volatile_Components (Alarms_Table);
    --  Identifier of the thread that is in the first place of the alarm queue
 
-   ----------------------
-   -- Debug Procedures --
-   ----------------------
-
-   --  Procedure used for debugging process: it prints every Thread in the
-   --  ready queue with its attributes
-   procedure Print_Queues (Thread : Thread_Id) is
-      CPU_Id      : constant CPU := Get_CPU (Thread);
-      Aux_Pointer : Thread_Id;
-      i           : Integer := 1;
-   begin
-      if Debug_Queue then
-         Aux_Pointer := Running_Thread_Table (CPU_Id);
-         System.IO.Put_Line ("");
-         System.IO.Put ("          ");
-         System.IO.Put_Line ("   --> Running Thread => "
-          & "R_Dead: " & Duration'Image (System.BB.Time.To_Duration
-               (Aux_Pointer.Active_Relative_Deadline)) & " => A_Dead" &
-                  Duration'Image (System.BB.Time.To_Duration
-                     (Aux_Pointer.Active_Absolute_Deadline
-                           - System.BB.Time.Time_First)));
-         System.IO.Put_Line ("");
-         System.IO.Put ("          ");
-         System.IO.Put_Line ("   R--------- READY QUEUE -------------------|");
-         Aux_Pointer := First_Thread_Table (CPU_Id);
-         while Aux_Pointer /= Null_Thread_Id
-         loop
-            System.IO.Put ("          ");
-            System.IO.Put_Line ("   " & Integer'Image (i) & ") Thread => "
-               & "R_Dead: " & Duration'Image (System.BB.Time.To_Duration
-               (Aux_Pointer.Active_Relative_Deadline)) & " => A_Dead" &
-               Duration'Image (System.BB.Time.To_Duration
-               (Aux_Pointer.Active_Absolute_Deadline
-                - System.BB.Time.Time_First)));
-            Aux_Pointer := Aux_Pointer.Next;
-            i := i + 1;
-         end loop;
-         System.IO.Put ("          ");
-         System.IO.Put_Line ("   R------- END READY QUEUE -----------------|");
-         i := 1;
-         System.IO.Put_Line ("");
-         System.IO.Put ("          ");
-         System.IO.Put_Line ("   A--------- ALARM QUEUE --------------|");
-         Aux_Pointer := Alarms_Table (CPU_Id);
-         while Aux_Pointer /= Null_Thread_Id
-         loop
-            System.IO.Put ("          ");
-            System.IO.Put_Line ("   " & Integer'Image (i) & ") Thread => "
-             & "R_Dead: " & Duration'Image (System.BB.Time.To_Duration
-                  (Aux_Pointer.Active_Relative_Deadline))
-                & " --> Alarm: " & Duration'Image (System.BB.Time.To_Duration
-                        (Aux_Pointer.Alarm_Time - System.BB.Time.Time_First)));
-            Aux_Pointer := Aux_Pointer.Next_Alarm;
-            i := i + 1;
-         end loop;
-         System.IO.Put ("          ");
-         System.IO.Put_Line ("   A------- END ALARM QUEUE ------------|");
-         System.IO.Put_Line ("");
-      end if;
-   end Print_Queues;
-
    ---------------------
    -- Change_Priority --
    ---------------------
@@ -141,11 +81,6 @@ package body System.BB.Threads.Queues is
       --  Now         : constant System.BB.Time.Time := System.BB.Time.Clock;
 
    begin
-
-      if Debug_Thqu then
-         System.IO.Put_Line ("Ready Queue Change Prio Process... Begin.");
-      end if;
-
       --  A CPU can only change the priority of its own tasks
 
       pragma Assert (CPU_Id = Current_CPU);
@@ -166,11 +101,6 @@ package body System.BB.Threads.Queues is
       --  someone could have an absolute deadline lower than the current
       --  thread and it have to be enqueued before the current thread
 
-      if Debug_Thqu then
-         System.IO.Put_Line (" <<< Prio: " & Integer'Image (Priority)
-               & " & Thr. Prio " & Integer'Image (Thread.Active_Priority));
-      end if;
-
       --  Change the active priority. The base priority does not change.
       --  The only case is changing priority levels because of
       --  Interrupt_Wrapper.
@@ -180,22 +110,11 @@ package body System.BB.Threads.Queues is
       --  Priority < Thread.Active_Priority
       --  is always false and the condition can never be reach
 
-      if Debug_Thqu then
-         System.IO.Put_Line
-                  ("Ready Queue Change Prio Process... Change Prio.");
-      end if;
-
       Thread.Active_Priority := Priority;
 
       --  Changing Busy_For_Interrupts flag value to reserve first queue
       --  position for interrupts
       Busy_For_Interrupts := Flag;
-
-      if Debug_Thqu then
-         System.IO.Put_Line ("Ready Queue Change Prio Process... Ended.");
-      end if;
-
-      Print_Queues (First_Thread_Table (CPU_Id));
 
    end Change_Priority;
 
@@ -211,11 +130,6 @@ package body System.BB.Threads.Queues is
       CPU_Id      : constant CPU := Get_CPU (Thread);
       Now         : constant System.BB.Time.Time := System.BB.Time.Clock;
    begin
-
-      if Debug_Thqu then
-         System.IO.Put_Line ("Ready Queue Change R_Dead Process... Begin.");
-      end if;
-
       --  A CPU can only change the relative deadline of its own tasks
 
       pragma Assert (CPU_Id = Current_CPU);
@@ -227,28 +141,9 @@ package body System.BB.Threads.Queues is
 
       --  Change the active relative deadline. The base relative deadline does
       --  not change
-
-      if Debug_Thqu then
-         System.IO.Put_Line
-               ("Ready Queue Change R_Dead Process... Set R_Dead.");
-      end if;
-
       Thread.Active_Relative_Deadline := Rel_Deadline;
 
-      if Debug_Thqu then
-         System.IO.Put_Line
-                  ("Ready Queue Change R_Dead Process... Set A_Dead.");
-      end if;
-
       Thread.Active_Absolute_Deadline := (Rel_Deadline + Now);
-
-      if Debug_Thqu then
-         System.IO.Put_Line ("New R_Dead: "
-            & Duration'Image (System.BB.Time.To_Duration (Rel_Deadline))
-               & " - New A_Dead: " & Duration'Image
-                  (System.BB.Time.To_Duration (Thread.Active_Absolute_Deadline
-                        - System.BB.Time.Time_First)));
-      end if;
 
       --  When lowering the relative deadline, we have to lower absolute
       --  deadline too because our considerations about enqueuing will be
@@ -257,11 +152,6 @@ package body System.BB.Threads.Queues is
       --  the other task would be running). Hence, there is no displacement
       --  required within the queue, because the thread is already in the
       --  first position.
-
-      if Debug_Thqu then
-         System.IO.Put_Line ("Ready Queue Change R_Dead Process... Requeue.");
-      end if;
-
       if Thread.Next /= Null_Thread_Id
         --  and then Priority < Thread.Next.Active_Priority
         and then Thread.Active_Absolute_Deadline >
@@ -301,13 +191,6 @@ package body System.BB.Threads.Queues is
          Thread.Next := Aux_Pointer.Next;
          Aux_Pointer.Next := Thread;
       end if;
-
-      if Debug_Thqu then
-         System.IO.Put_Line ("Ready Queue Change R_Dead Process... Ended.");
-      end if;
-
-      Print_Queues (First_Thread_Table (CPU_Id));
-
    end Change_Relative_Deadline;
 
    ------------------------------
@@ -323,11 +206,6 @@ package body System.BB.Threads.Queues is
 
    begin
       --  A CPU can only change the absolute deadline of its own tasks
-
-      if Debug_Thqu then
-         System.IO.Put_Line ("Ready Queue Change Abs_Dead Process... Begin.");
-      end if;
-
       pragma Assert (CPU_Id = Current_CPU);
 
       pragma Assert (Thread = Running_Thread_Table (CPU_Id));
@@ -351,17 +229,7 @@ package body System.BB.Threads.Queues is
       --  directly from Change_Absolute_Deadline method. It's more useful to
       --  follow natural behaviour of the Runtime
 
-      if Debug_Thqu then
-         System.IO.Put_Line
-                  ("Ready Queue Change Abs_Dead Process... Changing.");
-      end if;
-
       Thread.Active_Absolute_Deadline := Abs_Deadline;
-
-      if Debug_Thqu then
-         System.IO.Put_Line ("Ready Queue Change Abs_Dead Process... Ended.");
-      end if;
-
    end Change_Absolute_Deadline;
 
    ---------------------------
@@ -382,11 +250,10 @@ package body System.BB.Threads.Queues is
          if Print_Preem then
             if First_Thread /= Running_Thread
               and Running_Thread.Preemption_Needed then
-               System.IO.Put_Line ("PREEMPTION; " &
-                  System.Address'Image (First_Thread.ATCB) & "; " &
-                  System.Address'Image (Running_Thread.ATCB) & "; " &
-                  Duration'Image (To_Duration
-                  (System.BB.Time.Clock - System.BB.Time.Time_First)));
+               System.BB.Stats.Preemptions := System.BB.Stats.Preemptions + 1;
+               System.IO.Put_Line ("PREEMPTION; "
+                    & Integer'Image (System.BB.Stats.Preemptions) --  );
+                    & "; " & System.Address_Image (Running_Thread.ATCB));
             end if;
          end if;
 
@@ -452,12 +319,7 @@ package body System.BB.Threads.Queues is
       CPU_Id : constant CPU := Get_CPU (Thread);
 
    begin
-      if Debug_Thqu then
-         System.IO.Put_Line ("Ready Queue Extraction Process... Begin.");
-      end if;
-
       --  A CPU can only modify its own tasks queues
-
       pragma Assert (CPU_Id = Current_CPU);
 
       --  The only thread that can be extracted from the ready list is the one
@@ -472,21 +334,9 @@ package body System.BB.Threads.Queues is
       --  We have to protect extract action to prevent the extraction during
       --  and Interrupt_Wrapper. The First_Thread_Table thread have to remain
       --  in its position while interrupts run their handlers
-      if Debug_Thqu then
-         System.IO.Put_Line ("Ready Queue Extraction Process... Extraction.");
-      end if;
 
-      --  if not Busy_For_Interrupts then
-         First_Thread_Table (CPU_Id) := Thread.Next;
-         Thread.Next := Null_Thread_Id;
-      --  end if;
-
-      if Debug_Thqu then
-         System.IO.Put_Line ("Ready Queue Extraction Process... Ended.");
-      end if;
-
-      Print_Queues (First_Thread_Table (CPU_Id));
-
+      First_Thread_Table (CPU_Id) := Thread.Next;
+      Thread.Next := Null_Thread_Id;
    end Extract;
 
    -------------------------
@@ -498,10 +348,6 @@ package body System.BB.Threads.Queues is
       Result : constant Thread_Id := Alarms_Table (CPU_Id);
 
    begin
-      if Debug_Thqu then
-         System.IO.Put_Line ("Alarm Queue Extraction Process... Begin.");
-      end if;
-
       --  A CPU can only modify its own tasks queues
 
       pragma Assert (CPU_Id = Current_CPU);
@@ -510,18 +356,6 @@ package body System.BB.Threads.Queues is
       Alarms_Table (CPU_Id) := Result.Next_Alarm;
       Result.Alarm_Time := System.BB.Time.Time'Last;
       Result.Next_Alarm := Null_Thread_Id;
-
-      if Debug_Thqu then
-         System.IO.Put_Line ("Alarm Queue Extraction Process... "
-            & "Alarmed Thread => R_Dead: " & Duration'Image
-            (System.BB.Time.To_Duration (Result.Active_Relative_Deadline)));
-      end if;
-
-      if Debug_Thqu then
-         System.IO.Put_Line ("Alarm Queue Extraction Process... Ended.");
-      end if;
-
-      Print_Queues (Alarms_Table (CPU_Id));
 
       return Result;
    end Extract_First_Alarm;
@@ -565,16 +399,6 @@ package body System.BB.Threads.Queues is
       CPU_Id      : constant CPU := Get_CPU (Thread);
 
    begin
-
-      if Debug_Insert then
-         System.IO.Put_Line ("---    Thread => "
-            & "R_Dead: " & Duration'Image (System.BB.Time.To_Duration
-            (Thread.Active_Relative_Deadline)) & " => A_Dead" &
-            Duration'Image (System.BB.Time.To_Duration
-            (Thread.Active_Absolute_Deadline
-                - System.BB.Time.Time_First)));
-      end if;
-
       --  ??? This pragma is disabled because the Tasks_Activated only
       --  represents the end of activation for one package not all the
       --  packages. We have to find a better milestone for the end of tasks
@@ -593,25 +417,13 @@ package body System.BB.Threads.Queues is
       --  Insert at the head of queue if there is no other thread with a higher
       --  priority.
 
-      if Debug_Thqu then
-         System.IO.Put_Line ("Ready Queue Insertion Process... Begin.");
-      end if;
-
       if First_Thread_Table (CPU_Id) = Null_Thread_Id
         or else
           Thread.Active_Absolute_Deadline <
                 First_Thread_Table (CPU_Id).Active_Absolute_Deadline
       then
-         if Debug_Thqu then
-            System.IO.Put_Line ("Ready Queue Insertion Process... Head.");
-         end if;
-
          Thread.Next := First_Thread_Table (CPU_Id);
          First_Thread_Table (CPU_Id) := Thread;
-
-         if Debug_Thqu then
-            System.IO.Put_Line ("Ready Queue Insertion Process... Inserted.");
-         end if;
 
          --  Middle or tail insertion
 
@@ -622,24 +434,6 @@ package body System.BB.Threads.Queues is
          --  because first position is reserveed. When Busy_For_Interrupts
          --  will be released, first thread will be reinserted in the correct
          --  order
-
-         if Debug_Thqu then
-            System.IO.Put_Line ("Ready Queue Insertion Process... Middle.");
-         end if;
-
---          if Busy_For_Interrupts then
---             if Debug_Thqu then
---                System.IO.Put_Line ("Ready Queue Insertion Process... Busy" &
---                                      " True");
---             end if;
---             Aux_Pointer := First_Thread_Table (CPU_Id).Next;
---          else
---             if Debug_Thqu then
---                System.IO.Put_Line ("Ready Queue Insertion Process... Busy" &
---                                      " False");
---                end if;
---                Aux_Pointer := First_Thread_Table (CPU_Id);
---          end if;
 
          Aux_Pointer := First_Thread_Table (CPU_Id);
 
@@ -658,18 +452,7 @@ package body System.BB.Threads.Queues is
             Aux_Pointer.Next := Thread;
          end if;
 
-         if Debug_Thqu then
-            System.IO.Put_Line ("Ready Queue Insertion Process... Inserted.");
-         end if;
-
       end if;
-
-      if Debug_Thqu then
-         System.IO.Put_Line ("Ready Queue Insertion Process... Ended.");
-      end if;
-
-      Print_Queues (First_Thread_Table (CPU_Id));
-
    end Insert;
 
    ------------------
@@ -685,11 +468,7 @@ package body System.BB.Threads.Queues is
       Alarm_Id_Aux : Thread_Id;
 
    begin
-      if Debug_Thqu then
-         System.IO.Put_Line ("Alarm Queue Insertion Process... Begin.");
-      end if;
       --  A CPU can only insert alarm in its own queue
-
       pragma Assert (CPU_Id = Current_CPU);
 
       --  We can only insert in the alarm queue threads whose state is Delayed
@@ -706,27 +485,14 @@ package body System.BB.Threads.Queues is
       if Alarms_Table (CPU_Id) = Null_Thread_Id
         or else T < Alarms_Table (CPU_Id).Alarm_Time
       then
-         if Debug_Thqu then
-            System.IO.Put_Line ("Alarm Queue Insertion Process... Head.");
-         end if;
-
          Thread.Next_Alarm := Alarms_Table (CPU_Id);
          Alarms_Table (CPU_Id) := Thread;
          Is_First := True;
-
-         if Debug_Thqu then
-            System.IO.Put_Line ("Alarm Queue Insertion Process... Inserted.");
-         end if;
 
       --  Otherwise, place in the middle
 
       else
          --  Find the minimum greater than T alarm within the alarm queue
-
-         if Debug_Thqu then
-            System.IO.Put_Line ("Alarm Queue Insertion Process... Middle.");
-         end if;
-
          Alarm_Id_Aux := Alarms_Table (CPU_Id);
          while Alarm_Id_Aux.Next_Alarm /= Null_Thread_Id and then
            Alarm_Id_Aux.Next_Alarm.Alarm_Time < T
@@ -739,17 +505,7 @@ package body System.BB.Threads.Queues is
 
          Is_First := False;
 
-         if Debug_Thqu then
-            System.IO.Put_Line ("Alarm Queue Insertion Process... Inserted.");
-         end if;
       end if;
-
-      if Debug_Thqu then
-         System.IO.Put_Line ("Alarm Queue Insertion Process... Ended.");
-      end if;
-
-      Print_Queues (Alarms_Table (CPU_Id));
-
    end Insert_Alarm;
 
    --------------------
@@ -773,11 +529,6 @@ package body System.BB.Threads.Queues is
       CPU_Id        : constant CPU        := Current_CPU;
 
    begin
-
-      if Debug_Thqu then
-         System.IO.Put_Line ("Wakeup Expired Alarms Process... Begin.");
-      end if;
-
       --  Extract all the threads whose delay has expired
 
       while Threads.Queues.Get_Next_Alarm_Time (CPU_Id) <= Now loop
@@ -786,10 +537,6 @@ package body System.BB.Threads.Queues is
          --  it in the ready queue.
 
          Wakeup_Thread := Threads.Queues.Extract_First_Alarm;
-
-         if Debug_Thqu then
-            System.IO.Put_Line ("Wakeup Expired Alarms Process... Waking up.");
-         end if;
 
          --  We can only awake tasks that are delay statement
 
@@ -802,21 +549,7 @@ package body System.BB.Threads.Queues is
          Threads.Queues.Change_Absolute_Deadline (Wakeup_Thread,
               (Wakeup_Thread.Active_Relative_Deadline + Now));
 
-         if Debug_Wakeup_Time then
-            System.IO.Put_Line ("Wakeup Expired Alarms Process... Now: "
-               & Duration'Image (To_Duration (Now - System.BB.Time.Time_First))
-              & " - Rel_Dead: " & Duration'Image (To_Duration
-                (Wakeup_Thread.Active_Relative_Deadline))
-              & " - Abs_Dead: " & Duration'Image
-                 (To_Duration (Wakeup_Thread.Active_Absolute_Deadline -
-                    System.BB.Time.Time_First)));
-         end if;
-
          Threads.Queues.Insert (Wakeup_Thread);
-
-         if Debug_Thqu then
-            System.IO.Put_Line ("Wakeup Expired Alarms Process... Waked up.");
-         end if;
 
       end loop;
 
@@ -824,11 +557,6 @@ package body System.BB.Threads.Queues is
 
       Next_Alarm := Time.Get_Next_Timeout (CPU_Id);
       Update_Alarm (Next_Alarm);
-
-      if Debug_Thqu then
-         System.IO.Put_Line ("Wakeup Expired Alarms Process... Ended.");
-      end if;
-
    end Wakeup_Expired_Alarms;
 
    -----------
@@ -843,21 +571,12 @@ package body System.BB.Threads.Queues is
       CPU_Id      : constant CPU := Get_CPU (Thread);
 
    begin
-      if Debug_Thqu then
-         System.IO.Put_Line ("Yield Thread Process... Begin.");
-      end if;
-
       --  A CPU can only modify its own tasks queues
-
       pragma Assert (CPU_Id = Current_CPU);
 
       pragma Assert (Thread = Running_Thread_Table (CPU_Id)
                       and then Thread = First_Thread_Table (CPU_Id)
                       and then Thread.State = Runnable);
-
-      if Debug_Thqu then
-         System.IO.Put_Line ("Yield Thread Process... Requeuing.");
-      end if;
 
       if Thread.Next /= Null_Thread_Id
          --  and then Thread.Next.Active_Priority = Prio
@@ -879,12 +598,6 @@ package body System.BB.Threads.Queues is
          Thread.Next := Aux_Pointer.Next;
          Aux_Pointer.Next := Thread;
       end if;
-
-      if Debug_Thqu then
-         System.IO.Put_Line ("Yield Thread Process... Ended.");
-      end if;
-
-      Print_Queues (First_Thread_Table (CPU_Id));
 
    end Yield;
 

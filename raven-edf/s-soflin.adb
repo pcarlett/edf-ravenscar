@@ -40,8 +40,6 @@ with System.Tasking;
 with System.Task_Primitives.Operations;
 
 with System.BB.Deadlines;
-with System.IO;
-with System.BB.Debug; use System.BB.Debug;
 
 package body System.Soft_Links is
 
@@ -146,10 +144,6 @@ package body System.Soft_Links is
          begin
             --  Increase relative deadline
 
-            if Debug_Soft then
-               System.IO.Put_Line ("Soft Link Task Lock Process... Begin.");
-            end if;
-
             Set_Relative_Deadline
                (Self_Id,
                 --  System.BB.Deadlines.Relative_Deadline'First);
@@ -162,9 +156,6 @@ package body System.Soft_Links is
 
             Caller_Relative_Deadline := R_Dead;
             --  Caller_Priority := Prio;
-            if Debug_Soft then
-               System.IO.Put_Line ("Soft Link Task Lock Process... Ended.");
-            end if;
          end;
       end if;
    end Task_Lock_Soft;
@@ -184,10 +175,6 @@ package body System.Soft_Links is
       --  Removed from Ravenscar EDF version
       --  Set_Priority (Self_Id, Any_Priority'Last);
 
-      if Debug_Soft then
-         System.IO.Put_Line ("Soft Link Task Termination Process... Begin.");
-      end if;
-
       --  Set_Relative_Deadline (Self_Id, Relative_Deadline'First);
 
       Set_Relative_Deadline (Self_Id, Relative_Deadline (0));
@@ -198,11 +185,6 @@ package body System.Soft_Links is
 
       --  Removed from Ravenscar EDF version
       --  Set_Priority (Self_Id, Self_Id.Common.Base_Priority);
-      if Debug_Soft then
-         System.IO.Put_Line ("Soft Link Task Termination Process... " &
-                  "Restoring Rel_Dead.");
-      end if;
-
       Set_Relative_Deadline (Self_Id, Self_Id.Common.Base_Relative_Deadline);
 
       --  Execute the task termination handler if we found it
@@ -210,11 +192,6 @@ package body System.Soft_Links is
       if TH /= null then
          TH.all (Self_Id);
       end if;
-
-      if Debug_Soft then
-         System.IO.Put_Line ("Soft Link Task Termination Process... Ended.");
-      end if;
-
    end Task_Termination_Soft;
 
    ----------------------

@@ -68,6 +68,7 @@ with System.Task_Primitives.Operations;
 with System.Tasking.Protected_Objects.Multiprocessors;
 
 with System.IO;
+with System.BB.Stats;
 with System.BB.Debug; use System.BB.Debug;
 with System.BB.Time; use System.BB.Time;
 with System.BB.Threads.Queues; use System.BB.Threads.Queues;
@@ -137,24 +138,12 @@ package body System.Tasking.Protected_Objects.Single_Entry is
       Entry_Body       : Entry_Body_Access)
    is
    begin
-      if Debug_POSE then
-         System.IO.Put_Line
-               (" *--* Protected Objects Entry Initialize Prot. Process... "
-                  & "Begin.");
-      end if;
-
       Initialize_Protection (Object.Common'Access, Floor_Deadline);
 
       Object.Compiler_Info := Compiler_Info;
       Object.Call_In_Progress := null;
       Object.Entry_Body := Entry_Body;
       Object.Entry_Queue := null;
-
-      if Debug_POSE then
-         System.IO.Put_Line
-               (" *--* Protected Objects Entry Initialize Prot. Process... "
-                  & "Ended.");
-      end if;
    end Initialize_Protection_Entry;
 
    ----------------
@@ -205,20 +194,13 @@ package body System.Tasking.Protected_Objects.Single_Entry is
 
       if Print_Miss then
          if Now > Running_Thread.Active_Absolute_Deadline then
-            System.IO.Put_Line ("DEADLINE MISS; " &
-                System.Address'Image (Running_Thread.ATCB) & "; " &
-                Duration'Image (To_Duration
-                (Now - System.BB.Time.Time_First)) & "; " &
-                Duration'Image (To_Duration
-                 (Running_Thread.Active_Absolute_Deadline
-                   - System.BB.Time.Time_First))
-                 & "; " & Duration'Image (To_Duration
-                (Running_Thread.Active_Absolute_Deadline - Now)));
+            System.BB.Stats.Deadline_Miss := System.BB.Stats.Deadline_Miss + 1;
+            System.IO.Put_Line ("DEADLINE_MISS; " &
+                  Integer'Image (System.BB.Stats.Deadline_Miss));
          else
+            System.BB.Stats.Executions := System.BB.Stats.Executions + 1;
             System.IO.Put_Line ("EXECUTED; " &
-                System.Address'Image (Running_Thread.ATCB) & "; " &
-                Duration'Image (To_Duration
-                (Now - System.BB.Time.Time_First)));
+                  Integer'Image (System.BB.Stats.Executions));
          end if;
       end if;
 

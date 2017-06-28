@@ -25,5 +25,7 @@ project Ravenscar is
       for Makefile use "Makefile";
    end Make;
 
+   for Object_Dir use "build";
+
 end Ravenscar;
 

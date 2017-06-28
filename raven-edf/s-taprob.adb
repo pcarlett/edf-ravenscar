@@ -31,9 +31,6 @@
 
 --  This is the Ravenscar version of this package
 
-with System.IO;
-with System.BB.Debug; use System.BB.Debug;
-
 with System.Task_Primitives.Operations;
 --  Used for Set_Priority
 --           Get_Priority
@@ -84,44 +81,16 @@ package body System.Tasking.Protected_Objects is
       Init_Relative_Deadline : Relative_Deadline := Floor_Deadline;
 
    begin
-      if Debug_Prob then
-         System.IO.Put_Line
-               ("  **  Protected Objects Floor Initialize Prot. Process..."
-                  & " Begin.");
-      end if;
-
-      if Debug_Prob then
-         System.IO.Put_Line
-               ("  **  Protected Objects Floor Initialize Prot. Process... "
-                & "Setting.");
-      end if;
-
       if Init_Relative_Deadline =
                 System.BB.Deadlines.Unspecified_Relative_Deadline then
-         if Debug_Prob then
-            System.IO.Put_Line
-                ("  **  Protected Objects Floor Initialize Prot. Process... "
-                 & "Init R_Dead at 'First.");
-         end if;
          --  Init_Relative_Deadline := Relative_Deadline'First;
          Init_Relative_Deadline := Relative_Deadline (1);
-      end if;
-
-      if Debug_Prob then
-         System.IO.Put_Line ("  **  Deadline Floor: "
-               & Duration'Image (To_Duration (Floor_Deadline)));
       end if;
 
       Object.Floor := Init_Relative_Deadline;
       Object.Caller_Relative_Deadline := Relative_Deadline'Last;
       Object.Owner := Null_Task;
       Multiprocessors.Fair_Locks.Initialize (Object.Lock);
-
-      if Debug_Prob then
-         System.IO.Put_Line
-               ("  **  Protected Objects Floor Initialize Prot. Process..."
-                  & " Ended.");
-      end if;
    end Initialize_Protection;
 
    ----------
@@ -149,13 +118,6 @@ package body System.Tasking.Protected_Objects is
       --  action that is currently in progress (i.e., if the caller is
       --  already the protected object's owner) is a potentially blocking
       --  operation, and hence Program_Error must be raised.
-
-      if Debug_Prob then
-         System.IO.Put_Line
-               ("  **  Protected Objects Floor Locking Process..."
-                  & " Begin.");
-      end if;
-
       if Object.Owner = Self_Id then
          raise Program_Error;
       end if;
@@ -168,15 +130,6 @@ package body System.Tasking.Protected_Objects is
       --  end if;
 
       --  Check floor locking violation
-
-      if Debug_Prob then
-         System.IO.Put_Line ("  **    Caller Rel_Dead: "
-            & Duration'Image
-                  (To_Duration (Caller_Relative_Deadline)) &
-                  " Object Floor: " & Duration'Image
-                        (To_Duration (Object.Floor)));
-      end if;
-
       if Caller_Relative_Deadline < Object.Floor then
          raise Program_Error;
       end if;
@@ -220,13 +173,6 @@ package body System.Tasking.Protected_Objects is
 
       Self_Id.Common.Protected_Action_Nesting :=
         Self_Id.Common.Protected_Action_Nesting + 1;
-
-      if Debug_Prob then
-         System.IO.Put_Line
-           ("  **  Protected Objects Floor Locking Process..."
-              & " Ended.");
-      end if;
-
    end Lock;
 
    ------------
@@ -240,13 +186,6 @@ package body System.Tasking.Protected_Objects is
       --  Calls to this procedure can only take place when being within a
       --  protected action and when the caller is the protected object's
       --  owner.
-
-      if Debug_Prob then
-         System.IO.Put_Line
-               ("  **  Protected Objects Floor Unlocking Process..."
-                  & " Begin.");
-      end if;
-
       pragma Assert (Self_Id.Common.Protected_Action_Nesting > 0
                      and then Object.Owner = Self_Id);
 
@@ -271,25 +210,9 @@ package body System.Tasking.Protected_Objects is
 
       --  Removed from Ravenscar EDF version
       --  Set_Priority (Self_Id, Object.Caller_Priority);
-
-      if Debug_Prob then
-         System.IO.Put_Line ("  **    Caller Rel_Dead: "
-            & Duration'Image
-                  (To_Duration (Object.Caller_Relative_Deadline)) &
-                  " Object Floor: " & Duration'Image
-                        (To_Duration (Object.Floor)));
-      end if;
-
       Restore_Relative_Deadline (Self_Id, Object.Caller_Relative_Deadline);
 
       Set_Absolute_Deadline (Self_Id, Object.Caller_Absolute_Deadline);
-
-      if Debug_Prob then
-         System.IO.Put_Line
-               ("  **  Protected Objects Floor Unlocking Process..."
-                  & " Ended.");
-      end if;
-
    end Unlock;
 
 begin

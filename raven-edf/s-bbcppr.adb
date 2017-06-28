@@ -36,9 +36,6 @@ with System.BB.Threads;
 with System.BB.CPU_Primitives.Multiprocessors;
 with System.BB.Threads.Queues;
 
-with System.IO;
-with System.BB.Debug; use System.BB.Debug;
-
 package body System.BB.CPU_Primitives is
    use BB.Parameters;
    use System.BB.Threads;
@@ -152,15 +149,7 @@ package body System.BB.CPU_Primitives is
       procedure Asm_Context_Switch;
       pragma Import (Asm, Asm_Context_Switch, "context_switch");
    begin
-      if Debug_Prot then
-         System.IO.Put ("*** * *** Asm_Context_Switch... ");
-      end if;
-
       Asm_Context_Switch;
-
-      if Debug_Prot then
-         System.IO.Put_Line ("Done");
-      end if;
    end Context_Switch;
 
    ------------------------

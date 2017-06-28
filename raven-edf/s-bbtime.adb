@@ -1,4 +1,4 @@
-------------------------------------------------------------------------------
+ ------------------------------------------------------------------------------
 --                                                                          --
 --                  GNAT RUN-TIME LIBRARY (GNARL) COMPONENTS                --
 --                                                                          --
@@ -52,10 +52,12 @@ with System.Multiprocessors.Spin_Locks;
 --  with System.Tasking;
 --  with System.Task_Primitives.Operations;
 
+with System.Address_Image;
 with Ada.Unchecked_Conversion;
 with System.OS_Interface;
 with System.IO;
 with System.BB.Debug; use System.BB.Debug;
+with System.BB.Stats;
 -------------------------------------------------------------
 
 package body System.BB.Time is
@@ -237,21 +239,12 @@ package body System.BB.Time is
    begin
       --  On multiprocessor systems there may be a concurrent update of
       --  the software clock. Retry if this happens.
-
-      if Debug_Time then
-         System.IO.Put_Line ("Clock Function Process... Begin.");
-      end if;
-
       loop
          Before_MSP := Software_Clock.MSP;
          exit when not Multiprocessor or else Before_MSP /= Update_In_Progress;
       end loop;
 
       Before_LSP := Software_Clock.LSP;
-
-      if Debug_Time then
-         System.IO.Put_Line ("Clock Function Process... Reading.");
-      end if;
 
       Now_LSP := Read_Clock;
 
@@ -264,26 +257,6 @@ package body System.BB.Time is
       --  If After_MSP /= Before_MSP, we don't know the the time at
       --  which the hardware clock was read, but we do know that
       --  at some point during the execution, the time was Before_MSP + 1.
-
-      if After_MSP = Before_MSP then
-         if Debug_Clock then
-            System.IO.Put_Line ("---> Time: " &
-            Duration'Image (System.BB.Time.To_Duration
-               ((Before_MSP + (if Now_LSP < Before_LSP then 1 else 0)
-                  & Now_LSP) - System.BB.Time.Time_First)));
-         end if;
-      else
-         if Debug_Clock then
-            System.IO.Put_Line ("   ---> Time: " &
-            Duration'Image (System.BB.Time.To_Duration
-               (((Before_MSP + 1) & 0) - System.BB.Time.Time_First)));
-         end if;
-      end if;
-
-      if Debug_Time then
-         System.IO.Put_Line ("Clock Function Process... Ending.");
-      end if;
-
       if After_MSP = Before_MSP then
          return Before_MSP + (if Now_LSP < Before_LSP then 1 else 0) & Now_LSP;
       else
@@ -302,62 +275,34 @@ package body System.BB.Time is
       Inserted_As_First : Boolean;
 
    begin
-      if Debug_Delay then
-         System.IO.Put_Line ("Delay Until Process... Begin.");
-      end if;
-
       Now := Clock;
 
       Protection.Enter_Kernel;
 
       Self := Threads.Thread_Self;
 
-      if Debug_Delay_Time then
-         System.IO.Put_Line ("Delay Until Process... Now: "
-               & Duration'Image (To_Duration (Now - System.BB.Time.Time_First))
-                             & " - T: " & Duration'Image
-                               (To_Duration (T - System.BB.Time.Time_First))
-                             & " - Abs_Dead: " & Duration'Image
-             (To_Duration (Self.Active_Absolute_Deadline -
-                System.BB.Time.Time_First)));
-      end if;
-
       --  Test if the alarm time is in the future
 
       if Print_Miss then
-         if Now > Self.Active_Absolute_Deadline then
-            System.IO.Put_Line ("DEADLINE MISS; " &
-               System.Address'Image (Self.ATCB) & "; " &
-               Duration'Image (To_Duration
-               (Now - System.BB.Time.Time_First)) & "; " &
-               Duration'Image (To_Duration
-                (Self.Active_Absolute_Deadline - System.BB.Time.Time_First))
-                 & "; " & Duration'Image (To_Duration
-                (Self.Active_Absolute_Deadline - Now)));
+         if Now > T then
+            System.BB.Stats.Deadline_Miss := System.BB.Stats.Deadline_Miss + 1;
+            System.IO.Put_Line ("DEADLINE_MISS; " &
+                  Integer'Image (System.BB.Stats.Deadline_Miss)
+                  & ";" & System.Address_Image (Self.ATCB));
          else
-            System.IO.Put_Line ("EXECUTED; " &
-               System.Address'Image (Self.ATCB) & "; " &
-               Duration'Image (To_Duration
-               (Now - System.BB.Time.Time_First)));
+            System.BB.Stats.Executions := System.BB.Stats.Executions + 1;
+            System.IO.Put_Line ("EXECUTED; "
+                  & Integer'Image (System.BB.Stats.Executions)
+                    & ";" & System.Address_Image (Self.ATCB));
          end if;
       end if;
 
       if T > Now then
 
-         if Debug_Delay then
-            System.IO.Put_Line ("Delay Until Process... Delaying until "
-                           & Duration'Image (To_Duration
-                              (T - System.BB.Time.Time_First)) & ".");
-         end if;
-
          --  Extract the thread from the ready queue. When a thread wants to
          --  wait for an alarm it becomes blocked.
 
          Self.State := Threads.Delayed;
-
-         if Debug_Delay then
-            System.IO.Put_Line ("Delay Until Process... Estracting.");
-         end if;
 
          Self.Preemption_Needed := False;
 
@@ -367,28 +312,15 @@ package body System.BB.Time is
          --  was inserted at head then check if Alarm Time is closer than the
          --  next clock interrupt.
 
-         if Debug_Delay then
-            System.IO.Put_Line
-                     ("Delay Until Process... Insert in Alarm Queue.");
-         end if;
-
          Threads.Queues.Insert_Alarm (T, Self, Inserted_As_First);
 
          if Inserted_As_First then
-            if Debug_Delay then
-               System.IO.Put_Line ("Delay Until Process... Updating Alarm.");
-            end if;
             Update_Alarm (T);
          end if;
 
       else
          --  If alarm time is not in the future, the thread must yield the CPU
          --  but its absolute deadline needs to be updated
-
-         if Debug_Delay then
-            System.IO.Put_Line ("Delay Until Process... Yielding.");
-         end if;
-
          Threads.Queues.Change_Absolute_Deadline
            (Thread       => Self,
             Abs_Deadline => Self.Active_Relative_Deadline + T);
@@ -396,15 +328,7 @@ package body System.BB.Time is
          Threads.Queues.Yield (Self);
       end if;
 
-      if Debug_Delay then
-         System.IO.Put_Line ("Delay Until Process... Leave Kernel.");
-      end if;
-
       Protection.Leave_Kernel;
-
-      if Debug_Delay then
-         System.IO.Put_Line ("Delay Until Process... Ended.");
-      end if;
 
    end Delay_Until;
 
@@ -462,10 +386,6 @@ package body System.BB.Time is
       --  the alarm lock, as we shouldn't read or update the Pending_Alarm
       --  variable, or program the alarm, concurrently with another update.
 
-      if Debug_Time then
-         System.IO.Put_Line ("Update Alarm Process... Begin.");
-      end if;
-
       if Parameters.Multiprocessor then
          Lock (Alarm_Lock);
       end if;
@@ -481,20 +401,11 @@ package body System.BB.Time is
          Time_Difference := Alarm - Now;
       end if;
 
-      if Debug_Time then
-         System.IO.Put_Line
-                  ("Update Alarm Process... Calc. Time Differences.");
-      end if;
-
       Time_Difference :=
          Time'Min (Time_Difference, Time (Max_Timer_Interval));
 
       --  If next alarm time is closer than the currently pending alarm,
       --  reprogram the alarm.
-
-      if Debug_Time then
-         System.IO.Put_Line ("Update Alarm Process... Check Alarm Pending.");
-      end if;
 
       if Alarm < Pending_Alarm then
          pragma Assert (Time_Difference in 1 .. Max_Sleep);
@@ -507,9 +418,6 @@ package body System.BB.Time is
          Unlock (Alarm_Lock);
       end if;
 
-      if Debug_Time then
-         System.IO.Put_Line ("Update Alarm Process... Ended.");
-      end if;
    end Update_Alarm;
 
    ------------------
@@ -575,18 +483,7 @@ package body System.BB.Time is
       --  Otherwise these checks would need an intermediate type with more
       --  than 64-bit.
 
-      if Debug_Time then
-         System.IO.Put_Line ("1) Time + Time_Span Process... Begin.");
-      end if;
-
       if Right = Time_Span_Last or Left = Time_Last then
-         if Debug_Time then
-            System.IO.Put_Line ("-------------------------------------------");
-            System.IO.Put_Line ("1) Time_Span + Time Process... Raise Error.");
-            System.IO.Put_Line ("1) Time Limited                           .");
-            System.IO.Put_Line ("-------------------------------------------");
-         end if;
-
          --  raise Constraint_Error;
          return Time_Last;
       end if;
@@ -594,49 +491,10 @@ package body System.BB.Time is
       if Right >= 0
         and then Uint_64 (Time_Last) - Uint_64 (Left) >= Uint_64 (Right)
       then
-
-         if Debug_Time then
-            System.IO.Put_Line ("1) Time + Time_Span Process... Added.");
-         end if;
-
-         if Debug_Add then
-            System.IO.Put_Line ("1) ----> Left: "
-                  & Duration'Image
-                        (To_Duration (Left - System.BB.Time.Time_First)) &
-                        " - Right: " & Duration'Image (To_Duration (Right)) &
-                        " = Tot: " & Duration'Image (To_Duration
-                        (Time (Uint_64 (Left) + Uint_64 (Right)) -
-                           System.BB.Time.Time_First)));
-         end if;
-
          return Time (Uint_64 (Left) + Uint_64 (Right));
-
       elsif Right < 0 and then Left >= Time (abs (Right)) then
-
-         if Debug_Time then
-            System.IO.Put_Line ("1) Time + Time_Span Process... Subtracted.");
-         end if;
-
-         if Debug_Add then
-            System.IO.Put_Line ("1) ----> Left: "
-                  & Duration'Image
-                        (To_Duration (Left - System.BB.Time.Time_First)) &
-                        " - Right: " & Duration'Image (To_Duration (Right)) &
-                        " = Tot: " & Duration'Image (To_Duration
-                        (Time (Uint_64 (Left) + Uint_64 (Right)) -
-                           System.BB.Time.Time_First)));
-         end if;
-
          return Time (Uint_64 (Left) - Uint_64 (abs (Right)));
-
       else
-
-         if Debug_Time then
-            System.IO.Put_Line ("-------------------------------------------");
-            System.IO.Put_Line ("1) Time + Time_Span Process... Raise Error.");
-            System.IO.Put_Line ("-------------------------------------------");
-         end if;
-
          raise Constraint_Error;
       end if;
    end "+";
@@ -647,19 +505,7 @@ package body System.BB.Time is
       --  Time_Span are 64-bit unsigned and signed integers respectively.
       --  Otherwise these checks would need an intermediate type with more
       --  than 64-bit.
-
-      if Debug_Time then
-         System.IO.Put_Line ("2) Time_Span + Time Process... Begin.");
-      end if;
-
       if Left = Time_Span_Last or Right = Time_Last then
-         if Debug_Time then
-            System.IO.Put_Line ("-------------------------------------------");
-            System.IO.Put_Line ("2) Time_Span + Time Process... Raise Error.");
-            System.IO.Put_Line ("2) Time Limited                           .");
-            System.IO.Put_Line ("-------------------------------------------");
-         end if;
-
          --  raise Constraint_Error;
          return Time_Last;
       end if;
@@ -668,46 +514,13 @@ package body System.BB.Time is
         and then Uint_64 (Time_Last) - Uint_64 (Right) >= Uint_64 (Left)
       then
 
-         if Debug_Time then
-            System.IO.Put_Line ("2) Time_Span + Time Process... Added.");
-         end if;
-
-         if Debug_Add then
-            System.IO.Put_Line ("2) ----> Left: " &
-               Duration'Image (To_Duration (Left)) & " - Right: "
-                  & Duration'Image (To_Duration (Right -
-                     System.BB.Time.Time_First)) & " = Tot: " & Duration'Image
-                      (To_Duration (Time (Uint_64 (Left) + Uint_64 (Right)) -
-                              System.BB.Time.Time_First)));
-         end if;
-
          return Time (Uint_64 (Left) + Uint_64 (Right));
 
       elsif Left < 0 and then Right >= Time (abs (Left)) then
 
-         if Debug_Time then
-            System.IO.Put_Line ("2) Time_Span + Time Process... Subtracted.");
-         end if;
-
-         if Debug_Add then
-            System.IO.Put_Line ("2) ----> Left: " &
-               Duration'Image (To_Duration (Left)) & " - Right: "
-                  & Duration'Image (To_Duration (Right -
-                     System.BB.Time.Time_First)) & " = Tot: " & Duration'Image
-                      (To_Duration (Time (Uint_64 (Left) + Uint_64 (Right)) -
-                              System.BB.Time.Time_First)));
-         end if;
-
          return Time (Uint_64 (Right) - Uint_64 (abs (Left)));
 
       else
-
-         if Debug_Time then
-            System.IO.Put_Line ("-------------------------------------------");
-            System.IO.Put_Line ("2) Time_Span + Time Process... Raise Error.");
-            System.IO.Put_Line ("-------------------------------------------");
-         end if;
-
          raise Constraint_Error;
       end if;
    end "+";
@@ -717,13 +530,6 @@ package body System.BB.Time is
    begin
 
       if Left = Time_Span_Last or Right = Time_Span_Last then
-         if Debug_Time then
-            System.IO.Put_Line ("-------------------------------------------");
-            System.IO.Put_Line ("3) Time_Span + Time Process... Raise Error.");
-            System.IO.Put_Line ("3) Time Limited                           .");
-            System.IO.Put_Line ("-------------------------------------------");
-         end if;
-
          raise Constraint_Error;
       end if;
 
