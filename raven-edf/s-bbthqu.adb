@@ -237,6 +237,7 @@ package body System.BB.Threads.Queues is
    ---------------------------
 
    function Context_Switch_Needed return Boolean is
+      --  Self : constant Thread_Id := Running_Thread_Table (Current_CPU);
    begin
       --  A context switch is needed when there is a higher priority task ready
       --  to execute. It means that First_Thread is not null and it is not
@@ -245,6 +246,8 @@ package body System.BB.Threads.Queues is
       pragma Assert (First_Thread /= Null_Thread_Id
                      and then Running_Thread /= Null_Thread_Id);
 
+      --  System.IO.Put_Line (System.Address_Image (Self.ATCB));
+
       if not Busy_For_Interrupts
         and not Busy_For_Handlers then
          if Print_Preem then
@@ -252,8 +255,8 @@ package body System.BB.Threads.Queues is
               and Running_Thread.Preemption_Needed then
                System.BB.Stats.Preemptions := System.BB.Stats.Preemptions + 1;
                System.IO.Put_Line ("PREEMPTION; "
-                    & Integer'Image (System.BB.Stats.Preemptions) --  );
-                    & "; " & System.Address_Image (Running_Thread.ATCB));
+                    & Integer'Image (System.BB.Stats.Preemptions));
+               --     & "; " & System.Address_Image (Running_Thread.ATCB));
             end if;
          end if;
 
